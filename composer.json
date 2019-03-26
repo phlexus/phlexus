@@ -1,0 +1,6 @@
+{
+  "require": {
+    "php": ">=7.2",
+    "phlexus/phlexus-core": "dev-master"
+  }
+}
