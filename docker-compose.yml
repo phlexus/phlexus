@@ -1,0 +1,13 @@
+version: '3.5'
+
+networks:
+  default:
+    name: phlexus
+
+services:
+  php:
+    container_name: phlexus-cms
+    image: phlexus/fpm-ubuntu:18.04
+    volumes:
+      - .:/srv:rw
+    working_dir: /srv
