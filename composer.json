@@ -2,6 +2,7 @@
     "require": {
         "php": ">=7.2",
         "phlexus/phlexus-core": "dev-master",
+        "phlexus/phlexus-admin-module": "dev-master",
         "phlexus/phlexus-tabler-admin-theme": "dev-master",
         "oomphinc/composer-installers-extender": "~1.0"
     },
