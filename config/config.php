@@ -1,7 +1,11 @@
 <?php declare(strict_types=1);
 
 return [
-    'theme' => 'default',
+    'theme' => [
+        'themes_dir' => __DIR__ . '/../themes/',
+        'theme_admin' => 'phlexus-tabler-admin-theme',
+        'themes_dir_cache' => __DIR__ . '/../cache/',
+    ],
     'paths' => [
         'themes' => __DIR__ . '../themes/'
     ],
