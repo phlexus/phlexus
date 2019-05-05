@@ -7,11 +7,18 @@
         "oomphinc/composer-installers-extender": "~1.0"
     },
     "extra": {
-        "installer-types": ["library"],
+        "installer-types": [
+            "library"
+        ],
         "installer-paths": {
             "themes/{$name}/": [
                 "phlexus/phlexus-tabler-admin-theme"
             ]
         }
+    },
+    "scripts": {
+        "post-package-install": "Phlexus\\ThemeManager::install",
+        "post-package-update": "Phlexus\\ThemeManager::update",
+        "post-package-uninstall": "Phlexus\\ThemeManager::uninstall"
     }
 }
