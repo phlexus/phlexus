@@ -9,7 +9,7 @@ $routes = new RouterGroup([
     'namespace' => 'Phlexus\Modules\Landing\Controllers',
 ]);
 
-$routes->add('/', [
+$routes->addGet('/', [
     'controller' => 1,
     'action' => 2,
 ]);
