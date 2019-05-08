@@ -20,5 +20,7 @@
         "post-package-install": "Phlexus\\ThemeManager::install",
         "post-package-update": "Phlexus\\ThemeManager::update",
         "post-package-uninstall": "Phlexus\\ThemeManager::uninstall"
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
