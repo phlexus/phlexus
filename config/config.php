@@ -7,18 +7,32 @@ return [
         'themes_dir_cache' => __DIR__ . '/../cache/',
     ],
     'paths' => [
-        'themes' => __DIR__ . '../themes/'
+        'themes' => __DIR__ . '/../themes/',
+        'models' => __DIR__ . '/../src/Models/',
+    ],
+    'auth' => [
+        'driver' => 'model',
+        'configurations' => [
+            'model' => \Phlexus\Models\Users::class,
+            'fields' => [
+                'identity' => 'email',
+                'password' => 'password',
+                'id' => 'id',
+            ],
+        ],
     ],
     'modules' => [
         'Landing' => [
             'className' => 'Phlexus\Modules\Landing\Module',
-            'path' => __DIR__ . '/../modules/landing/Module.php',
-            'router' => __DIR__ . '/../modules/landing/config/routes.php',
+            'path' => __DIR__ . '/../Modules/Landing/Module.php',
+            'router' => __DIR__ . '/../Modules/Landing/Config/routes.php',
         ],
     ],
     'view' => [
         'engines' => [
             '.phtml' => 'Phalcon\Mvc\View\Engine\Php',
         ]
-    ]
+    ],
+    'db' => include_once 'database.php',
+    'providers' => include_once 'providers.php',
 ];
