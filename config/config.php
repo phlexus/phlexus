@@ -4,7 +4,7 @@ return [
     'theme' => [
         'themes_dir' => __DIR__ . '/../themes/',
         'theme_admin' => 'phlexus-tabler-admin-theme',
-        'themes_dir_cache' => __DIR__ . '/../cache/',
+        'themes_dir_cache' => __DIR__ . '/../var/cache/',
     ],
     'paths' => [
         'themes' => __DIR__ . '/../themes/',
@@ -35,4 +35,7 @@ return [
     ],
     'db' => include_once 'database.php',
     'providers' => include_once 'providers.php',
+    'security' => [
+        'work_factor' => 14,
+    ],
 ];
