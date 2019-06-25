@@ -21,7 +21,7 @@ class AuthProvider extends AbstractProvider
      */
     public function register(array $parameters = [])
     {
-        $configs = $this->getDI()->getShared('config')->get('auth');
+        $configs = $this->getDI()->getShared('config')->get('auth')->toArray();
         $this->di->setShared($this->providerName, function () use ($configs) {
             return new AuthManager($configs['adapter'], $configs['configurations']);
         });

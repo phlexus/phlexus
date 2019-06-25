@@ -11,7 +11,7 @@ return [
         'models' => __DIR__ . '/../src/Models/',
     ],
     'auth' => [
-        'driver' => 'model',
+        'adapter' => 'model',
         'configurations' => [
             'model' => \Phlexus\Models\Users::class,
             'fields' => [
