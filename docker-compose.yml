@@ -11,3 +11,16 @@ services:
     volumes:
       - .:/srv:rw
     working_dir: /srv
+    ports:
+      - 80:80
+  db:
+    container_name: phlexus-db
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: phlexus
+      MYSQL_USER: phlexus
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "127.0.0.1:3306:3306"
