@@ -6,6 +6,11 @@
         "phlexus/phlexus-tabler-admin-theme": "dev-master",
         "oomphinc/composer-installers-extender": "~1.0"
     },
+    "autoload": {
+        "psr-4": {
+            "Phlexus\\": "src/"
+        }
+    },
     "extra": {
         "installer-types": [
             "library"
