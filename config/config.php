@@ -24,8 +24,8 @@ return [
     'modules' => [
         'Landing' => [
             'className' => 'Phlexus\Modules\Landing\Module',
-            'path' => __DIR__ . '/../Modules/Landing/Module.php',
-            'router' => __DIR__ . '/../Modules/Landing/Config/routes.php',
+            'path' => __DIR__ . '/../src/Modules/Landing/Module.php',
+            'router' => __DIR__ . '/../src/Modules/Landing/Config/routes.php',
         ],
     ],
     'view' => [
