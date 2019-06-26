@@ -4,7 +4,8 @@
         "phlexus/phlexus-core": "dev-master",
         "phlexus/phlexus-admin-module": "dev-master",
         "phlexus/phlexus-tabler-admin-theme": "dev-master",
-        "oomphinc/composer-installers-extender": "~1.0"
+        "oomphinc/composer-installers-extender": "~1.0",
+        "vlucas/phpdotenv": "^3.4"
     },
     "autoload": {
         "psr-4": {

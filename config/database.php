@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
 return [
-    'host' => 'localhost',
-    'dbname' => 'phlexus',
-    'port' => 3306,
-    'username' => 'phlexus',
-    'password' => 'secret',
-    'adapter' => 'mysql',
+    'host' => getenv('DB_HOST'),
+    'dbname' => getenv('DB_NAME'),
+    'port' => getenv('DB_PORT'),
+    'username' => getenv('DB_NAME'),
+    'password' => getenv('DB_PASS'),
+    'adapter' => getenv('DB_ADAPTER'),
 ];
