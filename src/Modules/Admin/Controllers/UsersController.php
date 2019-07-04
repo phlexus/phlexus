@@ -4,10 +4,15 @@ namespace Phlexus\Modules\Admin\Controllers;
 
 use Phalcon\Mvc\Controller;
 
-class UsersController extends Controller
+final class UsersController extends Controller
 {
+    /**
+     * Users list
+     *
+     * @return void
+     */
     public function indexAction(): void
     {
-
+        $this->tag->setTitle('Users');
     }
 }

@@ -9,6 +9,11 @@ $routes = new RouterGroup([
     'namespace' => 'Phlexus\Modules\Admin\Controllers',
 ]);
 
+$routes->addGet('/admin', [
+    'controller' => 'index',
+    'action' => 'index',
+]);
+
 $routes->addGet('/admin/users', [
     'controller' => 'users',
     'action' => 'index',

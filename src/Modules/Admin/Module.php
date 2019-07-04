@@ -30,6 +30,9 @@ class Module extends PhlexusAdminModule
 
         $theme = $di->getShared('config')->get('theme');
         $themePath = $theme->themes_dir . $theme->theme_admin;
-        $di->getShared('view')->setViewsDir($themePath . '/views/');
+
+        $view = $di->getShared('view');
+        $view->setMainView($themePath . '/views/layouts/default');
+        $view->setViewsDir($themePath . '/views/');
     }
 }
