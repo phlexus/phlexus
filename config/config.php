@@ -3,7 +3,7 @@
 return [
     'theme' => [
         'themes_dir' => __DIR__ . '/../themes/',
-        'theme_admin' => 'phlexus-tabler-admin-theme',
+        'theme_admin' => 'admin',
         'themes_dir_cache' => __DIR__ . '/../var/cache/',
     ],
     'paths' => [
@@ -26,6 +26,11 @@ return [
             'className' => 'Phlexus\Modules\Landing\Module',
             'path' => __DIR__ . '/../src/Modules/Landing/Module.php',
             'router' => __DIR__ . '/../src/Modules/Landing/Config/routes.php',
+        ],
+        'Admin' => [
+            'className' => 'Phlexus\Modules\Admin\Module',
+            'path' => __DIR__ . '/../src/Modules/Admin/Module.php',
+            'router' => __DIR__ . '/../src/Modules/Admin/Config/routes.php',
         ],
     ],
     'view' => [
