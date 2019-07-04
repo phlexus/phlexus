@@ -1,6 +1,9 @@
 <?php declare(strict_types=1);
 
 return [
+    'application' => [
+        'base_uri' => '/',
+    ],
     'theme' => [
         'themes_dir' => __DIR__ . '/../themes/',
         'theme_admin' => 'admin',
@@ -42,5 +45,9 @@ return [
     'providers' => include_once 'providers.php',
     'security' => [
         'work_factor' => 14,
+    ],
+    'events' => [
+        'dispatch' => \Phlexus\Events\Listeners\DispatcherListener::class,
+        'dispatch:beforeDispatchLoop' => \Phlexus\Events\Listeners\AuthenticationListener::class,
     ],
 ];
