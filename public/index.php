@@ -19,4 +19,4 @@ $configs = require_once __DIR__ . '/../config/config.php';
 /**
  * Instantiate Phlexus Application and run it!
  */
-echo (new \Phlexus\Application('default', $configs, $loader->getPrefixesPsr4()))->run();
+echo (new \Phlexus\Application(\Phlexus\Application::MODE_DEFAULT, $configs, $loader->getPrefixesPsr4()))->run();
