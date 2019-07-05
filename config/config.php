@@ -23,6 +23,11 @@ return [
                 'id' => 'id',
             ],
         ],
+        'exclude_routes' => [
+            'phlexusadmin' => [
+                'auth' => ['login', 'doLogin', 'logout'],
+            ],
+        ],
     ],
     'modules' => [
         'Landing' => [
