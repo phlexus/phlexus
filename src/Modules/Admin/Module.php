@@ -27,12 +27,5 @@ class Module extends PhlexusAdminModule
     public function registerServices(DiInterface $di = null)
     {
         parent::registerServices($di);
-
-        $theme = $di->getShared('config')->get('theme');
-        $themePath = $theme->themes_dir . $theme->theme_admin;
-
-        $view = $di->getShared('view');
-        $view->setMainView($themePath . '/views/layouts/default');
-        $view->setViewsDir($themePath . '/views/');
     }
 }
