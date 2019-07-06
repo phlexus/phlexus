@@ -2,9 +2,7 @@
 
 namespace Phlexus\Modules\Admin\Controllers;
 
-use Phalcon\Mvc\Controller;
-
-final class UsersController extends Controller
+final class UsersController extends AbstractController
 {
     /**
      * Users list

@@ -2,17 +2,20 @@
 
 namespace Phlexus\Modules\Admin\Controllers;
 
-use Phalcon\Mvc\Controller;
-
-final class ErrorsController extends Controller
+final class ErrorsController extends AbstractController
 {
-    public function show402Action()
+    public function show402Action(): void
     {
-
+        // Nothing here
     }
 
-    public function show404Action()
+    public function show404Action(): void
     {
+        // Nothing here
+    }
 
+    public function show500Action(): void
+    {
+        // Nothing here
     }
 }

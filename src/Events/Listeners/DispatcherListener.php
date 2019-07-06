@@ -28,12 +28,12 @@ final class DispatcherListener extends Plugin
     public function beforeForward(Event $event, Dispatcher $dispatcher, array $forward = []): bool
     {
         if (!empty($forward['module'])) {
-            if (!phlexus_container('modules')->offsetExists($forward['module'])) {
-                throw new ModuleException("Module {$forward['module']} does not exist.");
+            $moduleName = $forward['module'];
+            if (!phlexus_container('modules')->offsetExists($moduleName)) {
+                throw new ModuleException("Module {$moduleName} does not exist.");
             }
 
-            $moduleDefinition = phlexus_container('modules')->offsetGet($forward['module']);
-
+            $moduleDefinition = phlexus_container('modules')->offsetGet($moduleName);
             // TODO: think about that validation, as there are atm only vendor DI declaration
             /*if (!phlexus_container()->has($moduleDefinition->className)) {
                 throw new DiException(
@@ -42,9 +42,9 @@ final class DispatcherListener extends Plugin
             }*/
 
             /** @var ModuleInterface $module */
-            $module = phlexus_container($moduleDefinition->className);
-            $dispatcher->setModuleName($forward['module']);
-            $dispatcher->setNamespaceName($module->getHandlersNamespace());
+            $moduleClass = phlexus_container($moduleDefinition->className);
+            $dispatcher->setModuleName($moduleName);
+            $dispatcher->setNamespaceName($moduleClass->getHandlersNamespace());
         }
 
         return $event->isStopped();
@@ -71,7 +71,7 @@ final class DispatcherListener extends Plugin
                 'action' => 'show404',
             ]);
 
-            $event->stop();
+            return false;
         }
 
         if ($exception instanceof AuthException) {
