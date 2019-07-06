@@ -2,6 +2,8 @@
 
 namespace Phlexus\Modules\Admin\Controllers;
 
+use Phlexus\Models\Users;
+
 final class UsersController extends AbstractController
 {
     /**
@@ -12,5 +14,11 @@ final class UsersController extends AbstractController
     public function indexAction(): void
     {
         $this->tag->setTitle('Users');
+
+        $users = Users::find([
+            'order' => 'id DESC',
+        ]);
+
+        $this->view->setVar('users', $users);
     }
 }
