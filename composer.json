@@ -17,7 +17,7 @@
         ],
         "installer-paths": {
             "themes/{$name}/": [
-                "phlexus/phlexus-tabler-admin-theme"
+                "phlexus/phlexus-tabler-base-admin-theme"
             ]
         }
     },
