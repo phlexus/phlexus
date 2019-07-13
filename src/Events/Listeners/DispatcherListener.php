@@ -55,9 +55,9 @@ final class DispatcherListener extends Plugin
      *
      * @param Event $event Event object.
      * @param Dispatcher $dispatcher Dispatcher object.
-     * @param \Exception $exception Exception object.
+     * @param Exception $exception Exception object.
      *
-     * @throws \Exception
+     * @throws Exception
      * @return bool
      */
     public function beforeException(Event $event, Dispatcher $dispatcher, Exception $exception): bool
