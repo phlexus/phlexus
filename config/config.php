@@ -6,7 +6,7 @@ return [
     ],
     'theme' => [
         'themes_dir' => __DIR__ . '/../themes/',
-        'theme_admin' => 'admin',
+        'theme_admin' => 'phlexus-tabler-extended-admin-theme',
         'themes_dir_cache' => __DIR__ . '/../var/cache/',
     ],
     'paths' => [
