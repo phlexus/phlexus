@@ -2,5 +2,3 @@
 vendor/
 docker-compose.override.yml
 .env
-public/assets/themes/phlexus-tabler-base-admin-theme
-themes/phlexus-tabler-base-admin-theme
