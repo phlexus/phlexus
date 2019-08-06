@@ -2,7 +2,7 @@
 
 namespace Phlexus\Modules\Admin;
 
-use Phalcon\DiInterface;
+use Phalcon\Di\DiInterface;
 use Phlexus\Modules\PhlexusAdmin\Module as PhlexusAdminModule;
 
 /**
