@@ -2,7 +2,7 @@
 
 namespace Phlexus\Modules\Landing;
 
-use Phalcon\DiInterface;
+use Phalcon\Di\DiInterface;
 use Phalcon\Loader;
 use Phlexus\Module as PhlexusModel;
 
