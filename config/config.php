@@ -24,6 +24,7 @@ return [
             ],
         ],
         'exclude_routes' => [
+            'Landing' => '*',
             'phlexusadmin' => [
                 'auth' => ['login', 'doLogin', 'logout'],
             ],
