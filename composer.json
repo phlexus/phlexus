@@ -1,7 +1,7 @@
 {
     "require": {
         "php": ">=7.2",
-        "phlexus/phlexus-core": "0.0.1-beta.1",
+        "phlexus/phlexus-core": "0.0.1-beta.2",
         "phlexus/phlexus-admin-module": "0.0.1-beta.1",
         "oomphinc/composer-installers-extender": "~1.0",
         "vlucas/phpdotenv": "^3.4"
