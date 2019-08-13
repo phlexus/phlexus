@@ -1,10 +1,12 @@
+{% extends 'layouts/base.volt' %}
+
 {% block content %}
 <div class="page-single">
     <div class="container">
         <div class="row">
             <div class="col col-login mx-auto">
                 <div class="text-center mb-6">
-                    <img src="/assets/themes/phlexus-tabler-admin-theme/demo/brand/tabler.svg" class="h-6" alt="">
+                    <img src="/assets/themes/phlexus-tabler-admin/demo/brand/tabler.svg" class="h-6" alt="">
                 </div>
                 <form class="card" action="/admin/auth/doLogin" method="post">
                     <div class="card-body p-6">

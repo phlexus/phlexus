@@ -96,7 +96,7 @@
                         <tbody>
                         <tr>
                             <td class="w-1">
-                                <span class="avatar" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/male/9.jpg)"></span>
+                                <span class="avatar" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/male/9.jpg)"></span>
                             </td>
                             <td>Ronald Bradley</td>
                             <td>Initial commit</td>
@@ -111,21 +111,21 @@
                             <td><a href="#" class="icon"><i class="fe fe-trash"></i></a></td>
                         </tr>
                         <tr>
-                            <td><span class="avatar" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/female/1.jpg)"></span></td>
+                            <td><span class="avatar" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/female/1.jpg)"></span></td>
                             <td>Beverly Armstrong</td>
                             <td>Left sidebar adjustments</td>
                             <td class="text-nowrap">April 15, 2018</td>
                             <td><a href="#" class="icon"><i class="fe fe-trash"></i></a></td>
                         </tr>
                         <tr>
-                            <td><span class="avatar" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/male/4.jpg)"></span></td>
+                            <td><span class="avatar" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/male/4.jpg)"></span></td>
                             <td>Bobby Knight</td>
                             <td>Topbar dropdown style</td>
                             <td class="text-nowrap">April 8, 2018</td>
                             <td><a href="#" class="icon"><i class="fe fe-trash"></i></a></td>
                         </tr>
                         <tr>
-                            <td><span class="avatar" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/female/11.jpg)"></span></td>
+                            <td><span class="avatar" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/female/11.jpg)"></span></td>
                             <td>Sharon Wells</td>
                             <td>Fixes #625</td>
                             <td class="text-nowrap">April 9, 2018</td>
@@ -283,12 +283,12 @@
     <div class="row row-cards row-deck">
         <div class="col-lg-6">
             <div class="card card-aside">
-                <a href="#" class="card-aside-column" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/photos/david-klaasen-54203-500.jpg)"></a>
+                <a href="#" class="card-aside-column" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/photos/david-klaasen-54203-500.jpg)"></a>
                 <div class="card-body d-flex flex-column">
                     <h4><a href="#">And this isn't my nose. This is a false one.</a></h4>
                     <div class="text-muted">Look, my liege! The Knights Who Say Ni demand a sacrifice! …Are you suggesting that coconuts migr...</div>
                     <div class="d-flex align-items-center pt-5 mt-auto">
-                        <div class="avatar avatar-md mr-3" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/female/18.jpg)"></div>
+                        <div class="avatar avatar-md mr-3" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/female/18.jpg)"></div>
                         <div>
                             <a href="./profile.html" class="text-default">Rose Bradley</a>
                             <small class="d-block text-muted">3 days ago</small>
@@ -302,12 +302,12 @@
         </div>
         <div class="col-lg-6">
             <div class="card card-aside">
-                <a href="#" class="card-aside-column" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/photos/david-marcu-114194-500.jpg)"></a>
+                <a href="#" class="card-aside-column" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/photos/david-marcu-114194-500.jpg)"></a>
                 <div class="card-body d-flex flex-column">
                     <h4><a href="#">Well, I didn't vote for you.</a></h4>
                     <div class="text-muted">Well, we did do the nose. Why? Shut up! Will you shut up?! You don't frighten us, English pig-dog...</div>
                     <div class="d-flex align-items-center pt-5 mt-auto">
-                        <div class="avatar avatar-md mr-3" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/male/16.jpg)"></div>
+                        <div class="avatar avatar-md mr-3" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/male/16.jpg)"></div>
                         <div>
                             <a href="./profile.html" class="text-default">Peter Richards</a>
                             <small class="d-block text-muted">3 days ago</small>
@@ -339,7 +339,7 @@
                         <tbody>
                         <tr>
                             <td class="text-center">
-                                <div class="avatar d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/female/26.jpg)">
+                                <div class="avatar d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/female/26.jpg)">
                                     <span class="avatar-status bg-green"></span>
                                 </div>
                             </td>
@@ -389,7 +389,7 @@
                         </tr>
                         <tr>
                             <td class="text-center">
-                                <div class="avatar d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/female/17.jpg)">
+                                <div class="avatar d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/female/17.jpg)">
                                     <span class="avatar-status bg-green"></span>
                                 </div>
                             </td>
@@ -439,7 +439,7 @@
                         </tr>
                         <tr>
                             <td class="text-center">
-                                <div class="avatar d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/female/21.jpg)">
+                                <div class="avatar d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/female/21.jpg)">
                                     <span class="avatar-status bg-green"></span>
                                 </div>
                             </td>
@@ -490,7 +490,7 @@
                         </tr>
                         <tr>
                             <td class="text-center">
-                                <div class="avatar d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/male/32.jpg)">
+                                <div class="avatar d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/male/32.jpg)">
                                     <span class="avatar-status bg-green"></span>
                                 </div>
                             </td>
@@ -541,7 +541,7 @@
                         </tr>
                         <tr>
                             <td class="text-center">
-                                <div class="avatar d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/female/12.jpg)">
+                                <div class="avatar d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/female/12.jpg)">
                                     <span class="avatar-status bg-green"></span>
                                 </div>
                             </td>
@@ -592,7 +592,7 @@
                         </tr>
                         <tr>
                             <td class="text-center">
-                                <div class="avatar d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/female/4.jpg)">
+                                <div class="avatar d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/female/4.jpg)">
                                     <span class="avatar-status bg-green"></span>
                                 </div>
                             </td>
@@ -643,7 +643,7 @@
                         </tr>
                         <tr>
                             <td class="text-center">
-                                <div class="avatar d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/female/27.jpg)">
+                                <div class="avatar d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/female/27.jpg)">
                                     <span class="avatar-status bg-green"></span>
                                 </div>
                             </td>
@@ -694,7 +694,7 @@
                         </tr>
                         <tr>
                             <td class="text-center">
-                                <div class="avatar d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/male/20.jpg)">
+                                <div class="avatar d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/male/20.jpg)">
                                     <span class="avatar-status bg-green"></span>
                                 </div>
                             </td>
@@ -842,7 +842,7 @@
                         <li class="list-separated-item">
                             <div class="row align-items-center">
                                 <div class="col-auto">
-                                    <span class="avatar avatar-md d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/female/12.jpg)"></span>
+                                    <span class="avatar avatar-md d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/female/12.jpg)"></span>
                                 </div>
                                 <div class="col">
                                     <div>
@@ -867,7 +867,7 @@
                         <li class="list-separated-item">
                             <div class="row align-items-center">
                                 <div class="col-auto">
-                                    <span class="avatar avatar-md d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/female/21.jpg)"></span>
+                                    <span class="avatar avatar-md d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/female/21.jpg)"></span>
                                 </div>
                                 <div class="col">
                                     <div>
@@ -892,7 +892,7 @@
                         <li class="list-separated-item">
                             <div class="row align-items-center">
                                 <div class="col-auto">
-                                    <span class="avatar avatar-md d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/female/29.jpg)"></span>
+                                    <span class="avatar avatar-md d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/female/29.jpg)"></span>
                                 </div>
                                 <div class="col">
                                     <div>
@@ -917,7 +917,7 @@
                         <li class="list-separated-item">
                             <div class="row align-items-center">
                                 <div class="col-auto">
-                                    <span class="avatar avatar-md d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/female/2.jpg)"></span>
+                                    <span class="avatar avatar-md d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/female/2.jpg)"></span>
                                 </div>
                                 <div class="col">
                                     <div>
@@ -942,7 +942,7 @@
                         <li class="list-separated-item">
                             <div class="row align-items-center">
                                 <div class="col-auto">
-                                    <span class="avatar avatar-md d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/male/34.jpg)"></span>
+                                    <span class="avatar avatar-md d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/male/34.jpg)"></span>
                                 </div>
                                 <div class="col">
                                     <div>
@@ -967,7 +967,7 @@
                         <li class="list-separated-item">
                             <div class="row align-items-center">
                                 <div class="col-auto">
-                                    <span class="avatar avatar-md d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/female/11.jpg)"></span>
+                                    <span class="avatar avatar-md d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/female/11.jpg)"></span>
                                 </div>
                                 <div class="col">
                                     <div>

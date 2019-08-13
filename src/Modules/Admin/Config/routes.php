@@ -10,13 +10,33 @@ $routes = new RouterGroup([
 ]);
 
 $routes->addGet('/admin', [
-    'controller' => 'index',
-    'action' => 'index',
+    'controller' => 1,
+    'action' => 2,
 ]);
 
 $routes->addGet('/admin/users', [
     'controller' => 'users',
     'action' => 'index',
+]);
+
+$routes->addGet('/admin/auth', [
+    'controller' => 'auth',
+    'action' => 'login',
+]);
+
+$routes->addPost('/admin/auth/doLogin', [
+    'controller' => 'auth',
+    'action' => 'doLogin',
+]);
+
+$routes->addGet('/admin/auth/remind', [
+    'controller' => 'auth',
+    'action' => 'remind',
+]);
+
+$routes->addGet('/admin/auth/logout', [
+    'controller' => 'auth',
+    'action' => 'logout',
 ]);
 
 return $routes;

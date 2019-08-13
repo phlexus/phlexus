@@ -1,10 +1,10 @@
 {
     "require": {
         "php": ">=7.2",
-        "phlexus/phlexus-core": "0.0.1-beta.2",
-        "phlexus/phlexus-admin-module": "0.0.1-beta.1",
         "oomphinc/composer-installers-extender": "~1.0",
-        "vlucas/phpdotenv": "^3.4"
+        "vlucas/phpdotenv": "^3.4",
+        "phlexus/phlexus-core": "0.0.1-beta.3",
+        "phlexus/phlexus-auth-library": "0.0.1-beta.1"
     },
     "require-dev": {
         "phalcon/ide-stubs": "4.0.0-beta.1"
@@ -13,21 +13,6 @@
         "psr-4": {
             "Phlexus\\": "src/"
         }
-    },
-    "extra": {
-        "installer-types": [
-            "library"
-        ],
-        "installer-paths": {
-            "themes/{$name}/": [
-                "phlexus/phlexus-tabler-base-admin-theme"
-            ]
-        }
-    },
-    "scripts": {
-        "post-package-install": "Phlexus\\ThemeManager::install",
-        "post-package-update": "Phlexus\\ThemeManager::update",
-        "post-package-uninstall": "Phlexus\\ThemeManager::uninstall"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

@@ -24,7 +24,7 @@
                         {% for user in users %}
                             <tr>
                                 <td class="text-center">
-                                    <div class="avatar d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/female/26.jpg)">
+                                    <div class="avatar d-block" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/female/26.jpg)">
                                         <span class="avatar-status bg-green"></span>
                                     </div>
                                 </td>

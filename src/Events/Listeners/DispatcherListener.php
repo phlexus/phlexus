@@ -77,8 +77,8 @@ final class DispatcherListener extends Plugin
         if ($exception instanceof AuthException) {
             $this->response->setStatusCode(402);
             $dispatcher->forward([
-                'module' => 'phlexusadmin',
-                'namespace' => 'Phlexus\Modules\PhlexusAdmin\Controllers',
+                'module' => 'Admin',
+                'namespace' => 'Phlexus\Modules\Admin\Controllers',
                 'controller' => 'auth',
                 'action' => 'login',
             ]);

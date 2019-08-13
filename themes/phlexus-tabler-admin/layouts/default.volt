@@ -17,21 +17,21 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                             <a href="#" class="dropdown-item d-flex">
-                                <span class="avatar mr-3 align-self-center" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/male/41.jpg)"></span>
+                                <span class="avatar mr-3 align-self-center" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/male/41.jpg)"></span>
                                 <div>
                                     <strong>Username1</strong> pushed new commit: Fix page load performance issue.
                                     <div class="small text-muted">10 minutes ago</div>
                                 </div>
                             </a>
                             <a href="#" class="dropdown-item d-flex">
-                                <span class="avatar mr-3 align-self-center" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/male/1.jpg)"></span>
+                                <span class="avatar mr-3 align-self-center" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/male/1.jpg)"></span>
                                 <div>
                                     <strong>Username2</strong> started new task: Tabler UI design.
                                     <div class="small text-muted">1 hour ago</div>
                                 </div>
                             </a>
                             <a href="#" class="dropdown-item d-flex">
-                                <span class="avatar mr-3 align-self-center" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/male/18.jpg)"></span>
+                                <span class="avatar mr-3 align-self-center" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/male/18.jpg)"></span>
                                 <div>
                                     <strong>Username3</strong> deployed new version of NodeJS REST Api V3
                                     <div class="small text-muted">2 hours ago</div>
@@ -44,7 +44,7 @@
 
                     <div class="dropdown">
                         <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                            <span class="avatar" style="background-image: url(/assets/themes/phlexus-tabler-admin-theme/demo/faces/male/9.jpg)"></span>
+                            <span class="avatar" style="background-image: url(/assets/themes/phlexus-tabler-admin/demo/faces/male/9.jpg)"></span>
                             <span class="ml-2 d-none d-lg-block">
                                 <span class="text-default">Name Surname</span>
                                 <small class="text-muted d-block mt-1">Administrator</small>

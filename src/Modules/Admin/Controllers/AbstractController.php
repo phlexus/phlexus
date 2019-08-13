@@ -16,12 +16,6 @@ abstract class AbstractController extends Controller
      */
     public function initialize(): void
     {
-        $theme = $this->getDI()->getShared('config')->get('theme');
-        $themePath = $theme->themes_dir . $theme->theme_admin;
-
-        $this->view->setMainView($themePath . '/layouts/default');
-        $this->view->setViewsDir($themePath . '/');
-
         $this->tag->appendTitle(' - Phlexus Admin');
     }
 }
