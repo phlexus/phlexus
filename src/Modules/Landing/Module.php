@@ -37,7 +37,7 @@ final class Module extends PhlexusModel
     public function registerServices(DiInterface $di = null)
     {
         $view = $di->getShared('view');
-        $view->setMainView(__DIR__ . '/../../themes/default/layouts/layout');
-        $view->setViewsDir(__DIR__ . '/../../themes/default/landing/');
+        $view->setMainView(__DIR__ . '/../../../themes/default/layouts/layout');
+        $view->setViewsDir(__DIR__ . '/../../../themes/default/landing/');
     }
 }
