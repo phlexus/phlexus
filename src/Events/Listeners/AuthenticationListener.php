@@ -54,10 +54,27 @@ final class AuthenticationListener extends Plugin
         $controller = $router->getControllerName();
         $action = $router->getActionName();
 
+        // Check of module is in exclude array
+        if (!isset($excludeRoutes[$module])) {
+            return false;
+        }
+
+        // Check if module has '*'
+        if (is_string($excludeRoutes[$module]) && $excludeRoutes[$module] === '*') {
+            return true;
+        }
+
+        // Check if controller is in exclude array
         if (!isset($excludeRoutes[$module][$controller])) {
             return false;
         }
 
+        // Check if modules controller has '*'
+        if (is_string($excludeRoutes[$module][$controller]) && $excludeRoutes[$module][$controller] === '*') {
+            return true;
+        }
+
+        // Check if action is in exclude array
         if (!in_array($action, $excludeRoutes[$module][$controller])) {
             return false;
         }
