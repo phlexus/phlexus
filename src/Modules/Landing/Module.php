@@ -34,7 +34,7 @@ final class Module extends PhlexusModel
      *
      * @param DiInterface $di
      */
-    public function registerServices(DiInterface $di)
+    public function registerServices(DiInterface $di = null)
     {
         $view = $di->getShared('view');
         $view->setMainView(__DIR__ . '/../../themes/default/layouts/layout');
