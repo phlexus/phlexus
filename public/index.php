@@ -8,8 +8,7 @@ $loader = require_once __DIR__ . '/../vendor/autoload.php';
 /**
  * Instantiate and load environment variables
  */
-$dotenv = Dotenv\Dotenv::create(__DIR__ . '/../');
-$dotenv->load();
+Dotenv\Dotenv::create(__DIR__ . '/../')->load();
 
 /**
  * Load Configurations
