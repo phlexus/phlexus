@@ -3,8 +3,8 @@
         "php": ">=7.2",
         "oomphinc/composer-installers-extender": "~1.0",
         "vlucas/phpdotenv": "^3.4",
-        "phlexus/phlexus-core": "0.0.1-beta.3",
-        "phlexus/phlexus-auth-library": "0.0.1-beta.1"
+        "phlexus/phlexus-admin-module": "0.0.1-beta.5",
+        "phlexus/phlexus-theme-library": "v0.0.1-alpha.5"
     },
     "require-dev": {
         "phalcon/ide-stubs": "4.0.0-beta.1"
