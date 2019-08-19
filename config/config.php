@@ -25,7 +25,8 @@ return [
         ],
         'exclude_routes' => [
             'Landing' => '*',
-            'Admin' => [
+            // TODO: move outside to phlexus-admin-module
+            \Phlexus\Modules\BaseAdmin\Module::getModuleName() => [
                 'auth' => ['login', 'doLogin', 'logout'],
             ],
         ],
@@ -52,8 +53,5 @@ return [
     'security' => [
         'work_factor' => 14,
     ],
-    'events' => [
-        'dispatch' => \Phlexus\Events\Listeners\DispatcherListener::class,
-        'dispatch:beforeDispatchLoop' => \Phlexus\Events\Listeners\AuthenticationListener::class,
-    ],
+    'events' => [],
 ];
