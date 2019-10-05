@@ -1,4 +1,6 @@
 {
+    "name": "phlexus/phlexus",
+    "license": "BSD-3-Clause",
     "require": {
         "php": ">=7.2",
         "oomphinc/composer-installers-extender": "~1.0",
