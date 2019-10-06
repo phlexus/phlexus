@@ -9,9 +9,22 @@ use Phlexus\Module as PhlexusModel;
 
 final class Module extends PhlexusModel
 {
-    public function getHandlersNamespace()
+    /**
+     * @return string
+     */
+    public static function getModuleName(): string
     {
-        return 'Phlexus\Modules\Landing\Controllers';
+        $namespaceParts = explode('\\', __NAMESPACE__);
+
+        return end($namespaceParts);
+    }
+
+    /**
+     * @return string
+     */
+    public static function getHandlersNamespace(): string
+    {
+        return __NAMESPACE__;
     }
 
     /**
