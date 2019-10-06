@@ -5,15 +5,15 @@ namespace Phlexus\Events\Listeners;
 
 use Exception;
 use Phalcon\Di\Exception as DiException;
-use Phalcon\Plugin;
+use Phalcon\Di\Injectable;
 use Phalcon\Events\Event;
 use Phalcon\Mvc\Dispatcher;
+use Phalcon\Mvc\Dispatcher\Exception as MvcDispatcherException;
 use Phlexus\Libraries\Auth\AuthException;
 use Phlexus\Module\ModuleException;
 use Phlexus\Module\ModuleInterface;
-use Phalcon\Mvc\Dispatcher\Exception as MvcDispatcherException;
 
-final class DispatcherListener extends Plugin
+final class DispatcherListener extends Injectable
 {
     /**
      * Before forwarding is happening.
