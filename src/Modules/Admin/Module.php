@@ -59,7 +59,7 @@ class Module extends BaseAdminModule
 
         $themePath = phlexus_themes_path() . phlexus_config('theme.theme_admin');
         $view = $di->getShared('view');
-        $view->setMainView($themePath . '/layouts/default');
+
         $view->setViewsDir($themePath . '/');
     }
 }
