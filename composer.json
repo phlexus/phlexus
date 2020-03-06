@@ -9,7 +9,7 @@
         "phlexus/phlexus-theme-library": "0.0.1-alpha.5"
     },
     "require-dev": {
-        "phalcon/ide-stubs": "4.0.0-beta.1"
+        "phalcon/ide-stubs": "^4.0"
     },
     "autoload": {
         "psr-4": {
