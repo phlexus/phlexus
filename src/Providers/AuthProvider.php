@@ -20,7 +20,7 @@ class AuthProvider extends AbstractProvider
      * @param array $parameters Custom parameters for Service Provider
      * @return void
      */
-    public function register(array $parameters = [])
+    public function register(array $parameters = []): void
     {
         $configs = $this->getDI()->getShared('config')->get('auth')->toArray();
         $this->di->setShared($this->providerName, function () use ($configs) {

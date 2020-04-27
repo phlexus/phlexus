@@ -11,8 +11,8 @@ $routes = new RouterGroup([
 ]);
 
 $routes->addGet('/', [
-    'controller' => 1,
-    'action' => 2,
+    'controller' => 'index',
+    'action' => 'index',
 ]);
 
 return $routes;
