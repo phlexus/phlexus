@@ -36,4 +36,4 @@ $configs = require_once $rootPath . '/config/config.php';
 /**
  * Instantiate Phlexus Application and run it!
  */
-echo (new Application(Application::MODE_DEFAULT, $configs, $loader->getPrefixesPsr4()))->run();
+echo (new Application($rootPath, Application::MODE_DEFAULT, $configs, $loader->getPrefixesPsr4()))->run();
