@@ -18,7 +18,7 @@ return [
     'auth' => [
         'adapter' => 'model',
         'configurations' => [
-            'model' => \Phlexus\Models\Users::class,
+            'model' => \Phlexus\Modules\BaseUser\Models\Users::class,
             'fields' => [
                 'identity' => 'email',
                 'password' => 'password',
@@ -43,6 +43,11 @@ return [
             'className' => 'Phlexus\Modules\Admin\Module',
             'path' => __DIR__ . '/../src/Modules/Admin/Module.php',
             'router' => __DIR__ . '/../src/Modules/Admin/Config/routes.php',
+        ],
+        'User' => [
+            'className' => 'Phlexus\Modules\User\Module',
+            'path' => __DIR__ . '/../src/Modules/User/Module.php',
+            'router' => __DIR__ . '/../src/Modules/User/Config/routes.php',
         ],
     ],
     'view' => [
