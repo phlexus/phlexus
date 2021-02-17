@@ -9,6 +9,7 @@ return [
     'theme' => [
         'themes_dir' => __DIR__ . '/../themes/',
         'theme_admin' => 'phlexus-tabler-admin',
+        'theme_user' => 'phlexus-tabler-admin',
         'themes_dir_cache' => __DIR__ . '/../var/cache/',
     ],
     'paths' => [
@@ -28,7 +29,7 @@ return [
         'exclude_routes' => [
             'Landing' => '*',
             // TODO: move outside to phlexus-admin-module
-            \Phlexus\Modules\BaseAdmin\Module::getModuleName() => [
+            \Phlexus\Modules\BaseUser\Module::getModuleName() => [
                 'auth' => ['login', 'doLogin', 'logout'],
             ],
         ],
