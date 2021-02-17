@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Phlexus\Modules\Admin\Controllers;
 
-use Phlexus\Models\Users;
+use Phlexus\Modules\BaseUser\Models\Users;
 use Phlexus\Modules\BaseAdmin\Controllers\AbstractController;
 
 final class UsersController extends AbstractController
