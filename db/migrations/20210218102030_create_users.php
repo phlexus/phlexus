@@ -18,9 +18,9 @@ final class CreateUsers extends AbstractMigration
         $table->addColumn('email', 'string', ['limit' => 255])
             ->addColumn('password', 'char', ['limit' => 60])
             ->addColumn('active', 'integer', ['limit' => 1, 'default' => 1, 'null' => false])
-            ->addColumn('profilesId', 'integer')
-            ->addIndex(['profilesId'])
-            ->addForeignKey('profilesId', 'profiles', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
+            ->addColumn('profileId', 'integer')
+            ->addIndex(['profileId'])
+            ->addForeignKey('profileId', 'profiles', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
             ->create();
     }
 }

@@ -12,7 +12,7 @@ final class PermissionsSeeder extends AbstractSeed
         $data = [
             [
                 'id' => 1,
-                'profilesId' => 3,
+                'profileId' => 1,
                 'resource' => 'users',
                 'action' => 'index',
             ],

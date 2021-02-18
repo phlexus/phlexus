@@ -14,11 +14,11 @@ final class CreatePermissions extends AbstractMigration
             return;
         }
         
-        $table->addColumn('profilesId', 'integer')
+        $table->addColumn('profileId', 'integer')
             ->addColumn('resource', 'string', ['limit' => 255])
             ->addColumn('action', 'string', ['limit' => 255])
-            ->addIndex(['profilesId'])
-            ->addForeignKey('profilesId', 'profiles', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
+            ->addIndex(['profileId'])
+            ->addForeignKey('profileId', 'profiles', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
             ->create();
     }
 }
