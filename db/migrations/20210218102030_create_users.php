@@ -20,7 +20,7 @@ final class CreateUsers extends AbstractMigration
             ->addColumn('active', 'integer', ['limit' => 1, 'default' => 1, 'null' => false])
             ->addColumn('profilesId', 'integer')
             ->addIndex(['profilesId'])
-            ->addForeignKey('profilesId', 'profiles', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
+            ->addForeignKey('profilesId', 'profiles', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
             ->create();
     }
 }
