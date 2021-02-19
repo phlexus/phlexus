@@ -8,6 +8,18 @@ use Phlexus\Modules\BaseUser\Controllers\AbstractController;
 
 final class UsersController extends AbstractController
 {
+    use \Phlexus\Modules\Generic\Action\Create;
+    use \Phlexus\Modules\Generic\Action\Edit;
+    use \Phlexus\Modules\Generic\Action\Delete;
+    use \Phlexus\Modules\Generic\Action\View;
+
+    public function initialize(): void
+    {
+        parent::initialize();
+
+        $this->setModel(new Users);
+    }
+
     /**
      * Users list
      *

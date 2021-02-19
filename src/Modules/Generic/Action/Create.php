@@ -8,8 +8,5 @@ trait Create {
     use Model;
 
     public function createAction(): bool {
-        if ($this->request->isPost()) {
-            return $this->response->redirect('user/auth');
-        }
     }
 }
