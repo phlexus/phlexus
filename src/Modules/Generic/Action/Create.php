@@ -7,6 +7,9 @@ trait Create {
 
     use Model;
 
-    public function createAction(): bool {
+    public function createAction(): void {
+        $this->tag->setTitle('Create');
+
+        $this->view->pick('generic/create');
     }
 }

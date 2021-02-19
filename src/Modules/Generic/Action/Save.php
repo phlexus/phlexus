@@ -7,9 +7,9 @@ trait Create {
 
     use Model;
 
-    public function saveAction(): bool {
+    public function saveAction(): void {
         if (!$this->request->isPost()) {
-            return false;
+            return;
         }
     }
 }

@@ -8,5 +8,8 @@ trait View {
     use Model;
     
     public function viewAction(): void {
+        $this->tag->setTitle('View');
+
+        $this->view->pick('generic/view');
     }
 }

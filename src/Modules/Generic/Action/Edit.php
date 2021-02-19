@@ -7,6 +7,9 @@ trait Edit {
     
     use Model;
     
-    public function editAction(): bool {
+    public function editAction(): void {
+        $this->tag->setTitle('Edit');
+
+        $this->view->pick('generic/edit');
     }
 }

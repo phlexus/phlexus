@@ -15,4 +15,11 @@ $routes->addGet('/user/users', [
     'action' => 'index',
 ]);
 
+foreach(['create', 'edit', 'view', 'save', 'delete'] as $action) {
+    $routes->addGet('/user/users/' . $action, [
+        'controller' => 'users',
+        'action' => $action,
+    ]);
+}
+
 return $routes;

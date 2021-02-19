@@ -7,6 +7,6 @@ trait Delete {
     
     use Model;
 
-    public function deleteAction(): bool {
+    public function deleteAction(): void {
     }
 }
