@@ -8,7 +8,6 @@ return [
     ],
     'theme' => [
         'themes_dir' => __DIR__ . '/../themes/',
-        'theme_admin' => 'phlexus-tabler-admin',
         'theme_user' => 'phlexus-tabler-admin',
         'themes_dir_cache' => __DIR__ . '/../var/cache/',
     ],
@@ -28,7 +27,7 @@ return [
         ],
         'exclude_routes' => [
             'Landing' => '*',
-            // TODO: move outside to phlexus-admin-module
+            // TODO: move outside to phlexus-module-users
             \Phlexus\Modules\BaseUser\Module::getModuleName() => [
                 'auth' => ['login', 'doLogin', 'logout'],
             ],
@@ -39,11 +38,6 @@ return [
             'className' => 'Phlexus\Modules\Landing\Module',
             'path' => __DIR__ . '/../src/Modules/Landing/Module.php',
             'router' => __DIR__ . '/../src/Modules/Landing/Config/routes.php',
-        ],
-        'Admin' => [
-            'className' => 'Phlexus\Modules\Admin\Module',
-            'path' => __DIR__ . '/../src/Modules/Admin/Module.php',
-            'router' => __DIR__ . '/../src/Modules/Admin/Config/routes.php',
         ],
         'User' => [
             'className' => 'Phlexus\Modules\User\Module',
