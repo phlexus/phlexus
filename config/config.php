@@ -27,10 +27,6 @@ return [
         ],
         'exclude_routes' => [
             'Landing' => '*',
-            // TODO: move outside to phlexus-module-users
-            \Phlexus\Modules\BaseUser\Module::getModuleName() => [
-                'auth' => ['login', 'doLogin', 'logout'],
-            ],
         ],
     ],
     'modules' => [

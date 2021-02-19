@@ -12,8 +12,26 @@ final class PermissionsSeeder extends AbstractSeed
         $data = [
             [
                 'id' => 1,
+                'profileId' => 3,
+                'resource' => 'baseuser_auth',
+                'action' => 'logout',
+            ],
+            [
+                'id' => 2,
                 'profileId' => 1,
-                'resource' => 'users',
+                'resource' => 'baseuser_auth',
+                'action' => 'dologin',
+            ],
+            [
+                'id' => 3,
+                'profileId' => 1,
+                'resource' => 'baseuser_index',
+                'action' => 'index',
+            ],
+            [
+                'id' => 4,
+                'profileId' => 1,
+                'resource' => 'user_users',
                 'action' => 'index',
             ],
         ];
