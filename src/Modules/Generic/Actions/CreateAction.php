@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Phlexus\Modules\Generic\Action;
+namespace Phlexus\Modules\Generic\Actions;
 
-trait Create {
+trait CreateAction {
 
     use Model;
 

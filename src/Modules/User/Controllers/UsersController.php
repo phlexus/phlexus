@@ -8,10 +8,11 @@ use Phlexus\Modules\BaseUser\Controllers\AbstractController;
 
 final class UsersController extends AbstractController
 {
-    use \Phlexus\Modules\Generic\Action\Create;
-    use \Phlexus\Modules\Generic\Action\Edit;
-    use \Phlexus\Modules\Generic\Action\Delete;
-    use \Phlexus\Modules\Generic\Action\View;
+    use \Phlexus\Modules\Generic\Actions\CreateAction;
+    use \Phlexus\Modules\Generic\Actions\EditAction;
+    use \Phlexus\Modules\Generic\Actions\DeleteAction;
+    use \Phlexus\Modules\Generic\Actions\ViewAction;
+    use \Phlexus\Modules\Generic\Actions\SaveAction;
 
     public function initialize(): void
     {

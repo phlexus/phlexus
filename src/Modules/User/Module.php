@@ -6,6 +6,7 @@ namespace Phlexus\Modules\User;
 use Phalcon\Di\DiInterface;
 use Phalcon\Loader;
 use Phlexus\Modules\BaseUser\Module as BaseUserModule;
+use Phlexus\Helpers;
 
 /**
  * Class Module
@@ -57,7 +58,7 @@ class Module extends BaseUserModule
     {
         parent::registerServices($di);
 
-        $themePath = phlexus_themes_path() . phlexus_config('theme.theme_user');
+        $themePath = Helpers::phlexusThemesPath() . Helpers::phlexusConfig('theme.theme_user');
         $view = $di->getShared('view');
 
         $view->setViewsDir($themePath . '/');

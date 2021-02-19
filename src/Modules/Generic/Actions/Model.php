@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Phlexus\Modules\Generic\Action;
+namespace Phlexus\Modules\Generic\Actions;
 
 use Phalcon\Mvc\Model as MvcModel;
 
