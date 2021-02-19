@@ -5,16 +5,12 @@
         "php": ">=7.2",
         "oomphinc/composer-installers-extender": "~1.0",
         "vlucas/phpdotenv": "^3.4",
-        "phlexus/phlexus-core": "*",
-        "phlexus/phlexus-library-auth": "*",
-        "phlexus/phlexus-library-theme": "*",
-        "phlexus/phlexus-module-users": "*",
-        "phlexus/phlexus-theme-admin-tabler": "*",
+        "phlexus/phlexus-user-module": "*",
+        "phlexus/phlexus-theme-library": "0.0.1-alpha.5",
         "robmorgan/phinx": "^0.11.1"
     },
     "require-dev": {
-        "phalcon/ide-stubs": "^4.0",
-        "phalcon/devtools": "^4.0"
+        "phalcon/ide-stubs": "^4.0"
     },
     "autoload": {
         "psr-4": {
