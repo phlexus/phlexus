@@ -10,6 +10,8 @@ trait CreateAction {
     public function createAction(): void {
         $this->tag->setTitle('Create');
 
+        $this->view->setVar('fields', $this->modelToFields());
+
         $this->view->pick('generic/create');
     }
 }

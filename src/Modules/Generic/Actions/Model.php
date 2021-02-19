@@ -26,4 +26,12 @@ trait Model {
     private function setAllowedFields(array $allowedFields) {
         $this->allowedFields = $allowedFields;
     }
+
+    private function modelToFields(): array {
+        $reflection = new \ReflectionClass($this->getModel());
+
+        $fields = $reflection->getProperties(\ReflectionProperty::IS_PUBLIC);
+
+        return $fields;
+    }
 }
