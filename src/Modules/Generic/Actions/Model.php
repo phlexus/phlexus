@@ -28,10 +28,21 @@ trait Model {
     }
 
     private function modelToFields(): array {
-        $reflection = new \ReflectionClass($this->getModel());
+        $model = $this->getModel();
+
+        $reflection = new \ReflectionClass($model);
 
         $fields = $reflection->getProperties(\ReflectionProperty::IS_PUBLIC);
 
-        return $fields;
+        $newFields = [];
+        foreach($fields as $field) {
+            $newFields[] = (object) [
+                'name' => $field->name,
+                'type' => 'string',
+                'allow_null' => false
+            ];
+        }
+
+        return $newFields;
     }
 }

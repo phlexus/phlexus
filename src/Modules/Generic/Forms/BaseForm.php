@@ -3,7 +3,6 @@
 namespace Phlexus\Modules\Generic\Forms;
 
 use Phlexus\Form\FormBase;
-use Phalcon\Security;
 use Phalcon\Forms\Element\Text;
 use Phalcon\Forms\Element\Email;
 use Phalcon\Forms\Element\Password;
