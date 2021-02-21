@@ -9,7 +9,7 @@ trait Model {
 
     private MvcModel $model;
 
-    private array $allowedFields = [];
+    private array $fields = [];
 
     private function getModel(): MvcModel {
         return $this->model;
@@ -19,30 +19,33 @@ trait Model {
         $this->model = $model;
     }
 
-    private function getAllowedFields(): array {
-        return $this->allowedFields;
+    private function getFields(): array {
+        return $this->fields;
     }
 
-    private function setAllowedFields(array $allowedFields) {
-        $this->allowedFields = $allowedFields;
+    private function setFields(array $fields) {
+        $this->fields = $fields;
     }
 
-    private function modelToFields(): array {
+    private function parseFields(): array {
         $model = $this->getModel();
 
         $reflection = new \ReflectionClass($model);
 
-        $fields = $reflection->getProperties(\ReflectionProperty::IS_PUBLIC);
+        $fields = $this->getFields();
 
-        $newFields = [];
-        foreach($fields as $field) {
-            $newFields[] = (object) [
-                'name' => $field->name,
-                'type' => 'string',
-                'allow_null' => false
-            ];
+        foreach($fields as $key => $field) {
+            $fieldName = $field['name'];
+            if(!$reflection->hasProperty($fieldName)) {
+                unset($fields[$key]);
+                continue;
+            }
+
+            if(isset($field['related'])) {
+                $fields[$key]['related'] = ($field['related'])::find();
+            }
         }
 
-        return $newFields;
+        return $fields;
     }
 }

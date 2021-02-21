@@ -4,11 +4,8 @@ namespace Phlexus\Modules\Generic\Forms;
 
 use Phlexus\Form\FormBase;
 use Phalcon\Forms\Element\Text;
-use Phalcon\Forms\Element\Email;
-use Phalcon\Forms\Element\Password;
-use Phalcon\Forms\Element\File;
-use Phalcon\Forms\Element\Check;
-use Phalcon\Validation\Validator\File as ValidatorFile;
+use Phalcon\Forms\Element\Select;
+use Phalcon\Validation\Validator\PresenceOf;
 
 class BaseForm extends FormBase
 {
@@ -31,9 +28,37 @@ class BaseForm extends FormBase
         $fields = $this->getFields();
 
         foreach($fields as $field) {
-            $this->add(new Text($field->name, [
-                'required' => true
-            ]));
+            $type = isset($field['type']) ? $field['type'] : Text::class;
+
+            $required = isset($field['required']) ? $field['required'] : false;
+
+            $fieldName = $field['name'];
+
+            if($type === Select::class) {
+                $new_field = new $type(
+                    $fieldName,
+                    isset($field['related']) ? $field['related'] : $field['values'],
+                    [
+                        'using' => isset($field['using']) ? $field['using'] : [],
+                        'required' => $required
+                    ]
+                );
+            } else {
+                $new_field = new $type(
+                    $fieldName,
+                    [
+                        'required' => $required
+                    ]
+                );
+            }
+
+            if($required) {
+                $new_field->addValidator(new PresenceOf([
+                    'message' => ucfirst($fieldName) . ' is required.',
+                ]));
+            }
+
+            $this->add($new_field);
         }
     }
 }
