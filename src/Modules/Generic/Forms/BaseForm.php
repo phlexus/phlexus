@@ -38,17 +38,12 @@ class BaseForm extends FormBase
                 $new_field = new $type(
                     $fieldName,
                     isset($field['related']) ? $field['related'] : $field['values'],
-                    [
-                        'using' => isset($field['using']) ? $field['using'] : [],
-                        'required' => $required
-                    ]
+                    $this->parseAttributes($field)
                 );
             } else {
                 $new_field = new $type(
                     $fieldName,
-                    [
-                        'required' => $required
-                    ]
+                    $this->parseAttributes($field)
                 );
             }
 
@@ -60,5 +55,11 @@ class BaseForm extends FormBase
 
             $this->add($new_field);
         }
+    }
+
+    private function parseAttributes(array $attributes): array {
+        $ignoreAttributes = ['name', 'type', 'related'];
+
+        return array_diff_key($attributes, array_flip($ignoreAttributes));
     }
 }
