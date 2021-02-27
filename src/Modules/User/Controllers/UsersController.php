@@ -5,6 +5,7 @@ namespace Phlexus\Modules\User\Controllers;
 
 use Phlexus\Modules\BaseUser\Models\Users;
 use Phlexus\Modules\BaseUser\Controllers\AbstractController;
+use \Phlexus\Modules\Generic\Forms\BaseForm;
 
 final class UsersController extends AbstractController
 {
@@ -19,6 +20,32 @@ final class UsersController extends AbstractController
         parent::initialize();
 
         $this->setModel(new Users);
+
+        $form = new BaseForm();
+
+        $this->setFields([
+            [
+                'name' => 'email',
+                'type' => \Phalcon\Forms\Element\Email::class,
+                'required' => true
+            ],
+            [
+                'name' => 'password',
+                'type' => \Phalcon\Forms\Element\Password::class,
+                'required' => true
+            ],
+            [
+                'name' => 'profileId',
+                'type' => \Phalcon\Forms\Element\Select::class,
+                'required' => true,
+                'related' => \Phlexus\Modules\BaseUser\Models\Profiles::class,
+                'using' => ['id', 'name']
+            ]
+        ]);
+
+        $form->setFields($this->parseFields());
+
+        $this->setForm($form);
     }
 
     /**
