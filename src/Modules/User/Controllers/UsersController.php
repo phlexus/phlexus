@@ -9,7 +9,7 @@ use Phlexus\Modules\Generic\Forms\BaseForm;
 use Phalcon\Forms\Element\Email;
 use Phalcon\Forms\Element\Password;
 use Phalcon\Forms\Element\Select;
-use \Phlexus\Modules\BaseUser\Models\Profiles;
+use Phlexus\Modules\BaseUser\Models\Profiles;
 
 final class UsersController extends AbstractController
 {
