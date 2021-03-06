@@ -19,8 +19,8 @@ final class UsersSeeder extends AbstractSeed
             ]
         ];
 
-        $posts = $this->table('users');
+        $users = $this->table('users');
         
-        $posts->insert($data)->save();
+        $users->insert($data)->save();
     }
 }

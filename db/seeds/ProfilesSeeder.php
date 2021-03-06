@@ -28,8 +28,8 @@ final class ProfilesSeeder extends AbstractSeed
             ],
         ];
 
-        $posts = $this->table('profiles');
+        $profiles = $this->table('profiles');
         
-        $posts->insert($data)->save();
+        $profiles->insert($data)->save();
     }
 }

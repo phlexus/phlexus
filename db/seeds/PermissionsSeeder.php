@@ -36,8 +36,8 @@ final class PermissionsSeeder extends AbstractSeed
             ],
         ];
         
-        $posts = $this->table('permissions');
+        $permissions = $this->table('permissions');
 
-        $posts->insert($data)->save();
+        $permissions->insert($data)->save();
     }
 }
