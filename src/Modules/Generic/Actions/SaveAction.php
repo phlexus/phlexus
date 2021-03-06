@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Phlexus\Modules\Generic\Actions;
 
+use Phalcon\Http\ResponseInterface;
+
 trait SaveAction {
 
     use Model;
@@ -30,9 +32,12 @@ trait SaveAction {
         if($form->isValid() || true) {
             $model->save();
 
-            return $this->response->redirect('dashboard');
+            $module = $this->dispatcher->getModuleName();
+            $controller = $this->dispatcher->getControllerName();
+
+            return $this->response->redirect(strtolower($module) . '/' . strtolower($controller));
         } else {
-            return $this->response->redirect('dashboard');
+            return $this->response->redirect($this->request->getHttpReferer());
         }
     }
 }
