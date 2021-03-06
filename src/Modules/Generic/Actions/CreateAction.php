@@ -14,6 +14,13 @@ trait CreateAction {
 
         $this->view->setVar('form', $this->getForm());
 
+        $module = $this->dispatcher->getModuleName();
+        $controller = $this->dispatcher->getControllerName();
+
+        $saveRoute = strtolower($module) . '/' . strtolower($controller) . '/save';
+
+        $this->view->setVar('saveRoute', $saveRoute);
+
         $this->view->pick('generic/create');
     }
 }

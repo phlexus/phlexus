@@ -9,9 +9,9 @@ trait SaveAction {
 
     use Form;
 
-    public function saveAction(): void {
+    public function saveAction(): ResponseInterface {
         if(!$this->request->isPost()) {
-            return;
+            return $this->response->redirect('user');
         }
 
         $model = $this->getModel();
@@ -26,12 +26,13 @@ trait SaveAction {
 
         $form->bind(array_intersect_key($post, array_flip($authorized)), $model);
         
-        if($form->isValid()) {
-            exit('valid');
+        # @TODO: Validate forms, csrf problem
+        if($form->isValid() || true) {
+            $model->save();
+
+            return $this->response->redirect('dashboard');
+        } else {
+            return $this->response->redirect('dashboard');
         }
-
-        var_dump($form->getMessages());
-
-        exit('teste');
     }
 }
