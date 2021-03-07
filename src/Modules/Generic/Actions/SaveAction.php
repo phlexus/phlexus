@@ -47,7 +47,7 @@ trait SaveAction {
         $authorized = array_map(function($auth) { return $auth['name']; }, $fields);
 
         if(isset($authorized[$primaryKey])) {
-            unest($authorized[$primaryKey]);
+            unset($authorized[$primaryKey]);
         }
 
         $form->bind(array_intersect_key($post, array_flip($authorized)), $model);
