@@ -45,12 +45,13 @@ trait SaveAction {
         }
         
         $authorized = array_map(function($auth) { return $auth['name']; }, $fields);
+        $authorizedKeys = array_flip($authorized);
 
-        if(isset($authorized[$primaryKey])) {
-            unset($authorized[$primaryKey]);
+        if(isset($$authorizedKeys[$primaryKey])) {
+            unset($$authorizedKeys[$primaryKey]);
         }
 
-        $form->bind(array_intersect_key($post, array_flip($authorized)), $model);
+        $form->bind(array_intersect_key($post, $authorizedKeys), $model);
         
         # @TODO: Validate forms, csrf problem
         if($form->isValid() || true) {
