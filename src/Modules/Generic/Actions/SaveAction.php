@@ -24,7 +24,7 @@ trait SaveAction {
 
         $form = $this->getForm();
 
-        $fields = $this->getFields();
+        $fields = $this->getFormFields();
 
         $post = $this->request->getPost();
         

@@ -9,7 +9,7 @@ trait Form {
 
     private BaseForm $form;
 
-    private array $fields = [];
+    private array $formFields = [];
 
     private function getForm(): BaseForm {
         return $this->form;
@@ -17,5 +17,13 @@ trait Form {
 
     private function setForm(BaseForm $form) {
         $this->form = $form;
+    }
+
+    private function getFormFields(): array {
+        return $this->formFields;
+    }
+
+    private function setFormFields(array $fields) {
+        $this->formFields = $fields;
     }
 }

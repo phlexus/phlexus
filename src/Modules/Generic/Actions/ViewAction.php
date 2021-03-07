@@ -13,13 +13,12 @@ trait ViewAction {
         $model = $this->getModel();
 
         $records = $model->find([
-            'order' => 'id DESC',
+            'conditions' => 'active = :active:',
+            'bind'       => ['active' => 1],
+            'order'      => 'id DESC',
         ])->toArray();
-
-        $fields = $this->getFields();
-        $display = array_map(function($auth) { return $auth['name']; }, $fields);
-
-        $this->view->setVar('display', $display);
+        
+        $this->view->setVar('display', $this->getViewFields());
         
         $this->view->setVar('records', $records);
 

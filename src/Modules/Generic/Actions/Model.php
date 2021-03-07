@@ -9,7 +9,7 @@ trait Model {
 
     private MvcModel $model;
 
-    private array $fields = [];
+    private array $viewFields = [];
 
     private function getModel(): MvcModel {
         return $this->model;
@@ -19,20 +19,18 @@ trait Model {
         $this->model = $model;
     }
 
-    private function getFields(): array {
-        return $this->fields;
+    private function getViewFields(): array {
+        return $this->viewFields;
     }
 
-    private function setFields(array $fields) {
-        $this->fields = $fields;
+    private function setViewFields(array $fields) {
+        $this->viewFields = $fields;
     }
 
-    private function parseFields(): array {
+    private function parseFields(array $fields): array {
         $model = $this->getModel();
 
         $reflection = new \ReflectionClass($model);
-
-        $fields = $this->getFields();
 
         foreach($fields as $key => $field) {
             $fieldName = $field['name'];

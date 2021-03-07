@@ -27,7 +27,7 @@ final class UsersController extends AbstractController
 
         $form = new BaseForm();
 
-        $this->setFields([
+        $formFields = [
             [
                 'name' => 'email',
                 'type' => Email::class,
@@ -45,10 +45,14 @@ final class UsersController extends AbstractController
                 'related' => Profiles::class,
                 'using' => ['id', 'name']
             ]
-        ]);
+        ];
 
-        $form->setFields($this->parseFields());
+        $this->setFormFields($formFields);
+
+        $form->setFields($this->parseFields($formFields));
 
         $this->setForm($form);
+
+        $this->setViewFields(['email', 'profileId']);
     }
 }

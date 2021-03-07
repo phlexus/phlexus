@@ -21,7 +21,7 @@ trait DeleteAction {
         $record = $model->findFirstByid($id);
 
         if($record) {
-            $record->status = 0;
+            $record->active = 0;
 
             $record->save();
         }
