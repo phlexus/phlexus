@@ -51,20 +51,4 @@ final class UsersController extends AbstractController
 
         $this->setForm($form);
     }
-
-    /**
-     * Users list
-     *
-     * @return void
-     */
-    public function indexAction(): void
-    {
-        $this->tag->setTitle('Users');
-
-        $users = Users::find([
-            'order' => 'id DESC',
-        ]);
-
-        $this->view->setVar('users', $users);
-    }
 }
