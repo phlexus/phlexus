@@ -15,18 +15,26 @@ $routes->addGet('/user/users', [
     'action' => 'index',
 ]);
 
-foreach(['create', 'edit', 'view'] as $action) {
+foreach(['create', 'view'] as $action) {
     $routes->addGet('/user/users/' . $action, [
         'controller' => 'users',
         'action' => $action,
     ]);
 }
 
-foreach(['save', 'delete'] as $action) {
-    $routes->addPost('/user/users/' . $action, [
-        'controller' => 'users',
-        'action' => $action,
-    ]);
-}
+$routes->addGet('/user/users/edit/{id:[1-9]+}', [
+    'controller' => 'users',
+    'action' => 'edit',
+]);
+
+$routes->addPost('/user/users/save', [
+    'controller' => 'users',
+    'action' => 'save',
+]);
+
+$routes->addPost('/user/users/delete/{id:[1-9]+}', [
+    'controller' => 'users',
+    'action' => 'delete',
+]);
 
 return $routes;

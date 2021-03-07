@@ -11,13 +11,10 @@ trait CreateAction {
 
     public function createAction(): void {
         $this->tag->setTitle('Create');
+        
+        $saveRoute = $this->getBasePosition() . '/save';
 
         $this->view->setVar('form', $this->getForm());
-
-        $module = $this->dispatcher->getModuleName();
-        $controller = $this->dispatcher->getControllerName();
-
-        $saveRoute = strtolower($module) . '/' . strtolower($controller) . '/save';
 
         $this->view->setVar('saveRoute', $saveRoute);
 
