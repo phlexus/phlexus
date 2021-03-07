@@ -12,8 +12,12 @@ trait SaveAction {
     use Form;
 
     public function saveAction(): ResponseInterface {
+        $this->view->disable();
+
+        $defaultRoute = $this->getBasePosition();
+
         if(!$this->request->isPost()) {
-            return $this->response->redirect('user');
+            return $this->response->redirect($defaultRoute);
         }
 
         $model = $this->getModel();
@@ -32,10 +36,7 @@ trait SaveAction {
         if($form->isValid() || true) {
             $model->save();
 
-            $module = $this->dispatcher->getModuleName();
-            $controller = $this->dispatcher->getControllerName();
-
-            return $this->response->redirect(strtolower($module) . '/' . strtolower($controller));
+            return $this->response->redirect($defaultRoute);
         } else {
             return $this->response->redirect($this->request->getHttpReferer());
         }
