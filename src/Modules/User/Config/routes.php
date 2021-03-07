@@ -12,7 +12,7 @@ $routes = new RouterGroup([
 
 $routes->addGet('/user/users', [
     'controller' => 'users',
-    'action' => 'index',
+    'action' => 'view',
 ]);
 
 foreach(['create', 'view'] as $action) {
