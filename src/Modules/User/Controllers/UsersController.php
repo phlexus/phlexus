@@ -9,6 +9,7 @@ use Phlexus\Modules\Generic\Forms\BaseForm;
 use Phalcon\Forms\Element\Email;
 use Phalcon\Forms\Element\Password;
 use Phalcon\Forms\Element\Select;
+use Phalcon\Forms\Element\Hidden;
 use Phlexus\Modules\BaseUser\Models\Profiles;
 
 final class UsersController extends AbstractController
@@ -28,6 +29,10 @@ final class UsersController extends AbstractController
         $form = new BaseForm();
 
         $formFields = [
+            [
+                'name' => 'id',
+                'type' => Hidden::class
+            ],
             [
                 'name' => 'email',
                 'type' => Email::class,

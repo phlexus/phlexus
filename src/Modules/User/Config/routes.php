@@ -10,6 +10,11 @@ $routes = new RouterGroup([
     'namespace' => 'Phlexus\Modules\User\Controllers',
 ]);
 
+$routes->addGet('/user/users', [
+    'controller' => 'users',
+    'action' => 'view',
+]);
+
 foreach(['create', 'view'] as $action) {
     $routes->addGet('/user/users/' . $action, [
         'controller' => 'users',
