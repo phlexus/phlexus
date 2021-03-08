@@ -58,6 +58,6 @@ final class UsersController extends AbstractController
 
         $this->setForm($form);
 
-        $this->setViewFields(['email', 'profileId']);
+        $this->setViewFields(['id', 'email', 'profileId']);
     }
 }

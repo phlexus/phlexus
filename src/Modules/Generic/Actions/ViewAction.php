@@ -16,11 +16,14 @@ trait ViewAction {
             'conditions' => 'active = :active:',
             'bind'       => ['active' => 1],
             'order'      => 'id DESC',
-        ])->toArray();
-        
+        ]);
+
         $this->view->setVar('display', $this->getViewFields());
         
-        $this->view->setVar('records', $records);
+        $this->view->setVar('records', array_replace_recursive(
+            $records->toArray(), 
+            $this->translateRelatedFields($records)
+        ));
 
         $this->view->pick('generic/view');
     }
