@@ -5,7 +5,7 @@ namespace Phlexus\Modules\Generic\Actions;
 
 trait ViewAction {
 
-    use Model;
+    use \Phlexus\Modules\Generic\Model;
     
     public function viewAction(): void {
         $this->tag->setTitle('View');

@@ -7,7 +7,7 @@ use Phalcon\Http\ResponseInterface;
 
 trait DeleteAction {
     
-    use Model;
+    use \Phlexus\Modules\Generic\Model;
 
     public function deleteAction(int $id): ResponseInterface {
         $this->view->disable();

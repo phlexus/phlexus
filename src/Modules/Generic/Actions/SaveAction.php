@@ -7,9 +7,9 @@ use Phalcon\Http\ResponseInterface;
 
 trait SaveAction {
 
-    use Model;
+    use \Phlexus\Modules\Generic\Model;
 
-    use Form;
+    use \Phlexus\Modules\Generic\Form;
 
     private string $primaryKey = 'id';
 

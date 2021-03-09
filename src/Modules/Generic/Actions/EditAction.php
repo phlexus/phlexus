@@ -5,9 +5,9 @@ namespace Phlexus\Modules\Generic\Actions;
 
 trait EditAction {
     
-    use Model;
+    use \Phlexus\Modules\Generic\Model;
 
-    use Form;
+    use \Phlexus\Modules\Generic\Form;
     
     public function editAction(int $id) {
         $this->tag->setTitle('Edit');
