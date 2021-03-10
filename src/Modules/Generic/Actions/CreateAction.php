@@ -3,12 +3,22 @@ declare(strict_types=1);
 
 namespace Phlexus\Modules\Generic\Actions;
 
+/**
+ * Trait Create Action
+ *
+ * @package Phlexus\Modules\Generic\Actions
+ */
 trait CreateAction {
 
     use \Phlexus\Modules\Generic\Model;
 
     use \Phlexus\Modules\Generic\Form;
 
+    /**
+     * Create Action
+     *
+     * @return void
+     */
     public function createAction(): void {
         $this->tag->setTitle('Create');
         

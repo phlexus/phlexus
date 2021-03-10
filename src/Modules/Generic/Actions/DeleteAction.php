@@ -5,10 +5,22 @@ namespace Phlexus\Modules\Generic\Actions;
 
 use Phalcon\Http\ResponseInterface;
 
+/**
+ * Trait Delete Action
+ *
+ * @package Phlexus\Modules\Generic\Actions
+ */
 trait DeleteAction {
     
     use \Phlexus\Modules\Generic\Model;
 
+    /**
+     * Delete Action
+     *
+     * @param int $id The model id
+     * 
+     * @return ResponseInterface
+     */
     public function deleteAction(int $id): ResponseInterface {
         $this->view->disable();
 

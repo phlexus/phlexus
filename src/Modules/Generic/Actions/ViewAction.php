@@ -3,10 +3,20 @@ declare(strict_types=1);
 
 namespace Phlexus\Modules\Generic\Actions;
 
+/**
+ * Trait View Action
+ *
+ * @package Phlexus\Modules\Generic\Actions
+ */
 trait ViewAction {
 
     use \Phlexus\Modules\Generic\Model;
     
+    /**
+     * View Action
+     *
+     * @return void
+     */
     public function viewAction(): void {
         $this->tag->setTitle('View');
 

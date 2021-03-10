@@ -7,11 +7,22 @@ use Phalcon\Forms\Element\Text;
 use Phalcon\Forms\Element\Select;
 use Phalcon\Validation\Validator\PresenceOf;
 
+/**
+ * Class Base Form
+ *
+ * @package Phlexus\Modules\Generic\Forms
+ */
 class BaseForm extends FormBase
 {
     private array $fields = [];
 
-
+    /**
+     * Set Fields
+     * 
+     * @param array $fields The form fields
+     * 
+     * @return void
+     */
     public function setFields(array $fields)
     {
         $this->fields = $fields;
@@ -19,11 +30,21 @@ class BaseForm extends FormBase
         $this->parseFields();
     }
 
+    /**
+     * Get Fields
+     *
+     * @return array The form fields
+     */
     public function getFields(): array
     {
         return $this->fields;
     }
 
+    /**
+     * Parse Fields
+     *
+     * @return void
+     */
     private function parseFields(): void {
         $fields = $this->getFields();
 
@@ -57,6 +78,13 @@ class BaseForm extends FormBase
         }
     }
 
+    /**
+     * Parse Fields
+     *
+     * @param array $attributes Attributes to parse
+     * 
+     * @return array Parsed attributes
+     */
     private function parseAttributes(array $attributes): array {
         $ignoreAttributes = ['name', 'type', 'related'];
 

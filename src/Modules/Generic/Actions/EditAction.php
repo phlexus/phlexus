@@ -3,12 +3,24 @@ declare(strict_types=1);
 
 namespace Phlexus\Modules\Generic\Actions;
 
+/**
+ * Trait Edit Action
+ *
+ * @package Phlexus\Modules\Generic\Actions
+ */
 trait EditAction {
     
     use \Phlexus\Modules\Generic\Model;
 
     use \Phlexus\Modules\Generic\Form;
     
+    /**
+     * Edit Action
+     * 
+     * @param int $id The model id
+     * 
+     * @return mixed Phalcon\Http\ResponseInterface or void
+     */
     public function editAction(int $id) {
         $this->tag->setTitle('Edit');
         

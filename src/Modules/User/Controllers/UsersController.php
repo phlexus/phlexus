@@ -12,6 +12,11 @@ use Phalcon\Forms\Element\Select;
 use Phalcon\Forms\Element\Hidden;
 use Phlexus\Modules\BaseUser\Models\Profiles;
 
+/**
+ * Class Users
+ *
+ * @package Phlexus\Modules\User\Controllers
+ */
 final class UsersController extends AbstractController
 {
     use \Phlexus\Modules\Generic\Actions\CreateAction;
@@ -20,6 +25,11 @@ final class UsersController extends AbstractController
     use \Phlexus\Modules\Generic\Actions\ViewAction;
     use \Phlexus\Modules\Generic\Actions\SaveAction;
 
+    /**
+     * Initialize
+     *
+     * @return void
+     */
     public function initialize(): void
     {
         parent::initialize();

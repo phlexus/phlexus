@@ -5,6 +5,11 @@ namespace Phlexus\Modules\Generic\Actions;
 
 use Phalcon\Http\ResponseInterface;
 
+/**
+ * Trait Save Action
+ *
+ * @package Phlexus\Modules\Generic\Actions
+ */
 trait SaveAction {
 
     use \Phlexus\Modules\Generic\Model;
@@ -13,6 +18,11 @@ trait SaveAction {
 
     private string $primaryKey = 'id';
 
+    /**
+     * Save Action
+     *
+     * @return ResponseInterface
+     */
     public function saveAction(): ResponseInterface {
         $this->view->disable();
 
