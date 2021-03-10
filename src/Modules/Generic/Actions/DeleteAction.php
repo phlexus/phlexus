@@ -6,7 +6,7 @@ namespace Phlexus\Modules\Generic\Actions;
 use Phalcon\Http\ResponseInterface;
 
 /**
- * Trait Delete Action
+ * Trait DeleteAction
  *
  * @package Phlexus\Modules\Generic\Actions
  */

@@ -6,7 +6,7 @@ namespace Phlexus\Modules\Generic\Actions;
 use Phalcon\Http\ResponseInterface;
 
 /**
- * Trait Save Action
+ * Trait SaveAction
  *
  * @package Phlexus\Modules\Generic\Actions
  */

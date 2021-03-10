@@ -8,7 +8,7 @@ use Phalcon\Forms\Element\Select;
 use Phalcon\Validation\Validator\PresenceOf;
 
 /**
- * Class Base Form
+ * Class BaseForm
  *
  * @package Phlexus\Modules\Generic\Forms
  */

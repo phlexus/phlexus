@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Phlexus\Modules\Generic\Actions;
 
 /**
- * Trait View Action
+ * Trait ViewAction
  *
  * @package Phlexus\Modules\Generic\Actions
  */
