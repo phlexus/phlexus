@@ -16,7 +16,5 @@
         "psr-4": {
             "Phlexus\\": "src/"
         }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
