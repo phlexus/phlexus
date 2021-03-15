@@ -28,12 +28,16 @@ trait ViewAction {
             'order'      => 'id DESC',
         ]);
 
+        $defaultRoute = $this->getBasePosition();
+
         $this->view->setVar('display', $this->getViewFields());
         
         $this->view->setVar('records', array_replace_recursive(
             $records->toArray(), 
             $this->translateRelatedFields($records)
         ));
+
+        $this->view->setVar('defaultRoute', $defaultRoute);
 
         $this->view->pick('generic/view');
     }
