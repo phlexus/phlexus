@@ -30,7 +30,7 @@ trait DeleteAction {
             return $this->response->redirect($defaultRoute);
         }
 
-        $record = $model->findFirstByid($id);
+        $record = $this->getModel()->findFirstByid($id);
 
         if($record) {
             $record->active = 0;

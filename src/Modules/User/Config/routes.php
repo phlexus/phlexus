@@ -22,7 +22,7 @@ foreach(['create', 'view'] as $action) {
     ]);
 }
 
-$routes->addGet('/user/users/edit/{id:[1-9]+}', [
+$routes->addGet('/user/users/edit/{id:[0-9]+}', [
     'controller' => 'users',
     'action' => 'edit',
 ]);
@@ -32,7 +32,7 @@ $routes->addPost('/user/users/save', [
     'action' => 'save',
 ]);
 
-$routes->addPost('/user/users/delete/{id:[1-9]+}', [
+$routes->addPost('/user/users/delete/{id:[0-9]+}', [
     'controller' => 'users',
     'action' => 'delete',
 ]);
