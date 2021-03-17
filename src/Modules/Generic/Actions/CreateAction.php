@@ -24,7 +24,11 @@ trait CreateAction {
         
         $saveRoute = $this->getBasePosition() . '/save';
 
+        $defaultRoute = $this->getBasePosition();
+        
         $this->view->setVar('form', $this->getForm());
+
+        $this->view->setVar('defaultRoute', $defaultRoute);
 
         $this->view->setVar('saveRoute', $saveRoute);
 
