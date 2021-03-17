@@ -42,6 +42,8 @@ trait EditAction {
 
         $this->view->setVar('form', $this->getForm());
 
+        $this->view->setVar('defaultRoute', $defaultRoute);
+        
         $this->view->setVar('saveRoute', $saveRoute);
 
         $this->view->pick('generic/edit');
