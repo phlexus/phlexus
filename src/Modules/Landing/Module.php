@@ -32,7 +32,7 @@ final class Module extends PhlexusModel
      *
      * @param DiInterface $di
      */
-    public function registerAutoloaders(DiInterface $di = null)
+    public function registerAutoloaders(DiInterface $di = null): void
     {
         $namespaces = [
             $this->getHandlersNamespace() => __DIR__ . '/controllers/',
@@ -48,7 +48,7 @@ final class Module extends PhlexusModel
      *
      * @param DiInterface $di
      */
-    public function registerServices(DiInterface $di = null)
+    public function registerServices(DiInterface $di = null): void
     {
         $view = $di->getShared('view');
         $view->setMainView(__DIR__ . '/../../../themes/default/layouts/layout');

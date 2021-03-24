@@ -39,7 +39,7 @@ class Module extends BaseUserModule
      * @param DiInterface $di
      * @return void
      */
-    public function registerAutoloaders(DiInterface $di = null)
+    public function registerAutoloaders(DiInterface $di = null): void
     {
         $namespaces = [
             self::getHandlersNamespace() . '\\Controllers' => __DIR__ . '/Controllers/',
@@ -54,7 +54,7 @@ class Module extends BaseUserModule
      * @param DiInterface|null $di
      * @return void
      */
-    public function registerServices(DiInterface $di = null)
+    public function registerServices(DiInterface $di = null): void
     {
         parent::registerServices($di);
 

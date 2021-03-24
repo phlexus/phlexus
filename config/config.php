@@ -9,6 +9,7 @@ return [
     'theme' => [
         'themes_dir' => __DIR__ . '/../themes/',
         'theme_user' => 'phlexus-tabler-admin',
+        'theme_public' => '/assets/themes/',
         'themes_dir_cache' => __DIR__ . '/../var/cache/',
     ],
     'paths' => [
