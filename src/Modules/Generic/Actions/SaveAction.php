@@ -43,6 +43,7 @@ trait SaveAction {
 
         $model = $this->getModel();
 
+        //@TODO: Validate if user has permission to do this. (ex: check if is admin or if this is from logged user)
         if($key > 0) {
             $model = $model->findFirst([
                 'conditions' => "$primaryKey = :$primaryKey:",
@@ -64,6 +65,9 @@ trait SaveAction {
         $form->bind(array_intersect_key($post, $authorizedKeys), $model);
         
         if($form->isValid()) {
+            // Remove csrf content
+            $model->csrf = null;
+
             $model->save();
             
             return $this->response->redirect($defaultRoute);
