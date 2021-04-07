@@ -36,9 +36,13 @@ final class UsersController extends AbstractController
 
         $this->setModel(new Users);
 
-        $form = new BaseForm();
+        $form = new BaseForm(!$this->isSave());
 
         $formFields = [
+            [
+                'name' => 'csrf',
+                'type' => Hidden::class
+            ],
             [
                 'name' => 'id',
                 'type' => Hidden::class
@@ -69,5 +73,14 @@ final class UsersController extends AbstractController
         $this->setForm($form);
 
         $this->setViewFields(['id', 'email', 'profileId']);
+    }
+
+    /**
+     * Is save
+     *
+     * @return bool
+     */
+    private function isSave() {
+        return $this->dispatcher->getActionName() === 'save';
     }
 }

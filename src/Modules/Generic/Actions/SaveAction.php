@@ -57,16 +57,15 @@ trait SaveAction {
         $authorized = array_map(function($auth) { return $auth['name']; }, $fields);
         $authorizedKeys = array_flip($authorized);
 
-        if(isset($$authorizedKeys[$primaryKey])) {
-            unset($$authorizedKeys[$primaryKey]);
+        if(isset($authorizedKeys[$primaryKey])) {
+            unset($authorizedKeys[$primaryKey]);
         }
 
         $form->bind(array_intersect_key($post, $authorizedKeys), $model);
         
-        # @TODO: Validate forms, csrf problem
-        if($form->isValid() || true) {
+        if($form->isValid()) {
             $model->save();
-
+            
             return $this->response->redirect($defaultRoute);
         } else {
             return $this->response->redirect($this->request->getHttpReferer());
