@@ -39,6 +39,8 @@ trait ViewAction {
 
         $this->view->setVar('defaultRoute', $defaultRoute);
 
+        $this->view->setVar('csrfToken', $this->security->getToken());
+
         $this->view->pick('generic/view');
     }
 }

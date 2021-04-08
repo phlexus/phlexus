@@ -26,8 +26,15 @@ trait DeleteAction {
 
         $defaultRoute = $this->getBasePosition();
 
-        if(!$this->request->isPost()) {
-            return $this->response->redirect($defaultRoute);
+        //Response instance
+        $response = new \Phalcon\Http\Response();
+
+        //Content of the response
+        $response = ['status' => 0];
+
+        if(!$this->request->isPost() 
+            || !$this->security->checkToken('csrf', $this->request->getPost('csrf', null))) {
+            return $this->response->setJsonContent($response);
         }
 
         $record = $this->getModel()->findFirstByid($id);
@@ -35,9 +42,11 @@ trait DeleteAction {
         if($record) {
             $record->active = 0;
 
-            $record->save();
+            if($record->save()) { 
+                $response['status'] = 1;
+            }
         }
 
-        return $this->response->redirect($defaultRoute);
+        return $this->response->setJsonContent($response);
     }
 }
