@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Phlexus\Modules\Generic\Actions;
 
 use Phalcon\Http\ResponseInterface;
+use Phlexus\Modules\BaseUser\Models\Users;
+use Phlexus\Modules\BaseUser\Models\Profiles;
 
 /**
  * Trait SaveAction
@@ -26,6 +28,8 @@ trait SaveAction {
     public function saveAction(): ResponseInterface {
         $this->view->disable();
 
+        Profiles::getProfiles();
+
         $defaultRoute = $this->getBasePosition();
 
         if(!$this->request->isPost()) {
@@ -43,8 +47,14 @@ trait SaveAction {
 
         $model = $this->getModel();
 
-        //@TODO: Validate if user has permission to do this. (ex: check if is admin or if this is from logged user)
         if($key > 0) {
+            $user = Users::getUser();
+            $isAdmin = Profiles::getUserProfile()->isAdmin();
+
+            if(!$isAdmin && (!isset($model->user_id) || $model->user_id !== $user->id)) {
+                return $this->response->redirect($defaultRoute);
+            }
+
             $model = $model->findFirst([
                 'conditions' => "$primaryKey = :$primaryKey:",
                 'bind'       => [$primaryKey  => $key],
