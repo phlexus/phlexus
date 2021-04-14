@@ -51,6 +51,7 @@ trait SaveAction {
             $user = Users::getUser();
             $isAdmin = Profiles::getUserProfile()->isAdmin();
 
+            // Check if user has edit permissions
             if(!$isAdmin && (!isset($model->user_id) || $model->user_id !== $user->id)) {
                 return $this->response->redirect($defaultRoute);
             }
