@@ -28,6 +28,8 @@ trait SaveAction {
     public function saveAction(): ResponseInterface {
         $this->view->disable();
 
+        $isEdit = false;
+
         Profiles::getProfiles();
 
         $defaultRoute = $this->getBasePosition();
@@ -64,11 +66,14 @@ trait SaveAction {
             if(!$model) {
                 return $this->response->redirect($defaultRoute);
             }
+
+            $isEdit = true;
         }
         
         $authorized = array_map(function($auth) { return $auth['name']; }, $fields);
         $authorizedKeys = array_flip($authorized);
 
+        // Remove primary key for beeing edited
         if(isset($authorizedKeys[$primaryKey])) {
             unset($authorizedKeys[$primaryKey]);
         }
@@ -78,6 +83,14 @@ trait SaveAction {
         if($form->isValid()) {
             // Remove csrf content
             $model->csrf = null;
+
+            $ts = date('Y-m-d H:i:s', time());
+
+            if(!$isEdit) {
+                $model->createdAt = $ts;
+            }
+
+            $model->modifiedAt = $ts;
 
             $model->save();
             
