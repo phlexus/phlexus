@@ -17,6 +17,7 @@ final class CreateUsers extends AbstractMigration
 
         $table->addColumn('email', 'string', ['limit' => 255])
             ->addColumn('password', 'char', ['limit' => 60, 'null' => false])
+            ->addColumn('hash_code', 'char', ['limit' => 255])
             ->addColumn('active', 'integer', ['limit' => 1, 'default' => 1, 'null' => false])
             ->addColumn('attempts', 'integer', ['default' => 0, 'null' => false])
             ->addColumn('profileId', 'integer', ['null' => false])
