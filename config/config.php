@@ -30,6 +30,13 @@ return [
             'Landing' => '*',
         ],
     ],
+    'email' => [
+        'options' => [
+            'host' => '',
+            'username' => '',
+            'password' => '',
+        ]
+    ],
     'modules' => [
         'Landing' => [
             'className' => 'Phlexus\Modules\Landing\Module',
