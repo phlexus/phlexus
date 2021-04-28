@@ -4,3 +4,4 @@ docker-compose.override.yml
 .env
 themes/phlexus-tabler-base-admin
 public/assets/themes/phlexus-tabler-base-admin
+/composer.json
