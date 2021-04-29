@@ -2,6 +2,6 @@
 vendor/
 docker-compose.override.yml
 .env
-themes/phlexus-tabler-base-admin
-public/assets/themes/phlexus-tabler-base-admin
-/composer.json
+themes/phlexus-tabler-admin
+public/assets/themes/phlexus-tabler-admin
+composer.lock
