@@ -26,15 +26,22 @@ class EmailProvider extends AbstractProvider
         $configs = Helpers::phlexusConfig('email')->toArray();
         $this->di->setShared($this->providerName, function () use ($configs) {
             $mail = new PHPMailer();
+
+            $options = $configs['options'];
             
             //Server settings
             $mail->isSMTP();
-            $mail->Host       = $configs['host'];
-            $mail->SMTPAuth   = true;
-            $mail->Username   = $configs['username'];
-            $mail->Password   = $configs['password'];
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-            $mail->Port       = 465;
+            $mail->Host       = $options['host'];
+            $mail->Username   = $options['username'];
+            $mail->Password   = $options['password'];
+            $mail->Port       = $options['port'];
+
+            if($options['is_smtp']) {
+                $mail->SMTPAuth   = true;
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            }
+
+            $mail->setFrom($options['username'], $options['name']);
 
             return $mail;
         });

@@ -32,9 +32,12 @@ return [
     ],
     'email' => [
         'options' => [
+            'is_smtp' => true,
             'host' => '',
+            'name' => 'Phlexus',
             'username' => '',
             'password' => '',
+            'port' => '',
         ]
     ],
     'modules' => [
