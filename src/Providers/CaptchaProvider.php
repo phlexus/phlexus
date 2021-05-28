@@ -7,7 +7,7 @@ use Phlexus\Helpers;
 use PHPMailer\PHPMailer\PHPMailer;
 use ReCaptcha\ReCaptcha;
 
-class EmailProvider extends AbstractProvider
+class CaptchaProvider extends AbstractProvider
 {
     /**
      * Provider name

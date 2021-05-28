@@ -40,6 +40,11 @@ return [
             'port' => '',
         ]
     ],
+    'captcha' => [
+        'options' => [
+            'secret' => '',
+        ]
+    ],
     'modules' => [
         'Landing' => [
             'className' => 'Phlexus\Modules\Landing\Module',
