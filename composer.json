@@ -1,5 +1,6 @@
 {
     "name": "falcon758/phlexus",
+    "description": "Phlexus CMS",
     "license": "BSD-3-Clause",
     "require": {
         "php": ">=7.2",
