@@ -22,16 +22,23 @@ abstract class CaptchaForm extends FormBase
     {
         parent::__construct();
         
-        $this->assignCaptcha();
+        $configs = Helpers::phlexusConfig('captcha')->toArray();
+
+        $this->assignCaptcha($configs['options']['site-key']);
     }
 
     /**
      * Assign Captcha
      * 
+     * @param string $data_site_key Captcha Site Key 
+     * 
      * @return void
      */
-    private function assignCaptcha() {
-        $captcha = new Hidden(self::CAPTCHA_NAME);
+    private function assignCaptcha($data_site_key) {
+        $captcha = new Hidden(self::CAPTCHA_NAME, [
+            'class' => 'g-recaptcha',
+            'data-site-key' => 'key'
+        ]);
 
         $captcha->addValidator(new CaptchaValidator());
 

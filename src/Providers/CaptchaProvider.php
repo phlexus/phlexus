@@ -27,7 +27,8 @@ class CaptchaProvider extends AbstractProvider
         $application = Helpers::phlexusConfig('application')->toArray();
         $configs = Helpers::phlexusConfig('captcha')->toArray();
         $this->di->setShared($this->providerName, function () use ($application, $configs) {
-            $recaptcha = new ReCaptcha($configs['captcha']['secret']);
+            $options = $configs['options'];
+            $recaptcha = new ReCaptcha($options['secret']);
             return $recaptcha->setExpectedHostname($application->base_uri);
         });
     }

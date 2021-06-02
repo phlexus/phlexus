@@ -42,6 +42,7 @@ return [
     ],
     'captcha' => [
         'options' => [
+            'site-key'=> '',
             'secret' => '',
         ]
     ],
