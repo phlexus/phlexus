@@ -39,7 +39,7 @@ abstract class CaptchaForm extends FormBase
     private function assignCaptcha($data_site_key) {
         $captcha = new Hidden(self::CAPTCHA_NAME, [
             'class' => 'g-recaptcha',
-            'data-site-key' => $data_site_key
+            'data-sitekey' => $data_site_key
         ]);
 
         $captcha->addValidator(new CaptchaValidator());
