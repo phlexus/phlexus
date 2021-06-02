@@ -2,6 +2,7 @@
 
 namespace Phlexus\Forms\Validators;
 
+use Phalcon\Di;
 use Phalcon\Messages\Message;
 use Phalcon\Validation;
 use Phalcon\Validation\AbstractValidator;
@@ -20,7 +21,9 @@ class CaptchaValidator extends AbstractValidator
     {
         $recaptchaResponse = $validator->getValue($attribute);
 
-        $response = $this->di->getShared('captcha')->verify($recaptchaResponse, $this->request->getClientAddress());
+        $response = Di::getDefault()
+            ->getShared('captcha')
+            ->verify($recaptchaResponse, $this->request->getClientAddress());
 
         if (!$response->isSuccess()) {
             $message = $this->getOption('message');
