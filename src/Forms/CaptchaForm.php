@@ -1,8 +1,10 @@
 <?php
 
-namespace Phlexus\Modules\Generic\Forms;
+namespace Phlexus\Forms;
 
+use Phlexus\Helpers;
 use Phlexus\Form\FormBase;
+use Phalcon\Forms\Element\Hidden;
 use Phlexus\Forms\Validators\CaptchaValidator;
 
 
@@ -37,7 +39,7 @@ abstract class CaptchaForm extends FormBase
     private function assignCaptcha($data_site_key) {
         $captcha = new Hidden(self::CAPTCHA_NAME, [
             'class' => 'g-recaptcha',
-            'data-site-key' => 'key'
+            'data-site-key' => $data_site_key
         ]);
 
         $captcha->addValidator(new CaptchaValidator());

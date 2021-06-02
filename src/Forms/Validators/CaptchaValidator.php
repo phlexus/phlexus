@@ -16,7 +16,7 @@ class CaptchaValidator extends AbstractValidator
      *
      * @return boolean
      */
-    public function validate(Validation $validator, $attribute)
+    public function validate(Validation $validator, $attribute): bool
     {
         $recaptchaResponse = $validator->getValue($attribute);
 
