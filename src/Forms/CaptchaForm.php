@@ -3,6 +3,8 @@
 namespace Phlexus\Modules\Generic\Forms;
 
 use Phlexus\Form\FormBase;
+use Phlexus\Forms\Validators\CaptchaValidator;
+
 
 /**
  * @property Security $security
@@ -16,7 +18,7 @@ abstract class CaptchaForm extends FormBase
     /**
      * Constructor
      */
-    public function __construct($gerenateCsrf = true)
+    public function __construct()
     {
         parent::__construct();
         
@@ -24,22 +26,15 @@ abstract class CaptchaForm extends FormBase
     }
 
     /**
-     * Assign Csrf
+     * Assign Captcha
      * 
      * @return void
      */
-    private function assignCsrf($gerenateCsrf) {
-        $csrf = new Hidden(self::CAPTCHA_NAME);
+    private function assignCaptcha() {
+        $captcha = new Hidden(self::CAPTCHA_NAME);
 
-        if($gerenateCsrf) {
-            $csrf->setDefault($this->security->getToken());
-        }
+        $captcha->addValidator(new CaptchaValidator());
 
-        $csrf->addValidator(new Identical(array(
-            'value' => $this->security->getSessionToken(),
-            'message' => 'Invalid Form'
-        )));
-
-        $this->add($csrf);
+        $this->add($captcha);
     }
 }

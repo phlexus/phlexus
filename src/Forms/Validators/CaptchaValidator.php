@@ -1,5 +1,7 @@
 <?php
 
+namespace Phlexus\Forms\Validators;
+
 use Phalcon\Messages\Message;
 use Phalcon\Validation;
 use Phalcon\Validation\AbstractValidator;
@@ -16,10 +18,16 @@ class CaptchaValidator extends AbstractValidator
      */
     public function validate(Validation $validator, $attribute)
     {
-        $value = $validator->getValue($attribute);
+        $recaptchaResponse = $validator->getValue($attribute);
 
-        if (!filter_var($value, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6)) {
+        $response = $this->di->getShared('captcha')->verify($recaptchaResponse, $this->request->getClientAddress());
+
+        if (!$response->isSuccess()) {
             $message = $this->getOption('message');
+
+            if (!$message) {
+                $message = 'The Captcha is not valid';
+            }
 
             $validator->appendMessage(
                 new Message($message, $attribute, 'Captcha')
