@@ -6,6 +6,7 @@ use Phalcon\Di;
 use Phalcon\Messages\Message;
 use Phalcon\Validation;
 use Phalcon\Validation\AbstractValidator;
+use Phalcon\Http\Request;
 
 class CaptchaValidator extends AbstractValidator
 {
@@ -23,7 +24,7 @@ class CaptchaValidator extends AbstractValidator
 
         $response = Di::getDefault()
             ->getShared('captcha')
-            ->verify($recaptchaResponse, $this->request->getClientAddress());
+            ->verify($recaptchaResponse, (new Request())->getClientAddress());
 
         if (!$response->isSuccess()) {
             $message = $this->getOption('message');

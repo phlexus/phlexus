@@ -15,7 +15,7 @@ abstract class CaptchaForm extends FormBase
 {
 
     // CAPTCHA name
-    const CAPTCHA_NAME = 'captcha';
+    const CAPTCHA_NAME = 'g-recaptcha-response';
 
     /**
      * Constructor
