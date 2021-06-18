@@ -2,6 +2,8 @@
 declare(strict_types=1);
 
 namespace Phlexus\Modules\Generic\Actions;
+use Phlexus\Modules\BaseUser\Models\Users;
+use Phlexus\Modules\BaseUser\Models\Profiles;
 
 /**
  * Trait EditAction
@@ -26,11 +28,19 @@ trait EditAction {
         
         $model = $this->getModel();
 
+        $user = Users::getUser();
+        $isAdmin = Profiles::getUserProfile()->isAdmin();
+
+        $defaultRoute = $this->getBasePosition();
+
+        // Check if user has edit permissions
+        if(!$isAdmin && (!isset($model->user_id) || $model->user_id !== $user->id)) {
+            return $this->response->redirect($defaultRoute);
+        }
+
         $form = $this->getForm();
         
         $record = $model->findFirstByid($id);
-
-        $defaultRoute = $this->getBasePosition();
 
         if(!$record) {
             return $this->response->redirect($defaultRoute);
