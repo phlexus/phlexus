@@ -4,7 +4,7 @@ namespace Phlexus\Forms;
 
 use Phlexus\Helpers;
 use Phlexus\Form\FormBase;
-use Phalcon\Forms\Element\Hidden;
+use Phlexus\Forms\Elements\CaptchaElement;
 use Phlexus\Forms\Validators\CaptchaValidator;
 
 
@@ -37,7 +37,7 @@ abstract class CaptchaForm extends FormBase
      * @return void
      */
     private function assignCaptcha($data_site_key) {
-        $captcha = new Hidden(self::CAPTCHA_NAME, [
+        $captcha = new CaptchaElement(self::CAPTCHA_NAME, [
             'class' => 'g-recaptcha',
             'data-sitekey' => $data_site_key
         ]);
