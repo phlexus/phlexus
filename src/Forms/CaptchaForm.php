@@ -20,10 +20,10 @@ abstract class CaptchaForm extends FormBase
     /**
      * Constructor
      */
-    public function __construct()
+    public function __construct($initialize = true)
     {
-        parent::__construct();
-        
+        parent::__construct($initialize);
+
         $configs = Helpers::phlexusConfig('captcha')->toArray();
 
         $this->assignCaptcha($configs['options']['site-key']);

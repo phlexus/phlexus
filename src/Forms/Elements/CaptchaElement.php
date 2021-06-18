@@ -11,7 +11,7 @@ class CaptchaElement extends AbstractElement
         if(!$attributes) {
             $attributes = $this->getAttributes();
         }
-        
+
         $attrs = implode(' ', array_map(
             function ($value, $key) { 
                 return sprintf("%s='%s'", $key, $value); 
@@ -19,9 +19,9 @@ class CaptchaElement extends AbstractElement
             $attributes,
             array_keys($attributes)
         ));
-    
+
         $html = '<div ' . $attrs . '></div>';
-    
+
         return $html;
     }
 }
