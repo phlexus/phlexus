@@ -30,8 +30,6 @@ trait SaveAction {
 
         $isEdit = false;
 
-        Profiles::getProfiles();
-
         $defaultRoute = $this->getBasePosition();
 
         if(!$this->request->isPost()) {
