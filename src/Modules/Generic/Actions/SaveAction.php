@@ -43,7 +43,7 @@ trait SaveAction {
         $post = $this->request->getPost();
 
         $primaryKey = $this->primaryKey;
-        $key = (int) (isset($post[$primaryKey]) ? $post[$primaryKey] : null);
+        $key = (int) (isset($post[$primaryKey]) ? $post[$primaryKey] : 0);
 
         $model = $this->getModel();
 

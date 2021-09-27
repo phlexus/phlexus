@@ -7,6 +7,7 @@
         "oomphinc/composer-installers-extender": "~1.0",
         "vlucas/phpdotenv": "^3.4",
         "falcon758/phlexus-module-users": "dev-main",
+        "falcon758/phlexus-module-shop": "dev-main",
         "falcon758/phlexus-library-theme": "dev-master",
         "phpmailer/phpmailer": "^6.4",
         "google/recaptcha": "^1.2"
