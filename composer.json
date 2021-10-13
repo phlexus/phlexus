@@ -10,7 +10,8 @@
         "falcon758/phlexus-module-shop": "dev-master",
         "falcon758/phlexus-library-theme": "dev-master",
         "phpmailer/phpmailer": "^6.4",
-        "google/recaptcha": "^1.2"
+        "google/recaptcha": "^1.2",
+        "robmorgan/phinx": "^0.12.9"
     },
     "require-dev": {
         "phalcon/ide-stubs": "^4.0",
