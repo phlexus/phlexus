@@ -2,8 +2,8 @@
 declare(strict_types=1);
 
 namespace Phlexus\Modules\Generic\Actions;
-use Phlexus\Modules\BaseUser\Models\Users;
-use Phlexus\Modules\BaseUser\Models\Profiles;
+use Phlexus\Modules\BaseUser\Models\User;
+use Phlexus\Modules\BaseUser\Models\Profile;
 
 /**
  * Trait EditAction
@@ -28,8 +28,8 @@ trait EditAction {
         
         $model = $this->getModel();
 
-        $user = Users::getUser();
-        $isAdmin = Profiles::getUserProfile()->isAdmin();
+        $user = User::getUser();
+        $isAdmin = Profile::getUserProfile()->isAdmin();
 
         $defaultRoute = $this->getBasePosition();
 

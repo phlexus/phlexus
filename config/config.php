@@ -19,7 +19,7 @@ return [
     'auth' => [
         'adapter' => 'model',
         'configurations' => [
-            'model' => \Phlexus\Modules\BaseUser\Models\Users::class,
+            'model' => \Phlexus\Modules\BaseUser\Models\User::class,
             'fields' => [
                 'identity' => 'email',
                 'password' => 'password',

@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Phlexus\Modules\User\Controllers;
 
-use Phlexus\Modules\BaseUser\Models\Users;
+use Phlexus\Modules\BaseUser\Models\User;
 use Phlexus\Modules\BaseUser\Controllers\AbstractController;
 use Phlexus\Modules\Generic\Forms\BaseForm;
 use Phalcon\Forms\Element\Email;
 use Phalcon\Forms\Element\Password;
 use Phalcon\Forms\Element\Select;
 use Phalcon\Forms\Element\Hidden;
-use Phlexus\Modules\BaseUser\Models\Profiles;
+use Phlexus\Modules\BaseUser\Models\Profile;
 
 /**
  * Class Users
@@ -34,7 +34,7 @@ final class UsersController extends AbstractController
     {
         parent::initialize();
 
-        $this->setModel(new Users);
+        $this->setModel(new User);
 
         $form = new BaseForm(!$this->isSave());
 
@@ -61,7 +61,7 @@ final class UsersController extends AbstractController
                 'name' => 'profileId',
                 'type' => Select::class,
                 'required' => true,
-                'related' => Profiles::class,
+                'related' => Profile::class,
                 'using' => ['id', 'name']
             ]
         ];

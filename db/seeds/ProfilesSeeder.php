@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Phlexus\Seeds;
 
 use Phinx\Seed\AbstractSeed;
-use Phlexus\Modules\BaseUser\Models\Profiles;
+use Phlexus\Modules\BaseUser\Models\Profile;
 
 final class ProfilesSeeder extends AbstractSeed
 {
@@ -13,17 +13,17 @@ final class ProfilesSeeder extends AbstractSeed
         $data = [
             [
                 'id' => 1,
-                'name' => Profiles::ADMIN,
+                'name' => Profile::ADMIN,
                 'active' => 1,
             ],
             [
                 'id' => 2,
-                'name' => Profiles::MEMBER,
+                'name' => Profile::MEMBER,
                 'active' => 1,
             ],
             [
                 'id' => 3,
-                'name' => Profiles::GUEST,
+                'name' => Profile::GUEST,
                 'active' => 1,
             ],
         ];

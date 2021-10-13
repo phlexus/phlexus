@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Phlexus\Modules\Generic\Actions;
 
 use Phalcon\Http\ResponseInterface;
-use Phlexus\Modules\BaseUser\Models\Users;
-use Phlexus\Modules\BaseUser\Models\Profiles;
+use Phlexus\Modules\BaseUser\Models\User;
+use Phlexus\Modules\BaseUser\Models\Profile;
 
 /**
  * Trait SaveAction
@@ -48,8 +48,8 @@ trait SaveAction {
         $model = $this->getModel();
 
         if($key > 0) {
-            $user = Users::getUser();
-            $isAdmin = Profiles::getUserProfile()->isAdmin();
+            $user = User::getUser();
+            $isAdmin = Profile::getUserProfile()->isAdmin();
 
             // Check if user has edit permissions
             if(!$isAdmin && (!isset($model->user_id) || $model->user_id !== $user->id)) {
