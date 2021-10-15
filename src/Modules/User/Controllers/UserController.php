@@ -13,11 +13,11 @@ use Phalcon\Forms\Element\Hidden;
 use Phlexus\Modules\BaseUser\Models\Profile;
 
 /**
- * Class Users
+ * Class User
  *
  * @package Phlexus\Modules\User\Controllers
  */
-final class UsersController extends AbstractController
+final class UserController extends AbstractController
 {
     use \Phlexus\Modules\Generic\Actions\CreateAction;
     use \Phlexus\Modules\Generic\Actions\EditAction;
