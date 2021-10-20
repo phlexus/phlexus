@@ -79,37 +79,37 @@ final class PermissionsSeeder extends AbstractSeed
             [
                 'id' => 12,
                 'profileId' => 1,
-                'resource' => 'user_users',
+                'resource' => 'user_user',
                 'action' => 'index',
             ],
             [
                 'id' => 13,
                 'profileId' => 1,
-                'resource' => 'user_users',
+                'resource' => 'user_user',
                 'action' => 'create',
             ],
             [
                 'id' => 14,
                 'profileId' => 1,
-                'resource' => 'user_users',
+                'resource' => 'user_user',
                 'action' => 'edit',
             ],
             [
                 'id' => 15,
                 'profileId' => 1,
-                'resource' => 'user_users',
+                'resource' => 'user_user',
                 'action' => 'view',
             ],
             [
                 'id' => 16,
                 'profileId' => 1,
-                'resource' => 'user_users',
+                'resource' => 'user_user',
                 'action' => 'save',
             ],
             [
                 'id' => 17,
                 'profileId' => 1,
-                'resource' => 'user_users',
+                'resource' => 'user_user',
                 'action' => 'delete',
             ],
         ];
