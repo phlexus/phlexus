@@ -112,6 +112,30 @@ final class PermissionsSeeder extends AbstractSeed
                 'resource' => 'user_user',
                 'action' => 'delete',
             ],
+            [
+                'id' => 18,
+                'profileId' => 3,
+                'resource' => 'shop_cart',
+                'action' => 'index',
+            ],
+            [
+                'id' => 19,
+                'profileId' => 3,
+                'resource' => 'shop_cart',
+                'action' => 'add',
+            ],
+            [
+                'id' => 20,
+                'profileId' => 3,
+                'resource' => 'shop_cart',
+                'action' => 'remove',
+            ],
+            [
+                'id' => 21,
+                'profileId' => 3,
+                'resource' => 'shop_cart',
+                'action' => 'checkout',
+            ],
         ];
         
         $permissions = $this->table('permissions');
