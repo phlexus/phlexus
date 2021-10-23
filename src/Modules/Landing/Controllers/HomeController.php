@@ -6,11 +6,11 @@ namespace Phlexus\Modules\Landing\Controllers;
 use Phalcon\Mvc\Controller;
 
 /**
- * Class Index
+ * Class Home
  *
  * @package Phlexus\Modules\Landing\Controllers
  */
-final class IndexController extends Controller
+final class HomeController extends Controller
 {
     /**
      * Index Action

@@ -5,13 +5,13 @@ use Phalcon\Mvc\Router\Group as RouterGroup;
 
 $routes = new RouterGroup([
     'module' => 'Landing',
-    'controller' => 'IndexController',
+    'controller' => 'HomeController',
     'action' => 'index',
     'namespace' => 'Phlexus\Modules\Landing\Controllers',
 ]);
 
-$routes->addGet('/', [
-    'controller' => 'index',
+$routes->addGet('/home', [
+    'controller' => 'home',
     'action' => 'index',
 ]);
 
