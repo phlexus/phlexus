@@ -22,10 +22,10 @@ trait CreateAction {
     public function createAction(): void {
         $this->tag->setTitle('Create');
         
-        $saveRoute = $this->getBasePosition() . '/save';
-
         $defaultRoute = $this->getBasePosition();
-        
+
+        $saveRoute =  $defaultRoute . '/save';
+
         $this->view->setVar('form', $this->getForm());
 
         $this->view->setVar('defaultRoute', $defaultRoute);

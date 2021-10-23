@@ -16,23 +16,23 @@ $routes->addGet('/user/users', [
 ]);
 
 foreach(['create', 'view'] as $action) {
-    $routes->addGet('/user/users/' . $action, [
+    $routes->addGet('/user/' . $action, [
         'controller' => 'user',
         'action' => $action,
     ]);
 }
 
-$routes->addGet('/user/users/edit/{id:[0-9]+}', [
+$routes->addGet('/user/edit/{id:[0-9]+}', [
     'controller' => 'user',
     'action' => 'edit',
 ]);
 
-$routes->addPost('/user/users/save', [
+$routes->addPost('/user/save', [
     'controller' => 'user',
     'action' => 'save',
 ]);
 
-$routes->addPost('/user/users/delete/{id:[0-9]+}', [
+$routes->addPost('/user/delete/{id:[0-9]+}', [
     'controller' => 'user',
     'action' => 'delete',
 ]);
