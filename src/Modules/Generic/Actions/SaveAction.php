@@ -32,7 +32,8 @@ trait SaveAction {
 
         $defaultRoute = $this->getBasePosition();
 
-        if(!$this->request->isPost()) {
+        if(!$this->request->isPost() 
+            || !$this->security->checkToken('csrf', $this->request->getPost('csrf', null))) {
             return $this->response->redirect($defaultRoute);
         }
 
