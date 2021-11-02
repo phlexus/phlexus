@@ -16,12 +16,15 @@ final class CreateUserAddress extends AbstractMigration
         }
 
         $table->addColumn('active', 'integer', ['limit' => 1, 'default' => 1, 'null' => false])
+            ->addColumn('userId', 'integer', ['null' => false])
             ->addColumn('addressID', 'integer', ['null' => false])
             ->addColumn('addressTypeID', 'integer', ['null' => false])
             ->addColumn('createdAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP', 'null' => false])
             ->addColumn('modifiedAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP', 'null' => false])
+            ->addIndex(['userId'])
             ->addIndex(['addressID'])
             ->addIndex(['addressTypeID'])
+            ->addForeignKey('userId', 'users', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
             ->addForeignKey('addressID', 'address', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
             ->addForeignKey('addressTypeID', 'address_type', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
             ->create();
