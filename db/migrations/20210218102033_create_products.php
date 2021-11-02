@@ -16,6 +16,7 @@ final class CreateProducts extends AbstractMigration
         
         $table->addColumn('name', 'string', ['limit' => 255])
             ->addColumn('price', 'double')
+            ->addColumn('is_virtual', 'integer', ['limit' => 1, 'default' => 0, 'null' => false])
             ->addColumn('active', 'integer', ['limit' => 1, 'default' => 1, 'null' => false])
             ->create();
     }
