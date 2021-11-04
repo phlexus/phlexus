@@ -21,7 +21,7 @@ final class CreatePostCodes extends AbstractMigration
             ->addColumn('createdAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP', 'null' => false])
             ->addColumn('modifiedAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP', 'null' => false])
             ->addIndex(['localeID'])
-            ->addForeignKey('localeID', 'local', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
+            ->addForeignKey('localeID', 'locale', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
             ->create();
     }
 }

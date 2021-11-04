@@ -32,7 +32,7 @@ final class CreateOrders extends AbstractMigration
             ->addForeignKey('billingID', 'user_address', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
             ->addForeignKey('shipmentID', 'user_address', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
             ->addForeignKey('paymentMethodID', 'payment_method', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
-            ->addForeignKey('shippingMethodID', 'shippind_method', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
+            ->addForeignKey('shippingMethodID', 'shipping_method', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
             ->create();
     }
 }
