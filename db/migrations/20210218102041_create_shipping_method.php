@@ -16,6 +16,8 @@ final class CreateShippingMethod extends AbstractMigration
         
         $table->addColumn('name', 'string', ['limit' => 255])
             ->addColumn('active', 'integer', ['limit' => 1, 'default' => 1, 'null' => false])
+            ->addColumn('createdAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP', 'null' => false])
+            ->addColumn('modifiedAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP', 'null' => false])
             ->create();
     }
 }

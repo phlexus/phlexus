@@ -18,6 +18,8 @@ final class CreateProducts extends AbstractMigration
             ->addColumn('price', 'double')
             ->addColumn('is_virtual', 'integer', ['limit' => 1, 'default' => 0, 'null' => false])
             ->addColumn('active', 'integer', ['limit' => 1, 'default' => 1, 'null' => false])
+            ->addColumn('createdAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP', 'null' => false])
+            ->addColumn('modifiedAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP', 'null' => false])
             ->create();
     }
 }
