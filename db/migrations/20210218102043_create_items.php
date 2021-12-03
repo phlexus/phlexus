@@ -15,14 +15,14 @@ final class CreateItems extends AbstractMigration
         }
         
         $table->addColumn('active', 'integer', ['limit' => 1, 'default' => 1, 'null' => false])
-            ->addColumn('productId', 'integer')
-            ->addColumn('orderId', 'integer')
+            ->addColumn('productID', 'integer')
+            ->addColumn('orderID', 'integer')
             ->addColumn('createdAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP', 'null' => false])
             ->addColumn('modifiedAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP', 'null' => false])
-            ->addIndex(['orderId'])
-            ->addIndex(['productId'])
-            ->addForeignKey('productId', 'products', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
-            ->addForeignKey('orderId', 'orders', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
+            ->addIndex(['orderID'])
+            ->addIndex(['productID'])
+            ->addForeignKey('productID', 'products', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
+            ->addForeignKey('orderID', 'orders', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
             ->create();
     }
 }
