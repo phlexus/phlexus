@@ -21,7 +21,7 @@ final class CreateAddress extends AbstractMigration
             ->addColumn('createdAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP', 'null' => false])
             ->addColumn('modifiedAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP', 'null' => false])
             ->addIndex(['postCodeID'])
-            ->addForeignKey('postCodeID', 'post_code', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
+            ->addForeignKey('postCodeID', 'post_codes', 'id', ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION'])
             ->create();
     }
 }
