@@ -7,6 +7,13 @@ use Phinx\Seed\AbstractSeed;
 
 final class PermissionsSeeder extends AbstractSeed
 {
+    public function getDependencies()
+    {
+        return [
+            'ProfilesSeeder',
+        ];
+    }
+
     public function run(): void
     {
         $data = [
