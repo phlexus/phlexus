@@ -14,6 +14,7 @@ final class UsersSeeder extends AbstractSeed
                 'id' => 1,
                 'email' => 'admin@phlexus.io',
                 'password' => '$2y$10$ZmhVa2wyb1Q0WHR4bkhhcugbSDz/dJF6iNLcRhfQOZ/CCtaBHLrtu', // password
+                'hash_code' => uniqid(),
                 'profileId' => 1,
                 'active' => 1,
             ]
