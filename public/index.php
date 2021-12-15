@@ -9,7 +9,7 @@
  * the LICENSE file that was distributed with this source code.
  */
 
-declare(strict_types=0);
+declare(strict_types=1);
 
 use Phlexus\Application;
 
