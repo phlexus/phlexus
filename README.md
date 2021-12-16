@@ -13,11 +13,11 @@
 ### Note
 
 There is a known bug with the seeding, since phinx is not prepared to respect dependecies on import.
-That's why for now it's require to disabled mysql foreign keys check by using:
+That's why for now it's required to disabled mysql foreign keys check by using, before import:
 
 ```SET FOREIGN_KEY_CHECKS=0;```
 
-Don't forget to get that enabled again with:
+Don't forget to get that enabled again, after the import, with:
 
 ```SET FOREIGN_KEY_CHECKS=1```
 
