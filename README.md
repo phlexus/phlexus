@@ -36,4 +36,5 @@ php ./uninstall.php
 ### Note
 
 For security purposes install.php and uninstall.php should be removed if not needed anymore.
-Assure that the correct config (nginx or apache) point just to the public folder
+
+Make sure that the correct config (nginx or apache) point just to the public folder
