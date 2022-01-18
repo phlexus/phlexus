@@ -30,7 +30,12 @@ class CaptchaProvider extends AbstractProvider
         $this->di->setShared($this->providerName, function () use ($application, $configs) {
             $options = $configs['options'];
             $recaptcha = new ReCaptcha($options['secret']);
-            return $recaptcha->setExpectedHostname(parse_url($application['base_uri'])['host']);
+            
+            $parse_url = parse_url($application['base_uri']);
+
+            $host = isset($parse_url['host']) ? $parse_url['host'] : null;
+
+            return $recaptcha->setExpectedHostname($host);
         });
     }
 }
