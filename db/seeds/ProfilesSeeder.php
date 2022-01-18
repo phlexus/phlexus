@@ -12,17 +12,17 @@ final class ProfilesSeeder extends AbstractSeed
     {
         $data = [
             [
-                'id' => 1,
+                'id' => Profile::ADMINID,
                 'name' => Profile::ADMIN,
                 'active' => 1,
             ],
             [
-                'id' => 2,
+                'id' => Profile::MEMBERID,
                 'name' => Profile::MEMBER,
                 'active' => 1,
             ],
             [
-                'id' => 3,
+                'id' => Profile::GUESTID,
                 'name' => Profile::GUEST,
                 'active' => 1,
             ],

@@ -42,8 +42,8 @@ return [
     ],
     'captcha' => [
         'options' => [
-            'site-key'=> '',
-            'secret' => '',
+            'site-key'=> 'SITE_KEY',
+            'secret' => 'SECRET',
         ]
     ],
     'modules' => [
