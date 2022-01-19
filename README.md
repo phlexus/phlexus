@@ -18,7 +18,7 @@ Create user and schema database accorgingly to your .env file
 
 ## Create Tables and import data
 
-./vendor/bin/phalcon-migrations run
+./vendor/bin/phalcon-migrations run --config=config.php
 
 # Theme
 
