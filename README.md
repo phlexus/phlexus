@@ -37,6 +37,7 @@ Access dashboard at domain.local/user
 ## Admin login
 
 Email: admin@phlexus.io
+
 Password: password
 
 ### Note
