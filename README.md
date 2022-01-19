@@ -14,7 +14,7 @@ Rename config/config_example.php to config/config.php and change value according
 
 ## Basic Setup
 
-Create User and schema database accorgingly to your .env file
+Create user and schema database accorgingly to your .env file
 
 ## Create Tables and import data
 
@@ -29,6 +29,15 @@ php ./install.php
 ## Remove Default Theme
 
 php ./uninstall.php
+
+# Access Dashboard
+
+Access dashboard at domain.local/user
+
+## Admin login
+
+Email: admin@phlexus.io
+Password: password
 
 ### Note
 
