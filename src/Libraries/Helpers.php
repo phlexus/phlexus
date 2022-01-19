@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phlexus\Libraries;
 
+use Phalcon\Di;
 use Phalcon\Mvc\View;
 use Phlexus\Helpers as Phlexus_Helpers;
 
@@ -54,7 +55,7 @@ class Helpers extends Phlexus_Helpers
      */
     public static function sendEmail(string $email, string $subject, string $body) : bool
     {
-        $mail = $this->di->getShared('email');
+        $mail = Di::getDefault()->getShared('email');
 
         // If not inside Phlexus cms
         if (!$mail) {
