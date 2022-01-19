@@ -14,7 +14,7 @@ Rename config/config_example.php to config/config.php and change value according
 
 ## Basic Setup
 
-Create user and schema database accorgingly to your .env file
+Create user and schema database accordingly to your .env file
 
 ## Create Tables and import data
 
