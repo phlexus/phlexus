@@ -25,7 +25,7 @@ class CaptchaProvider extends AbstractProvider
     public function register(array $parameters = []): void
     {
         $application = Helpers::phlexusConfig('application')->toArray();
-        $configs = Helpers::phlexusConfig('captcha')->toArray();
+        $configs = Helpers::phlexusConfig($this->providerName)->toArray();
 
         $this->di->setShared($this->providerName, function () use ($application, $configs) {
             $options = $configs['options'];

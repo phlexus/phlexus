@@ -3,17 +3,17 @@ declare(strict_types=1);
 
 namespace Phlexus\Providers;
 
-use Phlexus\Libraries\Auth\Manager as AuthManager;
 use Phlexus\Helpers;
+use PHPMailer\PHPMailer\PHPMailer;
 
-class AuthProvider extends AbstractProvider
+class SMSProvider extends AbstractProvider
 {
     /**
      * Provider name
      *
      * @var string
      */
-    protected $providerName = 'auth';
+    protected $providerName = 'sms';
 
     /**
      * Register application service.
@@ -25,7 +25,14 @@ class AuthProvider extends AbstractProvider
     {
         $configs = Helpers::phlexusConfig($this->providerName)->toArray();
         $this->di->setShared($this->providerName, function () use ($configs) {
-            return new AuthManager($configs['adapter'], $configs['configurations']);
+            $options = $configs['options'];
+
+            $sid = $options['sid'];
+            $token = $options['token'];
+
+            $client = new Twilio\Rest\Client($sid, $token);
+
+            return $client;
         });
     }
 }

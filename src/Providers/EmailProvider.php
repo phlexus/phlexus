@@ -23,7 +23,7 @@ class EmailProvider extends AbstractProvider
      */
     public function register(array $parameters = []): void
     {
-        $configs = Helpers::phlexusConfig('email')->toArray();
+        $configs = Helpers::phlexusConfig($this->providerName)->toArray();
         $this->di->setShared($this->providerName, function () use ($configs) {
             $mail = new PHPMailer();
 

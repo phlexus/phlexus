@@ -30,6 +30,12 @@ return [
             'Landing' => '*',
         ],
     ],
+    'captcha' => [
+        'options' => [
+            'site-key'=> '',
+            'secret' => '',
+        ]
+    ],
     'email' => [
         'options' => [
             'is_smtp' => true,
@@ -40,10 +46,10 @@ return [
             'port' => '',
         ]
     ],
-    'captcha' => [
+    'sms' => [
         'options' => [
-            'site-key'=> '',
-            'secret' => '',
+            'sid' => '',
+            'token' => '',
         ]
     ],
     'modules' => [
