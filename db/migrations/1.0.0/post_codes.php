@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class ItemsMigration_1642607817695735
+ * Class PostCodesMigration_100
  */
-class ItemsMigration_1642607817695735 extends Migration
+class PostCodesMigration_100 extends Migration
 {
     /**
      * Define the table structure
@@ -19,7 +19,7 @@ class ItemsMigration_1642607817695735 extends Migration
      */
     public function morph(): void
     {
-        $this->morphTable('items', [
+        $this->morphTable('post_codes', [
             'columns' => [
                 new Column(
                     'id',
@@ -32,17 +32,26 @@ class ItemsMigration_1642607817695735 extends Migration
                     ]
                 ),
                 new Column(
+                    'post_code',
+                    [
+                        'type' => Column::TYPE_CHAR,
+                        'notNull' => true,
+                        'size' => 60,
+                        'after' => 'id'
+                    ]
+                ),
+                new Column(
                     'active',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'default' => "1",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'id'
+                        'after' => 'post_code'
                     ]
                 ),
                 new Column(
-                    'productID',
+                    'localeID',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
@@ -51,38 +60,35 @@ class ItemsMigration_1642607817695735 extends Migration
                     ]
                 ),
                 new Column(
-                    'orderID',
+                    'createdAt',
                     [
-                        'type' => Column::TYPE_INTEGER,
+                        'type' => Column::TYPE_TIMESTAMP,
+                        'default' => "CURRENT_TIMESTAMP",
                         'notNull' => true,
-                        'size' => 1,
-                        'after' => 'productID'
+                        'after' => 'localeID'
+                    ]
+                ),
+                new Column(
+                    'modifiedAt',
+                    [
+                        'type' => Column::TYPE_TIMESTAMP,
+                        'default' => "CURRENT_TIMESTAMP",
+                        'notNull' => true,
+                        'after' => 'createdAt'
                     ]
                 ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
-                new Index('orderId', ['orderID'], ''),
-                new Index('productId', ['productID'], ''),
+                new Index('localeID', ['localeID'], ''),
             ],
             'references' => [
                 new Reference(
-                    'items_ibfk_1',
+                    'fk_post_codes_locale_id',
                     [
                         'referencedSchema' => 'cms_phalcon',
-                        'referencedTable' => 'products',
-                        'columns' => ['productID'],
-                        'referencedColumns' => ['id'],
-                        'onUpdate' => 'NO ACTION',
-                        'onDelete' => 'NO ACTION'
-                    ]
-                ),
-                new Reference(
-                    'items_ibfk_2',
-                    [
-                        'referencedSchema' => 'cms_phalcon',
-                        'referencedTable' => 'orders',
-                        'columns' => ['orderID'],
+                        'referencedTable' => 'locale',
+                        'columns' => ['localeID'],
                         'referencedColumns' => ['id'],
                         'onUpdate' => 'NO ACTION',
                         'onDelete' => 'NO ACTION'
@@ -91,7 +97,7 @@ class ItemsMigration_1642607817695735 extends Migration
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '15',
+                'AUTO_INCREMENT' => '3',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8_unicode_ci',
             ],

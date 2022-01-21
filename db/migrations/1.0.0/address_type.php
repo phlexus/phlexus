@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class AddressMigration_1642607817695735
+ * Class AddressTypeMigration_100
  */
-class AddressMigration_1642607817695735 extends Migration
+class AddressTypeMigration_100 extends Migration
 {
     /**
      * Define the table structure
@@ -19,7 +19,7 @@ class AddressMigration_1642607817695735 extends Migration
      */
     public function morph(): void
     {
-        $this->morphTable('address', [
+        $this->morphTable('address_type', [
             'columns' => [
                 new Column(
                     'id',
@@ -32,7 +32,7 @@ class AddressMigration_1642607817695735 extends Migration
                     ]
                 ),
                 new Column(
-                    'address',
+                    'address_type',
                     [
                         'type' => Column::TYPE_VARCHAR,
                         'notNull' => true,
@@ -47,44 +47,16 @@ class AddressMigration_1642607817695735 extends Migration
                         'default' => "1",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'address'
-                    ]
-                ),
-                new Column(
-                    'postCodeID',
-                    [
-                        'type' => Column::TYPE_INTEGER,
-                        'notNull' => true,
-                        'size' => 1,
-                        'after' => 'active'
-                    ]
-                ),
-                new Column(
-                    'createdAt',
-                    [
-                        'type' => Column::TYPE_TIMESTAMP,
-                        'default' => "CURRENT_TIMESTAMP",
-                        'notNull' => true,
-                        'after' => 'postCodeID'
-                    ]
-                ),
-                new Column(
-                    'modifiedAt',
-                    [
-                        'type' => Column::TYPE_TIMESTAMP,
-                        'default' => "CURRENT_TIMESTAMP",
-                        'notNull' => true,
-                        'after' => 'createdAt'
+                        'after' => 'address_type'
                     ]
                 ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
-                new Index('postCodeID', ['postCodeID'], ''),
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '5',
+                'AUTO_INCREMENT' => '3',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8_unicode_ci',
             ],
@@ -98,6 +70,11 @@ class AddressMigration_1642607817695735 extends Migration
      */
     public function up(): void
     {
+        $this->batchInsert('address_type', [
+            'id',
+            'address_type',
+            'active',
+        ]);
     }
 
     /**
@@ -107,5 +84,6 @@ class AddressMigration_1642607817695735 extends Migration
      */
     public function down(): void
     {
+        $this->batchDelete('address_type');
     }
 }

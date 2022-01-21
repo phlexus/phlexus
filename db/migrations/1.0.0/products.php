@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class PermissionsMigration_1642607817695735
+ * Class ProductsMigration_100
  */
-class PermissionsMigration_1642607817695735 extends Migration
+class ProductsMigration_100 extends Migration
 {
     /**
      * Define the table structure
@@ -19,7 +19,7 @@ class PermissionsMigration_1642607817695735 extends Migration
      */
     public function morph(): void
     {
-        $this->morphTable('permissions', [
+        $this->morphTable('products', [
             'columns' => [
                 new Column(
                     'id',
@@ -32,40 +32,39 @@ class PermissionsMigration_1642607817695735 extends Migration
                     ]
                 ),
                 new Column(
-                    'profileId',
+                    'name',
                     [
-                        'type' => Column::TYPE_INTEGER,
+                        'type' => Column::TYPE_VARCHAR,
                         'notNull' => true,
-                        'size' => 1,
+                        'size' => 255,
                         'after' => 'id'
                     ]
                 ),
                 new Column(
-                    'resource',
+                    'price',
                     [
-                        'type' => Column::TYPE_VARCHAR,
+                        'type' => Column::TYPE_DOUBLE,
                         'notNull' => true,
-                        'size' => 255,
-                        'after' => 'profileId'
+                        'after' => 'name'
                     ]
                 ),
                 new Column(
-                    'action',
+                    'active',
                     [
-                        'type' => Column::TYPE_VARCHAR,
+                        'type' => Column::TYPE_INTEGER,
+                        'default' => "1",
                         'notNull' => true,
-                        'size' => 255,
-                        'after' => 'resource'
+                        'size' => 1,
+                        'after' => 'price'
                     ]
                 ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
-                new Index('profilesId', ['profileId'], ''),
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '24',
+                'AUTO_INCREMENT' => '3',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8_unicode_ci',
             ],
@@ -79,12 +78,6 @@ class PermissionsMigration_1642607817695735 extends Migration
      */
     public function up(): void
     {
-        $this->batchInsert('permissions', [
-            'id',
-            'profileId',
-            'resource',
-            'action',
-        ]);
     }
 
     /**
@@ -94,6 +87,5 @@ class PermissionsMigration_1642607817695735 extends Migration
      */
     public function down(): void
     {
-        $this->batchDelete('permissions');
     }
 }

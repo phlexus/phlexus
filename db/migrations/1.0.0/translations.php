@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class CountriesMigration_1642607817695735
+ * Class TranslationsMigration_100
  */
-class CountriesMigration_1642607817695735 extends Migration
+class TranslationsMigration_100 extends Migration
 {
     /**
      * Define the table structure
@@ -19,7 +19,7 @@ class CountriesMigration_1642607817695735 extends Migration
      */
     public function morph(): void
     {
-        $this->morphTable('countries', [
+        $this->morphTable('translations', [
             'columns' => [
                 new Column(
                     'id',
@@ -32,60 +32,75 @@ class CountriesMigration_1642607817695735 extends Migration
                     ]
                 ),
                 new Column(
-                    'iso',
+                    'key',
                     [
                         'type' => Column::TYPE_VARCHAR,
                         'notNull' => true,
-                        'size' => 3,
+                        'size' => 155,
                         'after' => 'id'
                     ]
                 ),
                 new Column(
-                    'country',
+                    'translation',
                     [
-                        'type' => Column::TYPE_CHAR,
+                        'type' => Column::TYPE_TEXT,
                         'notNull' => true,
-                        'size' => 255,
-                        'after' => 'iso'
+                        'after' => 'key'
                     ]
                 ),
                 new Column(
-                    'active',
+                    'textTypeId',
                     [
                         'type' => Column::TYPE_INTEGER,
-                        'default' => "1",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'country'
+                        'after' => 'translation'
                     ]
                 ),
                 new Column(
-                    'createdAt',
+                    'pageId',
                     [
-                        'type' => Column::TYPE_TIMESTAMP,
-                        'default' => "CURRENT_TIMESTAMP",
+                        'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
-                        'after' => 'active'
-                    ]
-                ),
-                new Column(
-                    'modifiedAt',
-                    [
-                        'type' => Column::TYPE_TIMESTAMP,
-                        'default' => "CURRENT_TIMESTAMP",
-                        'notNull' => true,
-                        'after' => 'createdAt'
+                        'size' => 1,
+                        'after' => 'textTypeId'
                     ]
                 ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
+                new Index('fk_translations_text_type_idx', ['textTypeId'], ''),
+                new Index('fk_translations_page_idx', ['pageId'], ''),
+            ],
+            'references' => [
+                new Reference(
+                    'fk_translations_page_id',
+                    [
+                        'referencedSchema' => 'cms_phalcon',
+                        'referencedTable' => 'pages',
+                        'columns' => ['pageId'],
+                        'referencedColumns' => ['id'],
+                        'onUpdate' => 'RESTRICT',
+                        'onDelete' => 'RESTRICT'
+                    ]
+                ),
+                new Reference(
+                    'fk_translations_text_type_id',
+                    [
+                        'referencedSchema' => 'cms_phalcon',
+                        'referencedTable' => 'text_type',
+                        'columns' => ['textTypeId'],
+                        'referencedColumns' => ['id'],
+                        'onUpdate' => 'NO ACTION',
+                        'onDelete' => 'NO ACTION'
+                    ]
+                ),
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '2',
+                'AUTO_INCREMENT' => '1',
                 'ENGINE' => 'InnoDB',
-                'TABLE_COLLATION' => 'utf8_unicode_ci',
+                'TABLE_COLLATION' => 'utf8mb4_0900_ai_ci',
             ],
         ]);
     }
@@ -97,14 +112,6 @@ class CountriesMigration_1642607817695735 extends Migration
      */
     public function up(): void
     {
-        $this->batchInsert('countries', [
-            'id',
-            'iso',
-            'country',
-            'active',
-            'createdAt',
-            'modifiedAt',
-        ]);
     }
 
     /**
@@ -114,6 +121,5 @@ class CountriesMigration_1642607817695735 extends Migration
      */
     public function down(): void
     {
-        $this->batchDelete('countries');
     }
 }

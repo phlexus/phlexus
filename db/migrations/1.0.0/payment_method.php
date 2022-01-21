@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class ShippingMethodMigration_1642607817695735
+ * Class PaymentMethodMigration_100
  */
-class ShippingMethodMigration_1642607817695735 extends Migration
+class PaymentMethodMigration_100 extends Migration
 {
     /**
      * Define the table structure
@@ -19,7 +19,7 @@ class ShippingMethodMigration_1642607817695735 extends Migration
      */
     public function morph(): void
     {
-        $this->morphTable('shipping_method', [
+        $this->morphTable('payment_method', [
             'columns' => [
                 new Column(
                     'id',
@@ -56,7 +56,7 @@ class ShippingMethodMigration_1642607817695735 extends Migration
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '3',
+                'AUTO_INCREMENT' => '2',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8_unicode_ci',
             ],
@@ -70,7 +70,7 @@ class ShippingMethodMigration_1642607817695735 extends Migration
      */
     public function up(): void
     {
-        $this->batchInsert('shipping_method', [
+        $this->batchInsert('payment_method', [
             'id',
             'name',
             'active',
@@ -84,6 +84,6 @@ class ShippingMethodMigration_1642607817695735 extends Migration
      */
     public function down(): void
     {
-        $this->batchDelete('shipping_method');
+        $this->batchDelete('payment_method');
     }
 }

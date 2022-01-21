@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class PhinxlogMigration_1642607817695735
+ * Class ShippingMethodMigration_100
  */
-class PhinxlogMigration_1642607817695735 extends Migration
+class ShippingMethodMigration_100 extends Migration
 {
     /**
      * Define the table structure
@@ -19,59 +19,44 @@ class PhinxlogMigration_1642607817695735 extends Migration
      */
     public function morph(): void
     {
-        $this->morphTable('phinxlog', [
+        $this->morphTable('shipping_method', [
             'columns' => [
                 new Column(
-                    'version',
+                    'id',
                     [
-                        'type' => Column::TYPE_BIGINTEGER,
+                        'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
+                        'autoIncrement' => true,
                         'size' => 1,
                         'first' => true
                     ]
                 ),
                 new Column(
-                    'migration_name',
+                    'name',
                     [
                         'type' => Column::TYPE_VARCHAR,
-                        'notNull' => false,
-                        'size' => 100,
-                        'after' => 'version'
+                        'notNull' => true,
+                        'size' => 255,
+                        'after' => 'id'
                     ]
                 ),
                 new Column(
-                    'start_time',
+                    'active',
                     [
-                        'type' => Column::TYPE_TIMESTAMP,
-                        'notNull' => false,
-                        'after' => 'migration_name'
-                    ]
-                ),
-                new Column(
-                    'end_time',
-                    [
-                        'type' => Column::TYPE_TIMESTAMP,
-                        'notNull' => false,
-                        'after' => 'start_time'
-                    ]
-                ),
-                new Column(
-                    'breakpoint',
-                    [
-                        'type' => Column::TYPE_TINYINTEGER,
-                        'default' => "0",
+                        'type' => Column::TYPE_INTEGER,
+                        'default' => "1",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'end_time'
+                        'after' => 'name'
                     ]
                 ),
             ],
             'indexes' => [
-                new Index('PRIMARY', ['version'], 'PRIMARY'),
+                new Index('PRIMARY', ['id'], 'PRIMARY'),
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '',
+                'AUTO_INCREMENT' => '3',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8_unicode_ci',
             ],
@@ -85,6 +70,11 @@ class PhinxlogMigration_1642607817695735 extends Migration
      */
     public function up(): void
     {
+        $this->batchInsert('shipping_method', [
+            'id',
+            'name',
+            'active',
+        ]);
     }
 
     /**
@@ -94,5 +84,6 @@ class PhinxlogMigration_1642607817695735 extends Migration
      */
     public function down(): void
     {
+        $this->batchDelete('shipping_method');
     }
 }

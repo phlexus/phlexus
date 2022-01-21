@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class LocaleMigration_1642607817695735
+ * Class ItemsMigration_100
  */
-class LocaleMigration_1642607817695735 extends Migration
+class ItemsMigration_100 extends Migration
 {
     /**
      * Define the table structure
@@ -19,7 +19,7 @@ class LocaleMigration_1642607817695735 extends Migration
      */
     public function morph(): void
     {
-        $this->morphTable('locale', [
+        $this->morphTable('items', [
             'columns' => [
                 new Column(
                     'id',
@@ -32,26 +32,17 @@ class LocaleMigration_1642607817695735 extends Migration
                     ]
                 ),
                 new Column(
-                    'name',
-                    [
-                        'type' => Column::TYPE_VARCHAR,
-                        'notNull' => true,
-                        'size' => 45,
-                        'after' => 'id'
-                    ]
-                ),
-                new Column(
                     'active',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'default' => "1",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'name'
+                        'after' => 'id'
                     ]
                 ),
                 new Column(
-                    'countryID',
+                    'productID',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
@@ -59,29 +50,50 @@ class LocaleMigration_1642607817695735 extends Migration
                         'after' => 'active'
                     ]
                 ),
+                new Column(
+                    'orderID',
+                    [
+                        'type' => Column::TYPE_INTEGER,
+                        'notNull' => true,
+                        'size' => 1,
+                        'after' => 'productID'
+                    ]
+                ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
-                new Index('index_country_id', ['countryID'], ''),
+                new Index('orderId', ['orderID'], ''),
+                new Index('productId', ['productID'], ''),
             ],
             'references' => [
                 new Reference(
-                    'fk_locale_country_id',
+                    'fk_items_order_id',
                     [
                         'referencedSchema' => 'cms_phalcon',
-                        'referencedTable' => 'countries',
-                        'columns' => ['countryID'],
+                        'referencedTable' => 'orders',
+                        'columns' => ['orderID'],
                         'referencedColumns' => ['id'],
-                        'onUpdate' => 'NO ACTION',
-                        'onDelete' => 'NO ACTION'
+                        'onUpdate' => 'RESTRICT',
+                        'onDelete' => 'RESTRICT'
+                    ]
+                ),
+                new Reference(
+                    'fk_items_product_id',
+                    [
+                        'referencedSchema' => 'cms_phalcon',
+                        'referencedTable' => 'products',
+                        'columns' => ['productID'],
+                        'referencedColumns' => ['id'],
+                        'onUpdate' => 'RESTRICT',
+                        'onDelete' => 'RESTRICT'
                     ]
                 ),
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '3',
+                'AUTO_INCREMENT' => '16',
                 'ENGINE' => 'InnoDB',
-                'TABLE_COLLATION' => 'utf8mb4_0900_ai_ci',
+                'TABLE_COLLATION' => 'utf8_unicode_ci',
             ],
         ]);
     }

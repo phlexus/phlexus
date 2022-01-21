@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class ProductsMigration_1642607817695735
+ * Class PhinxlogMigration_100
  */
-class ProductsMigration_1642607817695735 extends Migration
+class PhinxlogMigration_100 extends Migration
 {
     /**
      * Define the table structure
@@ -19,52 +19,59 @@ class ProductsMigration_1642607817695735 extends Migration
      */
     public function morph(): void
     {
-        $this->morphTable('products', [
+        $this->morphTable('phinxlog', [
             'columns' => [
                 new Column(
-                    'id',
+                    'version',
                     [
-                        'type' => Column::TYPE_INTEGER,
+                        'type' => Column::TYPE_BIGINTEGER,
                         'notNull' => true,
-                        'autoIncrement' => true,
                         'size' => 1,
                         'first' => true
                     ]
                 ),
                 new Column(
-                    'name',
+                    'migration_name',
                     [
                         'type' => Column::TYPE_VARCHAR,
-                        'notNull' => true,
-                        'size' => 255,
-                        'after' => 'id'
+                        'notNull' => false,
+                        'size' => 100,
+                        'after' => 'version'
                     ]
                 ),
                 new Column(
-                    'price',
+                    'start_time',
                     [
-                        'type' => Column::TYPE_DOUBLE,
-                        'notNull' => true,
-                        'after' => 'name'
+                        'type' => Column::TYPE_TIMESTAMP,
+                        'notNull' => false,
+                        'after' => 'migration_name'
                     ]
                 ),
                 new Column(
-                    'active',
+                    'end_time',
                     [
-                        'type' => Column::TYPE_INTEGER,
-                        'default' => "1",
+                        'type' => Column::TYPE_TIMESTAMP,
+                        'notNull' => false,
+                        'after' => 'start_time'
+                    ]
+                ),
+                new Column(
+                    'breakpoint',
+                    [
+                        'type' => Column::TYPE_TINYINTEGER,
+                        'default' => "0",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'price'
+                        'after' => 'end_time'
                     ]
                 ),
             ],
             'indexes' => [
-                new Index('PRIMARY', ['id'], 'PRIMARY'),
+                new Index('PRIMARY', ['version'], 'PRIMARY'),
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '3',
+                'AUTO_INCREMENT' => '',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8_unicode_ci',
             ],

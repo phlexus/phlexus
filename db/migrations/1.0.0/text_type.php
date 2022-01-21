@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class AddressTypeMigration_1642607817695735
+ * Class TextTypeMigration_100
  */
-class AddressTypeMigration_1642607817695735 extends Migration
+class TextTypeMigration_100 extends Migration
 {
     /**
      * Define the table structure
@@ -19,35 +19,24 @@ class AddressTypeMigration_1642607817695735 extends Migration
      */
     public function morph(): void
     {
-        $this->morphTable('address_type', [
+        $this->morphTable('text_type', [
             'columns' => [
                 new Column(
                     'id',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
-                        'autoIncrement' => true,
                         'size' => 1,
                         'first' => true
                     ]
                 ),
                 new Column(
-                    'address_type',
+                    'type',
                     [
                         'type' => Column::TYPE_VARCHAR,
                         'notNull' => true,
-                        'size' => 255,
+                        'size' => 45,
                         'after' => 'id'
-                    ]
-                ),
-                new Column(
-                    'active',
-                    [
-                        'type' => Column::TYPE_INTEGER,
-                        'default' => "1",
-                        'notNull' => true,
-                        'size' => 1,
-                        'after' => 'address_type'
                     ]
                 ),
             ],
@@ -56,9 +45,9 @@ class AddressTypeMigration_1642607817695735 extends Migration
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '3',
+                'AUTO_INCREMENT' => '',
                 'ENGINE' => 'InnoDB',
-                'TABLE_COLLATION' => 'utf8_unicode_ci',
+                'TABLE_COLLATION' => 'utf8mb4_0900_ai_ci',
             ],
         ]);
     }
@@ -70,11 +59,6 @@ class AddressTypeMigration_1642607817695735 extends Migration
      */
     public function up(): void
     {
-        $this->batchInsert('address_type', [
-            'id',
-            'address_type',
-            'active',
-        ]);
     }
 
     /**
@@ -84,6 +68,5 @@ class AddressTypeMigration_1642607817695735 extends Migration
      */
     public function down(): void
     {
-        $this->batchDelete('address_type');
     }
 }

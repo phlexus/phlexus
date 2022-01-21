@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class UsersMigration_1642607817695735
+ * Class UsersMigration_100
  */
-class UsersMigration_1642607817695735 extends Migration
+class UsersMigration_100 extends Migration
 {
     /**
      * Define the table structure
@@ -126,9 +126,22 @@ class UsersMigration_1642607817695735 extends Migration
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
                 new Index('profilesId', ['profileId'], ''),
             ],
+            'references' => [
+                new Reference(
+                    'fk_users_profile_id',
+                    [
+                        'referencedSchema' => 'cms_phalcon',
+                        'referencedTable' => 'profiles',
+                        'columns' => ['profileId'],
+                        'referencedColumns' => ['id'],
+                        'onUpdate' => 'NO ACTION',
+                        'onDelete' => 'NO ACTION'
+                    ]
+                ),
+            ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '44',
+                'AUTO_INCREMENT' => '46',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8_unicode_ci',
             ],

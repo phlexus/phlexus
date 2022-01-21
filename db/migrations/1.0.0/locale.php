@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class PostCodesMigration_1642607817695735
+ * Class LocaleMigration_100
  */
-class PostCodesMigration_1642607817695735 extends Migration
+class LocaleMigration_100 extends Migration
 {
     /**
      * Define the table structure
@@ -19,7 +19,7 @@ class PostCodesMigration_1642607817695735 extends Migration
      */
     public function morph(): void
     {
-        $this->morphTable('post_codes', [
+        $this->morphTable('locale', [
             'columns' => [
                 new Column(
                     'id',
@@ -32,11 +32,11 @@ class PostCodesMigration_1642607817695735 extends Migration
                     ]
                 ),
                 new Column(
-                    'post_code',
+                    'name',
                     [
-                        'type' => Column::TYPE_CHAR,
+                        'type' => Column::TYPE_VARCHAR,
                         'notNull' => true,
-                        'size' => 60,
+                        'size' => 45,
                         'after' => 'id'
                     ]
                 ),
@@ -47,11 +47,11 @@ class PostCodesMigration_1642607817695735 extends Migration
                         'default' => "1",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'post_code'
+                        'after' => 'name'
                     ]
                 ),
                 new Column(
-                    'localeID',
+                    'countryID',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
@@ -59,34 +59,29 @@ class PostCodesMigration_1642607817695735 extends Migration
                         'after' => 'active'
                     ]
                 ),
-                new Column(
-                    'createdAt',
-                    [
-                        'type' => Column::TYPE_TIMESTAMP,
-                        'default' => "CURRENT_TIMESTAMP",
-                        'notNull' => true,
-                        'after' => 'localeID'
-                    ]
-                ),
-                new Column(
-                    'modifiedAt',
-                    [
-                        'type' => Column::TYPE_TIMESTAMP,
-                        'default' => "CURRENT_TIMESTAMP",
-                        'notNull' => true,
-                        'after' => 'createdAt'
-                    ]
-                ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
-                new Index('localeID', ['localeID'], ''),
+                new Index('index_country_id', ['countryID'], ''),
+            ],
+            'references' => [
+                new Reference(
+                    'fk_locale_country_id',
+                    [
+                        'referencedSchema' => 'cms_phalcon',
+                        'referencedTable' => 'countries',
+                        'columns' => ['countryID'],
+                        'referencedColumns' => ['id'],
+                        'onUpdate' => 'NO ACTION',
+                        'onDelete' => 'NO ACTION'
+                    ]
+                ),
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '3',
+                'AUTO_INCREMENT' => '5',
                 'ENGINE' => 'InnoDB',
-                'TABLE_COLLATION' => 'utf8_unicode_ci',
+                'TABLE_COLLATION' => 'utf8mb4_0900_ai_ci',
             ],
         ]);
     }

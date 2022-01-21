@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class PaymentMethodMigration_1642607817695735
+ * Class PermissionsMigration_100
  */
-class PaymentMethodMigration_1642607817695735 extends Migration
+class PermissionsMigration_100 extends Migration
 {
     /**
      * Define the table structure
@@ -19,7 +19,7 @@ class PaymentMethodMigration_1642607817695735 extends Migration
      */
     public function morph(): void
     {
-        $this->morphTable('payment_method', [
+        $this->morphTable('permissions', [
             'columns' => [
                 new Column(
                     'id',
@@ -32,31 +32,53 @@ class PaymentMethodMigration_1642607817695735 extends Migration
                     ]
                 ),
                 new Column(
-                    'name',
+                    'profileId',
                     [
-                        'type' => Column::TYPE_VARCHAR,
+                        'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
-                        'size' => 255,
+                        'size' => 1,
                         'after' => 'id'
                     ]
                 ),
                 new Column(
-                    'active',
+                    'resource',
                     [
-                        'type' => Column::TYPE_INTEGER,
-                        'default' => "1",
+                        'type' => Column::TYPE_VARCHAR,
                         'notNull' => true,
-                        'size' => 1,
-                        'after' => 'name'
+                        'size' => 255,
+                        'after' => 'profileId'
+                    ]
+                ),
+                new Column(
+                    'action',
+                    [
+                        'type' => Column::TYPE_VARCHAR,
+                        'notNull' => true,
+                        'size' => 255,
+                        'after' => 'resource'
                     ]
                 ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
+                new Index('profilesId', ['profileId'], ''),
+            ],
+            'references' => [
+                new Reference(
+                    'fk_permissions_profile_id',
+                    [
+                        'referencedSchema' => 'cms_phalcon',
+                        'referencedTable' => 'profiles',
+                        'columns' => ['profileId'],
+                        'referencedColumns' => ['id'],
+                        'onUpdate' => 'NO ACTION',
+                        'onDelete' => 'NO ACTION'
+                    ]
+                ),
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '2',
+                'AUTO_INCREMENT' => '24',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8_unicode_ci',
             ],
@@ -70,10 +92,11 @@ class PaymentMethodMigration_1642607817695735 extends Migration
      */
     public function up(): void
     {
-        $this->batchInsert('payment_method', [
+        $this->batchInsert('permissions', [
             'id',
-            'name',
-            'active',
+            'profileId',
+            'resource',
+            'action',
         ]);
     }
 
@@ -84,6 +107,6 @@ class PaymentMethodMigration_1642607817695735 extends Migration
      */
     public function down(): void
     {
-        $this->batchDelete('payment_method');
+        $this->batchDelete('permissions');
     }
 }

@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class OrdersMigration_1642607817695735
+ * Class AddressMigration_100
  */
-class OrdersMigration_1642607817695735 extends Migration
+class AddressMigration_100 extends Migration
 {
     /**
      * Define the table structure
@@ -19,7 +19,7 @@ class OrdersMigration_1642607817695735 extends Migration
      */
     public function morph(): void
     {
-        $this->morphTable('orders', [
+        $this->morphTable('address', [
             'columns' => [
                 new Column(
                     'id',
@@ -32,17 +32,26 @@ class OrdersMigration_1642607817695735 extends Migration
                     ]
                 ),
                 new Column(
+                    'address',
+                    [
+                        'type' => Column::TYPE_VARCHAR,
+                        'notNull' => true,
+                        'size' => 255,
+                        'after' => 'id'
+                    ]
+                ),
+                new Column(
                     'active',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'default' => "1",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'id'
+                        'after' => 'address'
                     ]
                 ),
                 new Column(
-                    'userID',
+                    'postCodeID',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
@@ -51,48 +60,12 @@ class OrdersMigration_1642607817695735 extends Migration
                     ]
                 ),
                 new Column(
-                    'billingID',
-                    [
-                        'type' => Column::TYPE_INTEGER,
-                        'notNull' => true,
-                        'size' => 1,
-                        'after' => 'userID'
-                    ]
-                ),
-                new Column(
-                    'shipmentID',
-                    [
-                        'type' => Column::TYPE_INTEGER,
-                        'notNull' => true,
-                        'size' => 1,
-                        'after' => 'billingID'
-                    ]
-                ),
-                new Column(
-                    'paymentMethodID',
-                    [
-                        'type' => Column::TYPE_INTEGER,
-                        'notNull' => true,
-                        'size' => 1,
-                        'after' => 'shipmentID'
-                    ]
-                ),
-                new Column(
-                    'shippingMethodID',
-                    [
-                        'type' => Column::TYPE_INTEGER,
-                        'notNull' => true,
-                        'size' => 1,
-                        'after' => 'paymentMethodID'
-                    ]
-                ),
-                new Column(
                     'createdAt',
                     [
                         'type' => Column::TYPE_TIMESTAMP,
                         'default' => "CURRENT_TIMESTAMP",
                         'notNull' => true,
-                        'after' => 'shippingMethodID'
+                        'after' => 'postCodeID'
                     ]
                 ),
                 new Column(
@@ -107,15 +80,24 @@ class OrdersMigration_1642607817695735 extends Migration
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
-                new Index('userId', ['userID'], ''),
-                new Index('billingID', ['billingID'], ''),
-                new Index('shipmentID', ['shipmentID'], ''),
-                new Index('paymentMethodID', ['paymentMethodID'], ''),
-                new Index('shippingMethodID', ['shippingMethodID'], ''),
+                new Index('postCodeID', ['postCodeID'], ''),
+            ],
+            'references' => [
+                new Reference(
+                    'fk_address_post_code_id',
+                    [
+                        'referencedSchema' => 'cms_phalcon',
+                        'referencedTable' => 'post_codes',
+                        'columns' => ['postCodeID'],
+                        'referencedColumns' => ['id'],
+                        'onUpdate' => 'RESTRICT',
+                        'onDelete' => 'RESTRICT'
+                    ]
+                ),
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '21',
+                'AUTO_INCREMENT' => '5',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8_unicode_ci',
             ],

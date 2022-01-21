@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class UserAddressMigration_1642607817695735
+ * Class OrdersMigration_100
  */
-class UserAddressMigration_1642607817695735 extends Migration
+class OrdersMigration_100 extends Migration
 {
     /**
      * Define the table structure
@@ -19,7 +19,7 @@ class UserAddressMigration_1642607817695735 extends Migration
      */
     public function morph(): void
     {
-        $this->morphTable('user_address', [
+        $this->morphTable('orders', [
             'columns' => [
                 new Column(
                     'id',
@@ -51,7 +51,7 @@ class UserAddressMigration_1642607817695735 extends Migration
                     ]
                 ),
                 new Column(
-                    'addressID',
+                    'billingID',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
@@ -60,12 +60,30 @@ class UserAddressMigration_1642607817695735 extends Migration
                     ]
                 ),
                 new Column(
-                    'addressTypeID',
+                    'shipmentID',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'addressID'
+                        'after' => 'billingID'
+                    ]
+                ),
+                new Column(
+                    'paymentMethodID',
+                    [
+                        'type' => Column::TYPE_INTEGER,
+                        'notNull' => true,
+                        'size' => 1,
+                        'after' => 'shipmentID'
+                    ]
+                ),
+                new Column(
+                    'shippingMethodID',
+                    [
+                        'type' => Column::TYPE_INTEGER,
+                        'notNull' => true,
+                        'size' => 1,
+                        'after' => 'paymentMethodID'
                     ]
                 ),
                 new Column(
@@ -74,7 +92,7 @@ class UserAddressMigration_1642607817695735 extends Migration
                         'type' => Column::TYPE_TIMESTAMP,
                         'default' => "CURRENT_TIMESTAMP",
                         'notNull' => true,
-                        'after' => 'addressTypeID'
+                        'after' => 'shippingMethodID'
                     ]
                 ),
                 new Column(
@@ -90,12 +108,58 @@ class UserAddressMigration_1642607817695735 extends Migration
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
                 new Index('userId', ['userID'], ''),
-                new Index('addressID', ['addressID'], ''),
-                new Index('addressTypeID', ['addressTypeID'], ''),
+                new Index('billingID', ['billingID'], ''),
+                new Index('shipmentID', ['shipmentID'], ''),
+                new Index('paymentMethodID', ['paymentMethodID'], ''),
+                new Index('shippingMethodID', ['shippingMethodID'], ''),
             ],
             'references' => [
                 new Reference(
-                    'user_address_ibfk_1',
+                    'fk_orders_billing_id',
+                    [
+                        'referencedSchema' => 'cms_phalcon',
+                        'referencedTable' => 'address',
+                        'columns' => ['billingID'],
+                        'referencedColumns' => ['id'],
+                        'onUpdate' => 'NO ACTION',
+                        'onDelete' => 'NO ACTION'
+                    ]
+                ),
+                new Reference(
+                    'fk_orders_payment_method_id',
+                    [
+                        'referencedSchema' => 'cms_phalcon',
+                        'referencedTable' => 'payment_method',
+                        'columns' => ['paymentMethodID'],
+                        'referencedColumns' => ['id'],
+                        'onUpdate' => 'NO ACTION',
+                        'onDelete' => 'NO ACTION'
+                    ]
+                ),
+                new Reference(
+                    'fk_orders_shipment_id',
+                    [
+                        'referencedSchema' => 'cms_phalcon',
+                        'referencedTable' => 'address',
+                        'columns' => ['shipmentID'],
+                        'referencedColumns' => ['id'],
+                        'onUpdate' => 'NO ACTION',
+                        'onDelete' => 'NO ACTION'
+                    ]
+                ),
+                new Reference(
+                    'fk_orders_shipping_method_id',
+                    [
+                        'referencedSchema' => 'cms_phalcon',
+                        'referencedTable' => 'shipping_method',
+                        'columns' => ['shippingMethodID'],
+                        'referencedColumns' => ['id'],
+                        'onUpdate' => 'NO ACTION',
+                        'onDelete' => 'NO ACTION'
+                    ]
+                ),
+                new Reference(
+                    'fk_orders_user_id',
                     [
                         'referencedSchema' => 'cms_phalcon',
                         'referencedTable' => 'users',
@@ -105,32 +169,10 @@ class UserAddressMigration_1642607817695735 extends Migration
                         'onDelete' => 'NO ACTION'
                     ]
                 ),
-                new Reference(
-                    'user_address_ibfk_2',
-                    [
-                        'referencedSchema' => 'cms_phalcon',
-                        'referencedTable' => 'address',
-                        'columns' => ['addressID'],
-                        'referencedColumns' => ['id'],
-                        'onUpdate' => 'NO ACTION',
-                        'onDelete' => 'NO ACTION'
-                    ]
-                ),
-                new Reference(
-                    'user_address_ibfk_3',
-                    [
-                        'referencedSchema' => 'cms_phalcon',
-                        'referencedTable' => 'address_type',
-                        'columns' => ['addressTypeID'],
-                        'referencedColumns' => ['id'],
-                        'onUpdate' => 'NO ACTION',
-                        'onDelete' => 'NO ACTION'
-                    ]
-                ),
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '9',
+                'AUTO_INCREMENT' => '22',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8_unicode_ci',
             ],

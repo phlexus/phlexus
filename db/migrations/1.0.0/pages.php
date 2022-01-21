@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class ProfilesMigration_1642607817695735
+ * Class PagesMigration_100
  */
-class ProfilesMigration_1642607817695735 extends Migration
+class PagesMigration_100 extends Migration
 {
     /**
      * Define the table structure
@@ -19,7 +19,7 @@ class ProfilesMigration_1642607817695735 extends Migration
      */
     public function morph(): void
     {
-        $this->morphTable('profiles', [
+        $this->morphTable('pages', [
             'columns' => [
                 new Column(
                     'id',
@@ -36,30 +36,19 @@ class ProfilesMigration_1642607817695735 extends Migration
                     [
                         'type' => Column::TYPE_VARCHAR,
                         'notNull' => true,
-                        'size' => 64,
+                        'size' => 45,
                         'after' => 'id'
-                    ]
-                ),
-                new Column(
-                    'active',
-                    [
-                        'type' => Column::TYPE_INTEGER,
-                        'default' => "1",
-                        'notNull' => true,
-                        'size' => 1,
-                        'after' => 'name'
                     ]
                 ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
-                new Index('active', ['active'], ''),
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '4',
+                'AUTO_INCREMENT' => '1',
                 'ENGINE' => 'InnoDB',
-                'TABLE_COLLATION' => 'utf8_unicode_ci',
+                'TABLE_COLLATION' => 'utf8mb4_0900_ai_ci',
             ],
         ]);
     }
@@ -71,11 +60,6 @@ class ProfilesMigration_1642607817695735 extends Migration
      */
     public function up(): void
     {
-        $this->batchInsert('profiles', [
-            'id',
-            'name',
-            'active',
-        ]);
     }
 
     /**
@@ -85,6 +69,5 @@ class ProfilesMigration_1642607817695735 extends Migration
      */
     public function down(): void
     {
-        $this->batchDelete('profiles');
     }
 }
