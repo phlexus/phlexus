@@ -47,6 +47,7 @@ return [
         ]
     ],
     'sms' => [
+        'from'=> '',
         'options' => [
             'sid' => '',
             'token' => '',

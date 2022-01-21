@@ -16,9 +16,21 @@ namespace Phlexus\Libraries;
 use Phalcon\Di;
 use Phalcon\Mvc\View;
 use Phlexus\Helpers as Phlexus_Helpers;
+use Phalcon\Flash\Session as FlashSession;
 
 class Helpers extends Phlexus_Helpers
 {
+
+    /**
+     * Get flash message session
+     * 
+     * @return FlashSession
+     */
+    public static function getFlashMessage() : FlashSession
+    {
+        return Di::getDefault()->get('flash');
+    }
+
      /**
      * Renders an email template
      *
@@ -67,5 +79,33 @@ class Helpers extends Phlexus_Helpers
         $mail->Body    = $body;
 
         return $mail->send();
+    }
+
+    /**
+     * Send an sms
+     *
+     * @param string $dest_number Destiny number
+     * @param string $subject Email subject
+     * @param string $body    Email body
+     * 
+     * @return bool
+     */
+    public static function sendSms(string $dest_number, string $message) : bool
+    {
+        $sms = Di::getDefault()->getShared('sms');
+
+        // If not inside Phlexus cms
+        if (!$mail) {
+            return false;
+        }
+
+        $message = $client->messages->create(
+            $dest_number,
+            [
+              'from' => '',
+              'body' => $message
+            ]
+          );
+          
     }
 }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Phlexus\Modules\Generic\Forms;
 
@@ -6,7 +7,8 @@ use Phlexus\Form\FormBase;
 use Phalcon\Forms\Element\Text;
 use Phalcon\Forms\Element\Select;
 use Phalcon\Validation\Validator\PresenceOf;
-
+use Phalcon\Validation\Validator\InclusionIn;
+use Phalcon\Mvc\Model\Resultset\Simple;
 /**
  * Class BaseForm
  *
@@ -56,10 +58,25 @@ class BaseForm extends FormBase
             $fieldName = $field['name'];
 
             if($type === Select::class) {
+                $select_options = isset($field['related']) ? $field['related'] : $field['values'];
+
+                $parsed_attributes = $this->parseAttributes($field);
+
                 $new_field = new $type(
                     $fieldName,
-                    isset($field['related']) ? $field['related'] : $field['values'],
-                    $this->parseAttributes($field)
+                    $select_options,
+                    $parsed_attributes
+                );
+
+                $select_keys = $this->parseDataKeys($select_options, $parsed_attributes);
+
+                $new_field->addValidator(
+                    new InclusionIn(
+                        [
+                            'message' => ucfirst($fieldName) . ' is required',
+                            'domain' => $select_keys
+                        ]
+                    )
                 );
             } else {
                 $new_field = new $type(
@@ -89,5 +106,29 @@ class BaseForm extends FormBase
         $ignoreAttributes = ['name', 'type', 'related'];
 
         return array_diff_key($attributes, array_flip($ignoreAttributes));
+    }
+
+    /**
+     * Extract keys from data array
+     *
+     * @param mixed $data              Data array or object
+     * @param array $parsed_attributes parsed attributes
+     * 
+     * @return array Parsed attributes
+     */
+    private function parseDataKeys($data, array $parsed_attributes = []): array {
+        $keys = [];
+
+        if (empty($data)) {
+            return $keys;
+        }
+
+        if (is_object($data) && isset($parsed_attributes['using']) && $data instanceof Simple) {
+            $keys = array_column($data->toArray(), $parsed_attributes['using'][0]);
+        } elseif (is_array($data)) {
+            $keys = array_keys($data);
+        }
+
+        return $keys;
     }
 }
