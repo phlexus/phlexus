@@ -24,7 +24,7 @@ final class AuthorizationListener extends Injectable
         $di = $dispatcher->getDi();
         $acl = new Acl($di->get('acl'), $dispatcher, $di->get('view'));
 
-        if(!$acl->isAllowed()) {
+        if (!$acl->isAllowed()) {
             $this->getDI()->getShared('eventsManager')->fire(
                 'dispatch:beforeException',
                 $dispatcher,

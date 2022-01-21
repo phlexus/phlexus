@@ -67,14 +67,14 @@ trait Model {
 
         $reflection = new \ReflectionClass($model);
 
-        foreach($fields as $key => $field) {
+        foreach ($fields as $key => $field) {
             $fieldName = $field['name'];
-            if(!$reflection->hasProperty($fieldName)) {
+            if (!$reflection->hasProperty($fieldName)) {
                 unset($fields[$key]);
                 continue;
             }
 
-            if(isset($field['related'])) {
+            if (isset($field['related'])) {
                 $fields[$key]['related'] = ($field['related'])::find();
             }
         }
@@ -94,7 +94,7 @@ trait Model {
 
         $related = [];
 
-        foreach($relations as $relation) {
+        foreach ($relations as $relation) {
             $field = $relation->getFields();
             $options = $relation->getOptions();
 
@@ -114,17 +114,17 @@ trait Model {
     private function translateRelatedFields(Simple $records): array {
         $related = $this->getRelatedFields();
 
-        if(count($related) === 0) {
+        if (count($related) === 0) {
             return $records;
         }
 
         $fields = [];
 
-        foreach($records as $key => $record) {
+        foreach ($records as $key => $record) {
             $fields[$key] = [];
 
-            foreach($related as $field => $table) {
-                if(isset($record->{$table}->name)) {
+            foreach ($related as $field => $table) {
+                if (isset($record->{$table}->name)) {
                     $fields[$key][$field] = $record->{$table}->name;
                 }
             }

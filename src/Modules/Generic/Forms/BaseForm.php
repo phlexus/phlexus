@@ -50,14 +50,14 @@ class BaseForm extends FormBase
     private function parseFields(): void {
         $fields = $this->getFields();
 
-        foreach($fields as $field) {
+        foreach ($fields as $field) {
             $type = isset($field['type']) ? $field['type'] : Text::class;
 
             $required = isset($field['required']) ? $field['required'] : false;
 
             $fieldName = $field['name'];
 
-            if($type === Select::class) {
+            if ($type === Select::class) {
                 $select_options = isset($field['related']) ? $field['related'] : $field['values'];
 
                 $parsed_attributes = $this->parseAttributes($field);
@@ -85,7 +85,7 @@ class BaseForm extends FormBase
                 );
             }
 
-            if($required) {
+            if ($required) {
                 $new_field->addValidator(new PresenceOf([
                     'message' => ucfirst($fieldName) . ' is required.',
                 ]));

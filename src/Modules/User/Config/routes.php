@@ -15,7 +15,7 @@ $routes->addGet('/user/users', [
     'action' => 'view',
 ]);
 
-foreach(['create', 'view'] as $action) {
+foreach (['create', 'view'] as $action) {
     $routes->addGet('/user/' . $action, [
         'controller' => 'user',
         'action' => $action,

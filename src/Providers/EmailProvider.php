@@ -36,7 +36,7 @@ class EmailProvider extends AbstractProvider
             $mail->Password   = $options['password'];
             $mail->Port       = $options['port'];
 
-            if($options['is_smtp']) {
+            if ($options['is_smtp']) {
                 $mail->SMTPAuth   = true;
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             }

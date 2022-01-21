@@ -9,7 +9,7 @@ class CaptchaElement extends AbstractElement
 {
     public function render($attributes = null): string
     {
-        if(!$attributes) {
+        if (!$attributes) {
             $attributes = $this->getAttributes();
         }
 

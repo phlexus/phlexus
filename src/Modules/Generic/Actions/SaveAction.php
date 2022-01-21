@@ -32,7 +32,7 @@ trait SaveAction {
 
         $defaultRoute = $this->getBasePosition();
 
-        if(!$this->request->isPost() 
+        if (!$this->request->isPost() 
             || !$this->security->checkToken('csrf', $this->request->getPost('csrf', null))) {
             return $this->response->redirect($defaultRoute);
         }
@@ -48,12 +48,12 @@ trait SaveAction {
 
         $model = $this->getModel();
 
-        if($key > 0) {
+        if ($key > 0) {
             $user = User::getUser();
             $isAdmin = Profile::getUserProfile()->isAdmin();
 
             // Check if user has edit permissions
-            if(!$isAdmin && (!isset($model->user_id) || $model->user_id !== $user->id)) {
+            if (!$isAdmin && (!isset($model->user_id) || $model->user_id !== $user->id)) {
                 return $this->response->redirect($defaultRoute);
             }
 
@@ -62,7 +62,7 @@ trait SaveAction {
                 'bind'       => [$primaryKey  => $key],
             ]);
 
-            if(!$model) {
+            if (!$model) {
                 return $this->response->redirect($defaultRoute);
             }
 
@@ -73,19 +73,19 @@ trait SaveAction {
         $authorizedKeys = array_flip($authorized);
 
         // Remove primary key for beeing edited
-        if(isset($authorizedKeys[$primaryKey])) {
+        if (isset($authorizedKeys[$primaryKey])) {
             unset($authorizedKeys[$primaryKey]);
         }
 
         $form->bind(array_intersect_key($post, $authorizedKeys), $model);
         
-        if($form->isValid()) {
+        if ($form->isValid()) {
             // Remove csrf content
             $model->csrf = null;
 
             $ts = date('Y-m-d H:i:s', time());
 
-            if(!$isEdit) {
+            if (!$isEdit) {
                 $model->createdAt = $ts;
             }
 

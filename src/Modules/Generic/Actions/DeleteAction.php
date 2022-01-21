@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Phlexus\Modules\Generic\Actions;
 
 use Phalcon\Http\ResponseInterface;
+use Phlexus\Modules\BaseUser\Models\User;
+use Phlexus\Modules\BaseUser\Models\Profile;
 
 /**
  * Trait DeleteAction
@@ -32,17 +34,27 @@ trait DeleteAction {
         //Content of the response
         $response = ['status' => 0];
 
-        if(!$this->request->isPost() 
+        if (!$this->request->isPost() 
             || !$this->security->checkToken('csrf', $this->request->getPost('csrf', null))) {
             return $this->response->setJsonContent($response);
         }
 
-        $record = $this->getModel()->findFirstByid($id);
+        $model = $this->getModel();
 
-        if($record) {
+        $user = User::getUser();
+        $isAdmin = Profile::getUserProfile()->isAdmin();
+
+        // Check if user has delete permissions
+        if (!$isAdmin && (!isset($model->user_id) || $model->user_id !== $user->id)) {
+            return $this->response->setJsonContent($response);
+        }
+
+        $record = $model->findFirstByid($id);
+
+        if ($record) {
             $record->active = 0;
 
-            if($record->save()) { 
+            if ($record->save()) { 
                 $response['status'] = 1;
             }
         }

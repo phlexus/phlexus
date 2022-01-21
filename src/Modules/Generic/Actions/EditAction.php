@@ -34,7 +34,7 @@ trait EditAction {
         $defaultRoute = $this->getBasePosition();
 
         // Check if user has edit permissions
-        if(!$isAdmin && (!isset($model->user_id) || $model->user_id !== $user->id)) {
+        if (!$isAdmin && (!isset($model->user_id) || $model->user_id !== $user->id)) {
             return $this->response->redirect($defaultRoute);
         }
 
@@ -42,7 +42,7 @@ trait EditAction {
         
         $record = $model->findFirstByid($id);
 
-        if(!$record) {
+        if (!$record) {
             return $this->response->redirect($defaultRoute);
         }
 
