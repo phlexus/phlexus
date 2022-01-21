@@ -46,6 +46,8 @@ return [
             'port' => '',
         ]
     ],
+
+    // Not required
     'sms' => [
         'from'=> '',
         'options' => [
@@ -53,6 +55,13 @@ return [
             'token' => '',
         ]
     ],
+    
+    // Not required
+    'paypal' => [
+        'client_id'=> '',
+        'client_secret' => ''
+    ],
+
     'modules' => [
         'Landing' => [
             'className' => 'Phlexus\Modules\Landing\Module',
