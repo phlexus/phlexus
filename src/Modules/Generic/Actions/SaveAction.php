@@ -54,6 +54,8 @@ trait SaveAction {
 
             // Check if user has edit permissions
             if (!$isAdmin && (!isset($model->user_id) || $model->user_id !== $user->id)) {
+                $this->flash->error('No permission to save record!');
+
                 return $this->response->redirect($defaultRoute);
             }
 
@@ -63,6 +65,8 @@ trait SaveAction {
             ]);
 
             if (!$model) {
+                $this->flash->error('Record not found!');
+
                 return $this->response->redirect($defaultRoute);
             }
 
@@ -91,8 +95,12 @@ trait SaveAction {
 
             $model->modifiedAt = $ts;
 
-            $model->save();
-            
+            if (!$model->save()) {
+                $this->flash->error('Unable to save record!');
+            }
+
+            $this->flash->success('Record saved sucessfully!');
+
             return $this->response->redirect($defaultRoute);
         } else {
             foreach ($form->getMessages() as $message) {

@@ -24,6 +24,7 @@ class AuthProvider extends AbstractProvider
     public function register(array $parameters = []): void
     {
         $configs = Helpers::phlexusConfig($this->providerName)->toArray();
+
         $this->di->setShared($this->providerName, function () use ($configs) {
             return new AuthManager($configs['adapter'], $configs['configurations']);
         });

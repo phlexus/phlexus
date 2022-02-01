@@ -23,7 +23,14 @@ class SMSProvider extends AbstractProvider
      */
     public function register(array $parameters = []): void
     {
-        $configs = Helpers::phlexusConfig($this->providerName)->toArray();
+        $communications = Helpers::phlexusConfig('communications')->toArray();
+
+        if (!isset($communications[$this->providerName])) {
+            return;
+        }
+
+        $configs = $communications[$this->providerName];
+
         $this->di->setShared($this->providerName, function () use ($configs) {
             $options = $configs['options'];
 

@@ -14,9 +14,10 @@ use Phlexus\Forms\Validators\CaptchaValidator;
  */
 abstract class CaptchaForm extends FormBase
 {
-
-    // CAPTCHA name
-    const CAPTCHA_NAME = 'g-recaptcha-response';
+    /**
+     * Captha Form Name
+     */
+    public const CAPTCHA_NAME = 'g-recaptcha-response';
 
     /**
      * Constructor
@@ -25,9 +26,13 @@ abstract class CaptchaForm extends FormBase
     {
         parent::__construct($initialize);
 
-        $configs = Helpers::phlexusConfig('captcha')->toArray();
+        $configs = Helpers::phlexusConfig('security')->toArray();
 
-        $this->assignCaptcha($configs['options']['site-key']);
+        if (!isset($configs['captcha'])) {
+            return;
+        }
+
+        $this->assignCaptcha($configs['captcha']['config']['site-key']);
     }
 
     /**

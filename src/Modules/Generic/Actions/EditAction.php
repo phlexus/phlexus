@@ -35,6 +35,8 @@ trait EditAction {
 
         // Check if user has edit permissions
         if (!$isAdmin && (!isset($model->user_id) || $model->user_id !== $user->id)) {
+            $this->flash->error('No permissions to edit!');
+
             return $this->response->redirect($defaultRoute);
         }
 
@@ -43,6 +45,8 @@ trait EditAction {
         $record = $model->findFirstByid($id);
 
         if (!$record) {
+            $this->flash->error('Id not found!');
+
             return $this->response->redirect($defaultRoute);
         }
 

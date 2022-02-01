@@ -20,16 +20,25 @@ class CaptchaProvider extends AbstractProvider
      * Register application service.
      *
      * @param array $parameters Custom parameters for Service Provider
+     * 
      * @return void
      */
     public function register(array $parameters = []): void
     {
         $application = Helpers::phlexusConfig('application')->toArray();
-        $configs = Helpers::phlexusConfig($this->providerName)->toArray();
+
+        $security = Helpers::phlexusConfig('security')->toArray();
+
+        if (!isset($security[$this->providerName])) {
+            return;
+        }
+
+        $configs = $security[$this->providerName];
 
         $this->di->setShared($this->providerName, function () use ($application, $configs) {
-            $options = $configs['options'];
-            $recaptcha = new ReCaptcha($options['secret']);
+            $config = $configs['config'];
+
+            $recaptcha = new ReCaptcha($config['secret']);
             
             $parse_url = parse_url($application['base_uri']);
 

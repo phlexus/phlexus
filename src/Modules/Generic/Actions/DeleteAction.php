@@ -36,6 +36,8 @@ trait DeleteAction {
 
         if (!$this->request->isPost() 
             || !$this->security->checkToken('csrf', $this->request->getPost('csrf', null))) {
+            $this->flash->error('Invalid form data!');
+
             return $this->response->setJsonContent($response);
         }
 
@@ -46,6 +48,8 @@ trait DeleteAction {
 
         // Check if user has delete permissions
         if (!$isAdmin && (!isset($model->user_id) || $model->user_id !== $user->id)) {
+            $this->flash->error('No permissions to delete!');
+
             return $this->response->setJsonContent($response);
         }
 
@@ -54,7 +58,9 @@ trait DeleteAction {
         if ($record) {
             $record->active = 0;
 
-            if ($record->save()) { 
+            if ($record->save()) {
+                $this->flash->success('Deleted successfully');
+
                 $response['status'] = 1;
             }
         }
