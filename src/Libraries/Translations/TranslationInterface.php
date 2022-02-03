@@ -13,10 +13,9 @@ declare(strict_types=1);
 
 namespace Phlexus\Libraries\Translations;
 
-use Phalcon\Di\Injectable;
 use Phalcon\Translate\Adapter\NativeArray;
 
-interface TranslationInterface extends Injectable
+interface TranslationInterface
 {
     /**
      * Construct language

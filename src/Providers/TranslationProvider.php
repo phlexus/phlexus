@@ -36,7 +36,7 @@ class TranslationProvider extends AbstractProvider
         $language = $this->request->getBestLanguage();
 
         $this->getDI()->setShared($this->providerName, function () use ($language) {
-            return new TranslationFactory($language);
+            return (new TranslationFactory())->build($language);
         });
     }
 }

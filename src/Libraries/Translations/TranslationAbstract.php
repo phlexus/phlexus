@@ -20,17 +20,17 @@ abstract class TranslationAbstract extends Injectable implements TranslationInte
     /**
      * PAGE
      */
-    public const string PAGE = 'page';
+    public const PAGE = 'page';
 
     /**
      * Message
      */
-    public const string MESSAGE = 'message';
+    public const MESSAGE = 'message';
 
     /**
      * Form
      */
-    public const string FORM = 'form';
+    public const FORM = 'form';
 
     /**
      * Language
@@ -41,7 +41,7 @@ abstract class TranslationAbstract extends Injectable implements TranslationInte
      * Construct language
      */
     public function __construct(string $language) {
-        if (preg_match('/^[a-zA-Z]+$/', $language) !== 1) {
+        if (preg_match('/^[a-zA-Z-]+$/', $language) !== 1) {
             throw new \Exception('Unable to setup translation!');
         }
 

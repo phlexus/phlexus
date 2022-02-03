@@ -16,6 +16,7 @@ namespace Phlexus\Libraries\Translations;
 use Phalcon\Translate\Adapter\NativeArray;
 use Phalcon\Translate\InterpolatorFactory;
 use Phalcon\Translate\TranslateFactory;
+use Phlexus\Helpers;
 
 class TranslationFile extends TranslationAbstract
 {
@@ -25,10 +26,10 @@ class TranslationFile extends TranslationAbstract
     private string $filesDir;
 
     /**
-     * Setup configs
+     * Construct language
      */
-    public function __construct() {
-        parent::__construct();
+    public function __construct(string $language) {
+        parent::__construct($language);
 
         $configs = Helpers::phlexusConfig('translations')->toArray();
         
