@@ -13,17 +13,52 @@ declare(strict_types=1);
 
 namespace Phlexus\Libraries\Translations;
 
-use Phalcon\Di\Injectable;
-use Phalcon\Translate\Adapter\NativeArray;
-use Phalcon\Translate\InterpolatorFactory;
-use Phalcon\Translate\TranslateFactory;
+use Phalcon\Di;
+use Phalcon\Translate\Adapter\Database;
 
-class TranslationDatabase extends Injectable
+class TranslationDatabase extends TranslationAbstract
 {
     /**
+     * Get general translations
+     * 
      * @return NativeArray
      */
-    public function getTranslator(string $language): NativeArray
+    public function getTranslator(): NativeArray
     {
+        $this->getTranslateFactory('general', self::MESSAGE);
+    }
+
+    /**
+     * Get translations filtered by page and type
+     * 
+     * @param string $page Page to translate
+     * @param string $type Type to translate
+     * 
+     * @return NativeArray
+     */
+    public function getTranslatorType(string $page, string $type): NativeArray {
+        $this->getTranslateFactory($page, $type);
+    }
+
+    /**
+     * Get translation factory
+     * 
+     * @param string $page Page to translate
+     * @param string $type Type to translate
+     * 
+     * @return NativeArray
+     */
+    private function getTranslateFactory(string $page, string $type): NativeArray {        
+        $interpolator = new InterpolatorFactory();
+        $factory      = new TranslateFactory($interpolator);
+
+        $translations = [];
+
+        return $factory->newInstance(
+            'array',
+            [
+                'content' => $translations,
+            ]
+        );
     }
 }

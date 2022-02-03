@@ -19,7 +19,24 @@ use Phalcon\Translate\Adapter\NativeArray;
 interface TranslationInterface extends Injectable
 {
     /**
+     * Construct language
+     */
+    public function __construct(string $language);
+
+    /**
+     * Get general translations
+     * 
      * @return NativeArray
      */
-    public function getTranslator(string $language): NativeArray;
+    public function getTranslator(): NativeArray;
+
+    /**
+     * Get translations filtered by page and type
+     * 
+     * @param string $page Page to translate
+     * @param string $type Type to translate
+     * 
+     * @return NativeArray
+     */
+    public function getTranslatorType(string $page, string $type): NativeArray;
 }

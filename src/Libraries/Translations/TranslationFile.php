@@ -13,40 +13,69 @@ declare(strict_types=1);
 
 namespace Phlexus\Libraries\Translations;
 
-use Phalcon\Di\Injectable;
 use Phalcon\Translate\Adapter\NativeArray;
 use Phalcon\Translate\InterpolatorFactory;
 use Phalcon\Translate\TranslateFactory;
 
-class TranslationFile extends Injectable
+class TranslationFile extends TranslationAbstract
 {
     /**
+     * Setup configs
+     */
+    private string $filesDir;
+
+    /**
+     * Setup configs
+     */
+    public function __construct() {
+        parent::__construct();
+
+        $configs = Helpers::phlexusConfig('translations')->toArray();
+        
+        $this->filesDir = $configs['config']['files_dir'];
+    }
+
+    /**
+     * Get general translations
+     * 
      * @return NativeArray
      */
-    public function getTranslator(string $language): NativeArray
+    public function getTranslator(): NativeArray
     {
-        $configs = Helpers::phlexusConfig('translations')->toArray();
+        return $this->getTranslateFactory('general', self::MESSAGE);
+    }
 
-        $messages = [];
-        
-        $files_dir = $configs['config']['files_dir'];
+    /**
+     * Get translations filtered by page and type
+     * 
+     * @param string $page Page to translate
+     * @param string $type Type to translate
+     * 
+     * @return NativeArray
+     */
+    public function getTranslatorType(string $page, string $type): NativeArray {
+        return $this->getTranslateFactory($page, $type);
+    }
 
-        $translationFile = $files_dir . $language . '.php';
-
-        if (true !== file_exists($translationFile)) {
-            $translationFile = $files_dir . '/en.php';
-        }
-        
-        require $translationFile;
-
+    /**
+     * Get translation factory
+     * 
+     * @param string $page Page to translate
+     * @param string $type Type to translate
+     * 
+     * @return NativeArray
+     */
+    private function getTranslateFactory(string $page, string $type): NativeArray {        
         $interpolator = new InterpolatorFactory();
         $factory      = new TranslateFactory($interpolator);
-        
-        return $factory->newInstance(
-            'array',
-            [
-                'content' => $messages,
-            ]
-        );
+
+        $options = [
+            'locale'        => $this->language,
+            'defaultDomain' => 'translations',
+            'directory'     => $this->filesDir . !empty($page) ? '/' . $page : '',
+            'category'      => $type,
+        ];
+
+        return $factory->newInstance('gettext', $options);
     }
 }

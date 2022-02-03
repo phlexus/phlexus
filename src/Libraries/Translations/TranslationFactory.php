@@ -31,26 +31,20 @@ class TranslationFactory
     /**
      * Build Translations
      * 
-     * @return NativeArray
+     * @return TranslationAbstract
      */
-    public function build(): NativeArray {
-        $language = $this->request->getBestLanguage();
-
-        if (preg_match('/^[a-zA-Z]+$/', $language) !== 1) {
-            throw new \Exception('Unable to setup translation!');
-        }
-
+    public function build(string $language): TranslationAbstract {
         $configs = Helpers::phlexusConfig('translations')->toArray();
 
         $type = $configs['type'];
 
         switch ($type) {
             case self::DATABASE:
-                return (new TranslationDatabase())->getTranslator($language);
+                return (new TranslationDatabase($language))->getTranslator();
                 break;
             case self::FILE:
             default:
-                return (new TranslationFile())->getTranslator($language);
+                return (new TranslationFile($language))->getTranslator();
                 break;
         }
     }
