@@ -77,7 +77,7 @@ class TranslationFile extends TranslationAbstract
         $directory = $this->filesDir;
         $category  = (int) implode('', array_map('ord', str_split($type)));
 
-
+        // Fallback to default language if file doesn't exits
         if (!file_exists($directory . '/' . $language . '/' . $category . '/' . $page . '.mo')) {
             $language = $this->defaultLanguage;
         }
