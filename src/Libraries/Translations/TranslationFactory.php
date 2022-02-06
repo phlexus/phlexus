@@ -38,13 +38,15 @@ class TranslationFactory
 
         $type = $configs['type'];
 
+        $defaultLanguage = $configs['config']['default_language'];
+
         switch ($type) {
             case self::DATABASE:
-                return new TranslationDatabase($language);
+                return new TranslationDatabase($language, $defaultLanguage);
                 break;
             case self::FILE:
             default:
-                return new TranslationFile($language);
+                return new TranslationFile($language, $defaultLanguage);
                 break;
         }
     }

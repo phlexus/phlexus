@@ -15,15 +15,16 @@ namespace Phlexus\Libraries\Translations;
 
 use Phalcon\Di;
 use Phalcon\Translate\Adapter\Database;
+use Phalcon\Translate\Adapter\AdapterInterface;
 
 class TranslationDatabase extends TranslationAbstract
 {
     /**
      * Get general translations
      * 
-     * @return NativeArray
+     * @return AdapterInterface
      */
-    public function getTranslator(): NativeArray
+    public function getTranslator(): AdapterInterface
     {
         $this->getTranslateFactory('general', self::MESSAGE);
     }
@@ -34,9 +35,9 @@ class TranslationDatabase extends TranslationAbstract
      * @param string $page Page to translate
      * @param string $type Type to translate
      * 
-     * @return NativeArray
+     * @return AdapterInterface
      */
-    public function getTranslatorType(string $page, string $type): NativeArray {
+    public function getTranslatorType(string $page, string $type): AdapterInterface {
         $this->getTranslateFactory($page, $type);
     }
 
@@ -46,9 +47,9 @@ class TranslationDatabase extends TranslationAbstract
      * @param string $page Page to translate
      * @param string $type Type to translate
      * 
-     * @return NativeArray
+     * @return AdapterInterface
      */
-    private function getTranslateFactory(string $page, string $type): NativeArray {        
+    private function getTranslateFactory(string $page, string $type): AdapterInterface {        
         $interpolator = new InterpolatorFactory();
         $factory      = new TranslateFactory($interpolator);
 

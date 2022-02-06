@@ -38,13 +38,22 @@ abstract class TranslationAbstract extends Injectable implements TranslationInte
     protected string $language;
 
     /**
-     * Construct language
+     * Default Language
      */
-    public function __construct(string $language) {
+    protected string $defaultLanguage;
+
+    /**
+     * Construct language
+     * 
+     * @param string $language        Preferred language
+     * @param string $defaultLanguage Fallback language
+     */
+    public function __construct(string $language, string $defaultLanguage) {
         if (preg_match('/^[a-zA-Z-]+$/', $language) !== 1) {
             throw new \Exception('Unable to setup translation!');
         }
 
         $this->language = $language;
+        $this->defaultLanguage = $defaultLanguage;
     }
 }

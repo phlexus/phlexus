@@ -38,6 +38,7 @@ return [
         'type' => \Phlexus\Libraries\Translations\TranslationFactory::FILE,
         'config' => [
             'files_dir' => __DIR__ .'/../translations',
+            'default_language' => 'en_US',
         ]
     ],
 

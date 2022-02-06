@@ -13,19 +13,24 @@ declare(strict_types=1);
 
 namespace Phlexus\Libraries\Translations;
 
+use Phalcon\Translate\Adapter\AdapterInterface;
+
 interface TranslationInterface
 {
     /**
      * Construct language
+     * 
+     * @param string $language        Preferred language
+     * @param string $defaultLanguage Fallback language
      */
-    public function __construct(string $language);
+    public function __construct(string $language, string $defaultLanguage);
 
     /**
      * Get general translations
      * 
-     * @return mixed
+     * @return AdapterInterface
      */
-    public function getTranslator();
+    public function getTranslator(): AdapterInterface;
 
     /**
      * Get translations filtered by page and type
@@ -33,7 +38,7 @@ interface TranslationInterface
      * @param string $page Page to translate
      * @param string $type Type to translate
      * 
-     * @return mixed
+     * @return AdapterInterface
      */
-    public function getTranslatorType(string $page, string $type);
+    public function getTranslatorType(string $page, string $type): AdapterInterface;
 }

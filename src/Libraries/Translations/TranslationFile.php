@@ -13,10 +13,10 @@ declare(strict_types=1);
 
 namespace Phlexus\Libraries\Translations;
 
-use Phalcon\Translate\Adapter\Gettext;
+use Phlexus\Helpers;
+use Phalcon\Translate\Adapter\AdapterInterface;
 use Phalcon\Translate\InterpolatorFactory;
 use Phalcon\Translate\TranslateFactory;
-use Phlexus\Helpers;
 
 class TranslationFile extends TranslationAbstract
 {
@@ -27,9 +27,12 @@ class TranslationFile extends TranslationAbstract
 
     /**
      * Construct language
+     * 
+     * @param string $language        Preferred language
+     * @param string $defaultLanguage Fallback language
      */
-    public function __construct(string $language) {
-        parent::__construct($language);
+    public function __construct(string $language, string $defaultLanguage) {
+        parent::__construct($language, $defaultLanguage);
 
         $configs = Helpers::phlexusConfig('translations')->toArray();
         
@@ -39,9 +42,9 @@ class TranslationFile extends TranslationAbstract
     /**
      * Get general translations
      * 
-     * @return Gettext
+     * @return AdapterInterface
      */
-    public function getTranslator()
+    public function getTranslator(): AdapterInterface
     {
         return $this->getTranslateFactory('general', self::MESSAGE);
     }
@@ -52,9 +55,9 @@ class TranslationFile extends TranslationAbstract
      * @param string $page Page to translate
      * @param string $type Type to translate
      * 
-     * @return Gettext
+     * @return AdapterInterface
      */
-    public function getTranslatorType(string $page, string $type) {
+    public function getTranslatorType(string $page, string $type): AdapterInterface {
         return $this->getTranslateFactory($page, $type);
     }
 
@@ -64,17 +67,26 @@ class TranslationFile extends TranslationAbstract
      * @param string $page Page to translate
      * @param string $type Type to translate
      * 
-     * @return Gettext
+     * @return AdapterInterface
      */
-    private function getTranslateFactory(string $page, string $type): Gettext {
+    private function getTranslateFactory(string $page, string $type): AdapterInterface {
         $interpolator = new InterpolatorFactory();
         $factory      = new TranslateFactory($interpolator);
 
+        $language  = $this->language;
+        $directory = $this->filesDir;
+        $category  = (int) implode('', array_map('ord', str_split($type)));
+
+
+        if (!file_exists($directory . '/' . $language . '/' . $category . '/' . $page . '.mo')) {
+            $language = $this->defaultLanguage;
+        }
+
         $options = [
-            'locale'        => $this->language,
-            'defaultDomain' => 'translations',
-            'directory'     => $this->filesDir . !empty($page) ? '/' . $page : '',
-            'category'      => (int) implode('', array_map('ord', str_split($type))),
+            'locale'        => $language,
+            'defaultDomain' => $page,
+            'directory'     => $directory,
+            'category'      => $category,
         ];
 
         return $factory->newInstance('gettext', $options);
