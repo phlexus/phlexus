@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Phlexus\Libraries\Translations;
 
-use Phalcon\Translate\Adapter\NativeArray;
+use Phalcon\Translate\Adapter\Gettext;
 use Phalcon\Translate\InterpolatorFactory;
 use Phalcon\Translate\TranslateFactory;
 use Phlexus\Helpers;
@@ -39,9 +39,9 @@ class TranslationFile extends TranslationAbstract
     /**
      * Get general translations
      * 
-     * @return NativeArray
+     * @return Gettext
      */
-    public function getTranslator(): NativeArray
+    public function getTranslator()
     {
         return $this->getTranslateFactory('general', self::MESSAGE);
     }
@@ -52,9 +52,9 @@ class TranslationFile extends TranslationAbstract
      * @param string $page Page to translate
      * @param string $type Type to translate
      * 
-     * @return NativeArray
+     * @return Gettext
      */
-    public function getTranslatorType(string $page, string $type): NativeArray {
+    public function getTranslatorType(string $page, string $type) {
         return $this->getTranslateFactory($page, $type);
     }
 
@@ -64,9 +64,9 @@ class TranslationFile extends TranslationAbstract
      * @param string $page Page to translate
      * @param string $type Type to translate
      * 
-     * @return NativeArray
+     * @return Gettext
      */
-    private function getTranslateFactory(string $page, string $type): NativeArray {        
+    private function getTranslateFactory(string $page, string $type): Gettext {
         $interpolator = new InterpolatorFactory();
         $factory      = new TranslateFactory($interpolator);
 
@@ -74,7 +74,7 @@ class TranslationFile extends TranslationAbstract
             'locale'        => $this->language,
             'defaultDomain' => 'translations',
             'directory'     => $this->filesDir . !empty($page) ? '/' . $page : '',
-            'category'      => $type,
+            'category'      => (int) implode('', array_map('ord', str_split($type))),
         ];
 
         return $factory->newInstance('gettext', $options);

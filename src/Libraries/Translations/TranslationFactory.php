@@ -31,20 +31,20 @@ class TranslationFactory
     /**
      * Build Translations
      * 
-     * @return TranslationAbstract
+     * @return TranslationInterface
      */
-    public function build(string $language): TranslationAbstract {
+    public function build(string $language): TranslationInterface {
         $configs = Helpers::phlexusConfig('translations')->toArray();
 
         $type = $configs['type'];
 
         switch ($type) {
             case self::DATABASE:
-                return (new TranslationDatabase($language))->getTranslator();
+                return new TranslationDatabase($language);
                 break;
             case self::FILE:
             default:
-                return (new TranslationFile($language))->getTranslator();
+                return new TranslationFile($language);
                 break;
         }
     }

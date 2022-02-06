@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace Phlexus\Libraries\Translations;
 
-use Phalcon\Translate\Adapter\NativeArray;
-
 interface TranslationInterface
 {
     /**
@@ -25,9 +23,9 @@ interface TranslationInterface
     /**
      * Get general translations
      * 
-     * @return NativeArray
+     * @return mixed
      */
-    public function getTranslator(): NativeArray;
+    public function getTranslator();
 
     /**
      * Get translations filtered by page and type
@@ -35,7 +33,7 @@ interface TranslationInterface
      * @param string $page Page to translate
      * @param string $type Type to translate
      * 
-     * @return NativeArray
+     * @return mixed
      */
-    public function getTranslatorType(string $page, string $type): NativeArray;
+    public function getTranslatorType(string $page, string $type);
 }
