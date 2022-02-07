@@ -103,5 +103,9 @@ class DatabaseAdapter extends Adapter implements AdapterInterface
         $model = $this->getModel();
 
         $this->translations = $model::getTranslationsType($page, $type, $options['locale']);
+
+        if (count($this->translations) === 0 && isset($options['defaultLocale'])) {
+            $this->translations = $model::getTranslationsType($page, $type, $options['defaultLocale']);
+        }
     }
 }
