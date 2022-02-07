@@ -1,0 +1,5 @@
+msgid "title-create"
+msgstr "Create"
+
+msgid "button-save"
+msgstr "Save"

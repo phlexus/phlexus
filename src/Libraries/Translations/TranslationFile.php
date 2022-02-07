@@ -73,20 +73,19 @@ class TranslationFile extends TranslationAbstract
         $interpolator = new InterpolatorFactory();
         $factory      = new TranslateFactory($interpolator);
 
-        $language  = $this->language;
+        $language  = $this->language . '.UTF-8';
         $directory = $this->filesDir;
-        $category  = (int) implode('', array_map('ord', str_split($type)));
 
         // Fallback to default language if file doesn't exits
-        if (!file_exists($directory . '/' . $language . '/' . $category . '/' . $page . '.mo')) {
-            $language = $this->defaultLanguage;
+        if (!file_exists($directory . '/' . $language . '/LC_MESSAGES/' . $type . '/' . $page . '.mo')) {
+            $language = $this->defaultLanguage . '.UTF-8';
         }
 
         $options = [
             'locale'        => $language,
-            'defaultDomain' => $page,
+            'defaultDomain' => (!empty($type) ? $type . '/' : '') . $page,
             'directory'     => $directory,
-            'category'      => $category,
+            'category'      => LC_MESSAGES
         ];
 
         return $factory->newInstance('gettext', $options);

@@ -1,2 +1,0 @@
-msgid "title-create"
-msgstr "Create"
