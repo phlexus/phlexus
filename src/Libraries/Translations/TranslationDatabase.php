@@ -20,7 +20,7 @@ use Phalcon\Translate\Adapter\AdapterInterface;
 use Phalcon\Translate\InterpolatorFactory;
 use Phalcon\Translate\TranslateFactory;
 
-class TranslationFile extends TranslationAbstract
+class TranslationDatabase extends TranslationAbstract
 {
     /**
      * Get general translations
@@ -57,7 +57,7 @@ class TranslationFile extends TranslationAbstract
             [
                 'locale'        => $this->language,
                 'defaultLocale' => $this->defaultLanguage,
-                'model'         => Translation::class,
+                'model'         => new Translation,
                 'page'          => $page,
                 'type'          => $type,
             ]

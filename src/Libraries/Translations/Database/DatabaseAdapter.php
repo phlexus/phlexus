@@ -4,10 +4,9 @@ declare(strict_types=1);
 namespace Phlexus\Libraries\Translations\Database;
 
 use Phalcon\Mvc\Model;
-use Phalcon\Translate\Adapter;
 use Phalcon\Translate\Adapter\AdapterInterface;
 
-class DatabaseAdapter extends Adapter implements AdapterInterface
+class DatabaseAdapter implements AdapterInterface
 {
    /**
     * Options
@@ -26,18 +25,16 @@ class DatabaseAdapter extends Adapter implements AdapterInterface
      */
     public function __construct(array $options) {
         if (!isset($options['model'])) {
-            throw new Exception("Parameter 'model' is required");
+            throw new \Exception("Parameter 'model' is required");
         } else if (!$options['model'] instanceof Model) {
-            throw new Exception("Parameter 'model' must be a Model object");
+            throw new \Exception("Parameter 'model' must be a Model object");
         }
 
         if (!isset($options['locale'])) {
-            throw new Exception("Parameter 'locale' is required");
+            throw new \Exception("Parameter 'locale' is required");
         }
 
         $this->options = $options;
-        
-        parent::__construct($options);
 
         if (isset($options['page']) && isset($options['type'])) {
             $this->loadAll($options['page'], $options['type']);
@@ -88,7 +85,7 @@ class DatabaseAdapter extends Adapter implements AdapterInterface
      * @return Model
      */
     private function getModel(): Model {
-        return $options['model'];
+        return $this->options['model'];
     }
 
     /**
@@ -101,6 +98,7 @@ class DatabaseAdapter extends Adapter implements AdapterInterface
      */
     private function loadAll(string $page, string $type): void {
         $model = $this->getModel();
+        $options = $this->options;
 
         $this->translations = $model::getTranslationsType($page, $type, $options['locale']);
 
