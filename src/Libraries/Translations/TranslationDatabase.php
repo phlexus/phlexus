@@ -13,11 +13,14 @@ declare(strict_types=1);
 
 namespace Phlexus\Libraries\Translations;
 
-use Phalcon\Di;
-use Phalcon\Translate\Adapter\Database;
+use Phlexus\Helpers;
+use Phlexus\Libraries\Translations\Database\DatabaseAdapter;
+use Phlexus\Libraries\Translations\Database\Models\Translation;
 use Phalcon\Translate\Adapter\AdapterInterface;
+use Phalcon\Translate\InterpolatorFactory;
+use Phalcon\Translate\TranslateFactory;
 
-class TranslationDatabase extends TranslationAbstract
+class TranslationFile extends TranslationAbstract
 {
     /**
      * Get general translations
@@ -26,7 +29,7 @@ class TranslationDatabase extends TranslationAbstract
      */
     public function getTranslator(): AdapterInterface
     {
-        $this->getTranslateFactory('general', self::MESSAGE);
+        return $this->getTranslateFactory('general', self::MESSAGE);
     }
 
     /**
@@ -38,7 +41,7 @@ class TranslationDatabase extends TranslationAbstract
      * @return AdapterInterface
      */
     public function getTranslatorType(string $page, string $type): AdapterInterface {
-        $this->getTranslateFactory($page, $type);
+        return $this->getTranslateFactory($page, $type);
     }
 
     /**
@@ -49,16 +52,12 @@ class TranslationDatabase extends TranslationAbstract
      * 
      * @return AdapterInterface
      */
-    private function getTranslateFactory(string $page, string $type): AdapterInterface {        
-        $interpolator = new InterpolatorFactory();
-        $factory      = new TranslateFactory($interpolator);
-
-        $translations = [];
-
-        return $factory->newInstance(
-            'array',
+    private function getTranslateFactory(string $page, string $type): AdapterInterface {
+        return new DatabaseAdapter(
             [
-                'content' => $translations,
+                'locale'        => $this->language,
+                'defaultLocale' => $this->defaultLanguage,
+                'model'         => Translation::class
             ]
         );
     }
