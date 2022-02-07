@@ -57,7 +57,9 @@ class TranslationFile extends TranslationAbstract
             [
                 'locale'        => $this->language,
                 'defaultLocale' => $this->defaultLanguage,
-                'model'         => Translation::class
+                'model'         => Translation::class,
+                'page'          => $page,
+                'type'          => $type,
             ]
         );
     }
