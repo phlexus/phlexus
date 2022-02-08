@@ -59,7 +59,7 @@ class Redis extends Adapter implements AdapterInterface
             throw new Exception("Parameter 'locale' is required");
         }
 
-        $this->redis    = $options['redis'];
+        $this->redis  = $options['redis'];
         $this->locale = $options['locale'];
 
         if (isset($options['levels'])) {
@@ -84,6 +84,26 @@ class Redis extends Adapter implements AdapterInterface
         $this->loadValueByKey($key);
 
         return (isset($this->cache[$key]) && isset($this->cache[$key][$index]));
+    }
+
+    /**
+     * @param string $translateKey
+     * @param array  $placeholders
+     * 
+     * @return string
+     */
+    public function t(string $translateKey, array $placeholders = []): string {
+        return $this->query($translateKey, $placeholders);
+    }
+    
+    /**
+     * @param string $translateKey
+     * @param array  $placeholders
+     * 
+     * @return string
+     */
+    public function _(string $translateKey, array $placeholders = []): string {
+        return $this->query($translateKey, $placeholders);
     }
 
     /**
