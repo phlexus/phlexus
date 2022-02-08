@@ -22,6 +22,10 @@ return new Config([
         'exportDataFromTables' => [
             'address_type',
             'countries',
+            'language',
+            'pages',
+            'text_type',
+            'translations',
             'payment_method',
             'shipping_method',
             'profiles',
