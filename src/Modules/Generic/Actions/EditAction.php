@@ -2,8 +2,10 @@
 declare(strict_types=1);
 
 namespace Phlexus\Modules\Generic\Actions;
+
 use Phlexus\Modules\BaseUser\Models\User;
 use Phlexus\Modules\BaseUser\Models\Profile;
+use Phlexus\Libraries\Translations\TranslationAbstract;
 
 /**
  * Trait EditAction
@@ -59,6 +61,8 @@ trait EditAction {
         $this->view->setVar('defaultRoute', $defaultRoute);
         
         $this->view->setVar('saveRoute', $saveRoute);
+
+        $this->view->setVar('tType', $this->translation->getTranslatorType('generic', TranslationAbstract::PAGE));
 
         $this->view->pick('generic/edit');
     }

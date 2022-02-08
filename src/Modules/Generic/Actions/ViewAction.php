@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Phlexus\Modules\Generic\Actions;
 
+use Phlexus\Libraries\Translations\TranslationAbstract;
+
 /**
  * Trait ViewAction
  *
@@ -38,6 +40,8 @@ trait ViewAction {
         ));
 
         $this->view->setVar('defaultRoute', $defaultRoute);
+
+        $this->view->setVar('tType', $this->translation->getTranslatorType('generic', TranslationAbstract::PAGE));
 
         $this->view->setVar('csrfToken', $this->security->getToken());
 
