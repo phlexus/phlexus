@@ -100,10 +100,19 @@ class DatabaseAdapter implements AdapterInterface
         $model = $this->getModel();
         $options = $this->options;
 
-        $this->translations = $model::getTranslationsType($page, $type, $options['locale']);
+        $translations = $model::getTranslationsType($page, $type, $options['locale']);
 
-        if (count($this->translations) === 0 && isset($options['defaultLocale'])) {
-            $this->translations = $model::getTranslationsType($page, $type, $options['defaultLocale']);
+        // Fallback to default language
+        if (count($translations) === 0 && isset($options['defaultLocale'])) {
+            $translations = $model::getTranslationsType($page, $type, $options['defaultLocale']);
         }
+
+        $parsedTranslations = [];
+        
+        array_walk($translations, function (&$value,$key) use (&$parsedTranslations) {
+            $parsedTranslations[ $value['key'] ] = $value['translation'];
+        });
+
+        $this->translations = $parsedTranslations;
     }
 }
