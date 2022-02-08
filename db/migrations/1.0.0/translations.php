@@ -66,13 +66,44 @@ class TranslationsMigration_100 extends Migration
                         'after' => 'textTypeId'
                     ]
                 ),
+                new Column(
+                    'languageId',
+                    [
+                        'type' => Column::TYPE_INTEGER,
+                        'notNull' => true,
+                        'size' => 1,
+                        'after' => 'pageId'
+                    ]
+                ),
+                new Column(
+                    'active',
+                    [
+                        'type' => Column::TYPE_INTEGER,
+                        'default' => "1",
+                        'notNull' => true,
+                        'size' => 1,
+                        'after' => 'languageId'
+                    ]
+                ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
                 new Index('fk_translations_text_type_idx', ['textTypeId'], ''),
                 new Index('fk_translations_page_idx', ['pageId'], ''),
+                new Index('fk_translations_language_id_idx', ['languageId'], ''),
             ],
             'references' => [
+                new Reference(
+                    'fk_translations_language_id',
+                    [
+                        'referencedSchema' => 'cms_phalcon',
+                        'referencedTable' => 'language',
+                        'columns' => ['languageId'],
+                        'referencedColumns' => ['id'],
+                        'onUpdate' => 'NO ACTION',
+                        'onDelete' => 'NO ACTION'
+                    ]
+                ),
                 new Reference(
                     'fk_translations_page_id',
                     [
@@ -98,7 +129,7 @@ class TranslationsMigration_100 extends Migration
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '1',
+                'AUTO_INCREMENT' => '3',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8mb4_0900_ai_ci',
             ],
@@ -112,6 +143,15 @@ class TranslationsMigration_100 extends Migration
      */
     public function up(): void
     {
+        $this->batchInsert('translations', [
+            'id',
+            'key',
+            'translation',
+            'textTypeId',
+            'pageId',
+            'languageId',
+            'active',
+        ]);
     }
 
     /**
@@ -121,5 +161,6 @@ class TranslationsMigration_100 extends Migration
      */
     public function down(): void
     {
+        $this->batchDelete('translations');
     }
 }

@@ -26,6 +26,7 @@ class TextTypeMigration_100 extends Migration
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
+                        'autoIncrement' => true,
                         'size' => 1,
                         'first' => true
                     ]
@@ -39,13 +40,22 @@ class TextTypeMigration_100 extends Migration
                         'after' => 'id'
                     ]
                 ),
+                new Column(
+                    'active',
+                    [
+                        'type' => Column::TYPE_TINYINTEGER,
+                        'notNull' => true,
+                        'size' => 1,
+                        'after' => 'type'
+                    ]
+                ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '',
+                'AUTO_INCREMENT' => '4',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8mb4_0900_ai_ci',
             ],
@@ -59,6 +69,11 @@ class TextTypeMigration_100 extends Migration
      */
     public function up(): void
     {
+        $this->batchInsert('text_type', [
+            'id',
+            'type',
+            'active',
+        ]);
     }
 
     /**
@@ -68,5 +83,6 @@ class TextTypeMigration_100 extends Migration
      */
     public function down(): void
     {
+        $this->batchDelete('text_type');
     }
 }

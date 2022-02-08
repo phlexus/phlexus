@@ -40,13 +40,22 @@ class PagesMigration_100 extends Migration
                         'after' => 'id'
                     ]
                 ),
+                new Column(
+                    'active',
+                    [
+                        'type' => Column::TYPE_TINYINTEGER,
+                        'notNull' => true,
+                        'size' => 1,
+                        'after' => 'name'
+                    ]
+                ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '1',
+                'AUTO_INCREMENT' => '2',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8mb4_0900_ai_ci',
             ],
@@ -60,6 +69,11 @@ class PagesMigration_100 extends Migration
      */
     public function up(): void
     {
+        $this->batchInsert('pages', [
+            'id',
+            'name',
+            'active',
+        ]);
     }
 
     /**
@@ -69,5 +83,6 @@ class PagesMigration_100 extends Migration
      */
     public function down(): void
     {
+        $this->batchDelete('pages');
     }
 }
