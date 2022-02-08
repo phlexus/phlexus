@@ -40,28 +40,6 @@ class TranslationFile extends TranslationAbstract
     }
 
     /**
-     * Get general translations
-     * 
-     * @return AdapterInterface
-     */
-    public function getTranslator(): AdapterInterface
-    {
-        return $this->getTranslateFactory('general', self::MESSAGE);
-    }
-
-    /**
-     * Get translations filtered by page and type
-     * 
-     * @param string $page Page to translate
-     * @param string $type Type to translate
-     * 
-     * @return AdapterInterface
-     */
-    public function getTranslatorType(string $page, string $type): AdapterInterface {
-        return $this->getTranslateFactory($page, $type);
-    }
-
-    /**
      * Get translation factory
      * 
      * @param string $page Page to translate
@@ -69,7 +47,7 @@ class TranslationFile extends TranslationAbstract
      * 
      * @return AdapterInterface
      */
-    private function getTranslateFactory(string $page, string $type): AdapterInterface {
+    public function getTranslateFactory(string $page, string $type): AdapterInterface {
         $interpolator = new InterpolatorFactory();
         $factory      = new TranslateFactory($interpolator);
 

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phlexus\Libraries\Translations;
 
 use Phalcon\Di\Injectable;
+use Phalcon\Translate\Adapter\AdapterInterface;
 
 abstract class TranslationAbstract extends Injectable implements TranslationInterface
 {
@@ -55,5 +56,28 @@ abstract class TranslationAbstract extends Injectable implements TranslationInte
 
         $this->language = $language;
         $this->defaultLanguage = $defaultLanguage;
+    }
+
+
+    /**
+     * Get general translations
+     * 
+     * @return AdapterInterface
+     */
+    public function getTranslator(): AdapterInterface
+    {
+        return $this->getTranslateFactory('general', self::MESSAGE);
+    }
+
+    /**
+     * Get translations filtered by page and type
+     * 
+     * @param string $page Page to translate
+     * @param string $type Type to translate
+     * 
+     * @return AdapterInterface
+     */
+    public function getTranslatorType(string $page, string $type): AdapterInterface {
+        return $this->getTranslateFactory($page, $type);
     }
 }

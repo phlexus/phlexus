@@ -20,7 +20,7 @@ use Phalcon\Translate\Adapter\AdapterInterface;
 use Phalcon\Translate\InterpolatorFactory;
 use Phalcon\Translate\TranslateFactory;
 
-class TranslationDatabase extends TranslationAbstract
+class TranslationRedis extends TranslationAbstract
 {
     /**
      * Get translation factory

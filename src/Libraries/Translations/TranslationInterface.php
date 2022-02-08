@@ -41,4 +41,15 @@ interface TranslationInterface
      * @return AdapterInterface
      */
     public function getTranslatorType(string $page, string $type): AdapterInterface;
+
+
+    /**
+     * Get translation factory
+     * 
+     * @param string $page Page to translate
+     * @param string $type Type to translate
+     * 
+     * @return AdapterInterface
+     */
+    public function getTranslateFactory(string $page, string $type): AdapterInterface;
 }

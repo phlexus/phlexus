@@ -12,13 +12,34 @@ class DatabaseAdapter implements AdapterInterface
     * Options
     * @var array
     */
-   protected $options;
+   protected array $options;
 
    /**
     * translations
     * @var array
     */
-    private $translations;
+    private array $translations;
+
+    /**
+     * Model object.
+     *
+     * @var \Phalcon\Mvc\Model
+     */
+    protected Model $model;
+
+    /**
+     * Locale.
+     *
+     * @var string
+     */
+    protected string $locale;
+
+    /**
+     * Default defaultLocale
+     *
+     * @var string
+     */
+    protected string $defaultLocale;
 
     /**
      * @param array $options
@@ -30,8 +51,16 @@ class DatabaseAdapter implements AdapterInterface
             throw new \Exception("Parameter 'model' must be a Model object");
         }
 
+        $this->model = $options['model'];
+
         if (!isset($options['locale'])) {
             throw new \Exception("Parameter 'locale' is required");
+        }
+
+        $this->locale = $options['locale'];
+
+        if (isset($options['defaultLocale'])) {
+            $this->defaultLocale = $options['defaultLocale'];
         }
 
         $this->options = $options;
@@ -85,7 +114,7 @@ class DatabaseAdapter implements AdapterInterface
      * @return Model
      */
     private function getModel(): Model {
-        return $this->options['model'];
+        return $this->model;
     }
 
     /**
@@ -98,13 +127,12 @@ class DatabaseAdapter implements AdapterInterface
      */
     private function loadAll(string $page, string $type): void {
         $model = $this->getModel();
-        $options = $this->options;
 
-        $translations = $model::getTranslationsType($page, $type, $options['locale']);
+        $translations = $model::getTranslationsType($page, $type, $this->locale);
 
         // Fallback to default language
-        if (count($translations) === 0 && isset($options['defaultLocale'])) {
-            $translations = $model::getTranslationsType($page, $type, $options['defaultLocale']);
+        if (count($translations) === 0 && isset($this->defaultLocale)) {
+            $translations = $model::getTranslationsType($page, $type, $this->defaultLocale);
         }
 
         $parsedTranslations = [];
