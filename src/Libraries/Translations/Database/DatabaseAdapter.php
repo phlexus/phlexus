@@ -5,8 +5,10 @@ namespace Phlexus\Libraries\Translations\Database;
 
 use Phalcon\Mvc\Model;
 use Phalcon\Translate\Adapter\AdapterInterface;
+use Phalcon\Translate\Adapter\AbstractAdapter;
+use Phalcon\Translate\InterpolatorFactory;
 
-class DatabaseAdapter implements AdapterInterface
+class DatabaseAdapter extends AbstractAdapter implements AdapterInterface
 {
    /**
     * Options
@@ -68,26 +70,8 @@ class DatabaseAdapter implements AdapterInterface
         if (isset($options['page']) && isset($options['type'])) {
             $this->loadAll($options['page'], $options['type']);
         }
-    }
 
-    /**
-     * @param string $translateKey
-     * @param array  $placeholders
-     * 
-     * @return string
-     */
-    public function t(string $translateKey, array $placeholders = []): string {
-        return $this->query($translateKey, $placeholders);
-    }
-    
-    /**
-     * @param string $translateKey
-     * @param array  $placeholders
-     * 
-     * @return string
-     */
-    public function _(string $translateKey, array $placeholders = []): string {
-        return $this->query($translateKey, $placeholders);
+        parent::__construct(new InterpolatorFactory, $options);
     }
 
     /**
@@ -99,7 +83,9 @@ class DatabaseAdapter implements AdapterInterface
     public function query(string $index, array $placeholders = []): string {
         $translations = $this->translations;
 
-        return isset($translations[$index]) ? $translations[$index] : $index;
+        $value = isset($translations[$index]) ? $translations[$index] : $index;
+
+        return $this->replacePlaceholders($value, $placeholders);   
     }
 
     /**

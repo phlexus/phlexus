@@ -3,23 +3,25 @@ declare(strict_types=1);
 
 namespace Phlexus\Libraries\Translations;
 
-use Phalcon\Translate\Adapter;
-use Phalcon\Translate\AdapterInterface;
+use Phalcon\Translate\Adapter\AdapterInterface;
+use Phalcon\Translate\Adapter\AbstractAdapter;
+use Phalcon\Translate\InterpolatorFactory;
 use Phalcon\Translate\Exception;
+use Phalcon\Cache\Adapter\Redis as RedisCache;
 
 /**
  * Class Redis
  *
  * @package Phalcon\Translate\Adapter
  */
-class Redis extends Adapter implements AdapterInterface
+class Redis extends AbstractAdapter implements AdapterInterface
 {
     /**
      * Redis object.
      *
-     * @var \Redis
+     * @var RedisCache
      */
-    protected \Redis $redis;
+    protected RedisCache $redis;
 
     /**
      * Locale.
@@ -53,6 +55,8 @@ class Redis extends Adapter implements AdapterInterface
     {
         if (!isset($options['redis'])) {
             throw new Exception("Parameter 'redis' is required");
+        } else if (!$options['redis'] instanceof RedisCache) {
+            throw new \Exception("Parameter 'redis' must be a Redis object");
         }
 
         if (!isset($options['locale'])) {
@@ -65,8 +69,8 @@ class Redis extends Adapter implements AdapterInterface
         if (isset($options['levels'])) {
             $this->levels = $options['levels'];
         }
-        
-        parent::__construct($options);
+
+        parent::__construct(new InterpolatorFactory, $options);
     }
 
     /**
@@ -84,26 +88,6 @@ class Redis extends Adapter implements AdapterInterface
         $this->loadValueByKey($key);
 
         return (isset($this->cache[$key]) && isset($this->cache[$key][$index]));
-    }
-
-    /**
-     * @param string $translateKey
-     * @param array  $placeholders
-     * 
-     * @return string
-     */
-    public function t(string $translateKey, array $placeholders = []): string {
-        return $this->query($translateKey, $placeholders);
-    }
-    
-    /**
-     * @param string $translateKey
-     * @param array  $placeholders
-     * 
-     * @return string
-     */
-    public function _(string $translateKey, array $placeholders = []): string {
-        return $this->query($translateKey, $placeholders);
     }
 
     /**
@@ -201,55 +185,6 @@ class Redis extends Adapter implements AdapterInterface
     }
 
     /**
-     * {@inheritdoc}
-     *
-     * @param  string $translateKey
-     *
-     * @return string
-     */
-    public function offsetExists(string $translateKey): string
-    {
-        return $this->exists($translateKey);
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @param  string $translateKey
-     * @param  string $message
-     *
-     * @return string
-     */
-    public function offsetSet(string $translateKey, string $message): string
-    {
-        return $this->update($translateKey, $message);
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @param string $translateKey
-     *
-     * @return string
-     */
-    public function offsetGet(string $translateKey): string
-    {
-        return $this->query($translateKey);
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @param  string $translateKey
-     *
-     * @return string
-     */
-    public function offsetUnset(string $translateKey): string
-    {
-        return $this->delete($translateKey);
-    }
-
-    /**
      * Loads key from Redis to local cache.
      *
      * @param string $key
@@ -260,6 +195,11 @@ class Redis extends Adapter implements AdapterInterface
     {
         if (!isset($this->cache[$key])) {
             $result = $this->redis->get($key);
+
+            if (!$result) {
+                return;
+            }
+
             $result = unserialize($result);
 
             if (is_array($result)) {

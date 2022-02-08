@@ -16,7 +16,7 @@ namespace Phlexus\Libraries\Translations;
 use Phlexus\Helpers;
 use Phlexus\Libraries\Translations\Redis;
 use Phlexus\Libraries\Translations\Database\DatabaseAdapter;
-use Phlexus\Libraries\Translations\Database\Models\Translation;
+use Phlexus\Libraries\Translations\Database\Models\Translation as TranslationModel;
 use Phalcon\Translate\Adapter\AdapterInterface;
 use Phalcon\Translate\InterpolatorFactory;
 use Phalcon\Translate\TranslateFactory;
@@ -62,15 +62,13 @@ class TranslationRedis extends TranslationAbstract
      * @return array
      */
     private function getAll(string $page, string $type): array {
-        $model = $this->getModel();
-
-        $translations = $model::getTranslationsType($page, $type, $this->locale);
+        $translations = TranslationModel::getTranslationsType($page, $type, $this->language);
 
         // Fallback to default language
-        if (count($translations) === 0 && isset($this->defaultLocale)) {
-            $this->language = $this->defaultLocale;
+        if (count($translations) === 0 && isset($this->defaultLanguage)) {
+            $this->language = $this->defaultLanguage;
 
-            $translations = $model::getTranslationsType($page, $type, $this->language);
+            $translations = TranslationModel::getTranslationsType($page, $type, $this->language);
         }
 
         $parsedTranslations = [];

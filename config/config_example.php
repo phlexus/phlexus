@@ -106,5 +106,17 @@ return [
         ],
     ],
 
+    'cache' => [
+        'redis' => [
+            'config' => [
+                'defaultSerializer' => 'Json',
+                'lifetime'          => 7200,
+                'host'              => 'localhost',
+                'port'              => 6379,
+                'index'             => 1,
+            ],
+        ]
+    ],
+
     'events' => [],
 ];

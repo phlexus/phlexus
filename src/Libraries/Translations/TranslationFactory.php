@@ -29,6 +29,11 @@ class TranslationFactory
     public const DATABASE = 'database';
 
     /**
+     * Redis translation identifier
+     */
+    public const REDIS = 'redis';
+
+    /**
      * Build Translations
      * 
      * @return TranslationInterface
@@ -43,6 +48,9 @@ class TranslationFactory
         switch ($type) {
             case self::DATABASE:
                 return new TranslationDatabase($language, $defaultLanguage);
+                break;
+            case self::REDIS:
+                return new TranslationRedis($language, $defaultLanguage);
                 break;
             case self::FILE:
             default:
