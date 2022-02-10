@@ -48,7 +48,7 @@ class EmailProvider extends AbstractProvider
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             }
 
-            $mail->setFrom($options['username'], $options['name']);
+            $mail->setFrom($config['username'], $config['name']);
 
             return $mail;
         });

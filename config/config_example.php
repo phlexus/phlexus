@@ -67,7 +67,7 @@ return [
     // Not required
     'payments' => [
         'paypal' => [
-            'client_id'=> '',
+            'client_id' => '',
             'client_secret' => ''
         ],
     ],
