@@ -37,12 +37,13 @@ class TranslationRedis extends TranslationAbstract
         $redis = new Redis(
             [
                 'locale' => $this->language,
-                'redis'  => $this->redis
+                'redis'  => $this->redis,
+                'levels' => 5,
             ]
         );
 
         foreach ($translations as $key => $translation) {
-            // If key already exists, assume is already loaded
+            // If key already exists, assume it's already loaded
             if ($redis->exists($key)) {
                 break;
             }
