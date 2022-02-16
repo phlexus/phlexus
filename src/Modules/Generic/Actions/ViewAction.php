@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Phlexus\Modules\Generic\Actions;
 
-use Phlexus\Libraries\Translations\TranslationAbstract;
+use Phlexus\Modules\BaseUser\Models\Profile;
+use Phalcon\Http\ResponseInterface;
 
 /**
  * Trait ViewAction
@@ -17,9 +18,9 @@ trait ViewAction {
     /**
      * View Action
      *
-     * @return void
+     * @return mixed ResponseInterface or void
      */
-    public function viewAction(): void {
+    public function viewAction() {
         $this->tag->setTitle('View');
 
         $model = $this->getModel();
@@ -32,6 +33,15 @@ trait ViewAction {
 
         $defaultRoute = $this->getBasePosition();
 
+        $isAdmin = Profile::getUserProfile()->isAdmin();
+
+        // Check if user has view permissions
+        if (!$isAdmin) {
+            $this->flash->error('No permission to view record!');
+
+            return $this->response->redirect($defaultRoute);
+        }
+
         $this->view->setVar('display', $this->getViewFields());
         
         $this->view->setVar('records', array_replace_recursive(
@@ -40,8 +50,6 @@ trait ViewAction {
         ));
 
         $this->view->setVar('defaultRoute', $defaultRoute);
-
-        $this->view->setVar('tType', $this->translation->getTranslatorType('generic', TranslationAbstract::PAGE));
 
         $this->view->setVar('csrfToken', $this->security->getToken());
 

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phlexus\Providers;
 
 use Phlexus\Libraries\Translations\TranslationFactory;
+use Phlexus\Libraries\Translations\TranslationAbstract;
 
 class TranslationProvider extends AbstractProvider
 {
@@ -25,6 +26,13 @@ class TranslationProvider extends AbstractProvider
     protected $providerName = 'translation';
 
     /**
+     * Provider page name
+     *
+     * @var string
+     */
+    protected $providerPageName = 'translationPage';
+
+    /**
      * Register application service.
      *
      * @psalm-suppress UndefinedMethod
@@ -34,9 +42,24 @@ class TranslationProvider extends AbstractProvider
     public function register(array $parameters = []): void
     {
         $language = $this->request->getBestLanguage();
+        $di       = $this->getDI();
 
-        $this->getDI()->setShared($this->providerName, function () use ($language) {
+        $provider_name = $this->providerName;
+
+        $this->getDI()->setShared($provider_name , function () use ($language) {
             return (new TranslationFactory())->build($language);
+        });
+
+        $this->getDI()->setShared($this->providerPageName, function () use ($di, $provider_name) {
+                $router = $di->getShared('router');
+
+                $module     = $router->getModuleName();
+                $controller = $router->getControllerName();
+                $action     = $router->getActionName();
+
+                $bundle = $module . '_' . $controller . '_' . $action;
+
+            return $di->getShared($provider_name)->getTranslatorType($bundle, TranslationAbstract::PAGE);
         });
     }
 }

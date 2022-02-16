@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class AddressMigration_100
+ * Class AddressMigration_101
  */
-class AddressMigration_100 extends Migration
+class AddressMigration_101 extends Migration
 {
     /**
      * Define the table structure
@@ -97,7 +97,7 @@ class AddressMigration_100 extends Migration
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '4',
+                'AUTO_INCREMENT' => '5',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8_unicode_ci',
             ],

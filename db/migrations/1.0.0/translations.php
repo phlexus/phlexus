@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class TranslationsMigration_100
+ * Class TranslationsMigration_101
  */
-class TranslationsMigration_100 extends Migration
+class TranslationsMigration_101 extends Migration
 {
     /**
      * Define the table structure

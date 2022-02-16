@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class ShippingMethodMigration_100
+ * Class ShippingMethodMigration_101
  */
-class ShippingMethodMigration_100 extends Migration
+class ShippingMethodMigration_101 extends Migration
 {
     /**
      * Define the table structure
@@ -56,7 +56,7 @@ class ShippingMethodMigration_100 extends Migration
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '2',
+                'AUTO_INCREMENT' => '3',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8_unicode_ci',
             ],

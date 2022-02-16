@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Phlexus\Modules\Generic\Actions;
 
 use Phalcon\Http\ResponseInterface;
-use Phlexus\Modules\BaseUser\Models\User;
 use Phlexus\Modules\BaseUser\Models\Profile;
 
 /**
@@ -43,11 +42,10 @@ trait DeleteAction {
 
         $model = $this->getModel();
 
-        $user = User::getUser();
         $isAdmin = Profile::getUserProfile()->isAdmin();
 
         // Check if user has delete permissions
-        if (!$isAdmin && (!isset($model->user_id) || $model->user_id !== $user->id)) {
+        if (!$isAdmin) {
             $this->flash->error('No permissions to delete!');
 
             return $this->response->setJsonContent($response);

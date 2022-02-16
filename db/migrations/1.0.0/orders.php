@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class OrdersMigration_100
+ * Class OrdersMigration_101
  */
-class OrdersMigration_100 extends Migration
+class OrdersMigration_101 extends Migration
 {
     /**
      * Define the table structure
@@ -32,13 +32,42 @@ class OrdersMigration_100 extends Migration
                     ]
                 ),
                 new Column(
+                    'hashCode',
+                    [
+                        'type' => Column::TYPE_VARCHAR,
+                        'notNull' => true,
+                        'size' => 150,
+                        'after' => 'id'
+                    ]
+                ),
+                new Column(
+                    'paid',
+                    [
+                        'type' => Column::TYPE_INTEGER,
+                        'default' => "0",
+                        'notNull' => true,
+                        'size' => 1,
+                        'after' => 'hashCode'
+                    ]
+                ),
+                new Column(
+                    'status',
+                    [
+                        'type' => Column::TYPE_INTEGER,
+                        'default' => "1",
+                        'notNull' => true,
+                        'size' => 1,
+                        'after' => 'paid'
+                    ]
+                ),
+                new Column(
                     'active',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'default' => "1",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'id'
+                        'after' => 'status'
                     ]
                 ),
                 new Column(
@@ -172,7 +201,7 @@ class OrdersMigration_100 extends Migration
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '22',
+                'AUTO_INCREMENT' => '31',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8_unicode_ci',
             ],

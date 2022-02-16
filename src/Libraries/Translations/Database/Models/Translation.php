@@ -54,8 +54,7 @@ class Translation extends Model
             'reusable' => true,
         ]);
     }
-
-    
+ 
     /**
      * Get translation by Page and Type
      * 
@@ -81,5 +80,45 @@ class Translation extends Model
             ])
             ->execute()
             ->toArray();
+    }
+
+    /**
+     * Create translation with Page and Type
+     * 
+     * @param string $page        Page
+     * @param string $type        Type
+     * @param string $Language    Language
+     * @param string $key         Key
+     * @param string $translation Translation
+     * 
+     * @return mixed Translation or null
+     */
+    public static function createTranslationsType(
+        string $page, string $type, string $language,
+        string $key, string $translation
+    )
+    {
+        $languageModel = Language::findFirstBylanguage($language);
+
+        $typeModel = TextType::findFirstBytype($type);
+
+        if (!$languageModel || !$typeModel) {
+            return false;
+        }
+    
+        $pageModel = Page::findFirstByname($page);
+
+        if ($pageModel) {
+            return $pageModel;
+        }
+
+        $translationModel              = new self;
+        $translationModel->key         = $key;
+        $translationModel->translation = $translation;
+        $translationModel->textTypeId  = $typeModel->id;
+        $translationModel->pageId      = $pageModel->id;
+        $translationModel->languageId  = $languageModel->id;
+
+        return $translationModel->save() ? $translationModel : null;
     }
 }

@@ -31,4 +31,25 @@ class Page extends Model
     {
         $this->setSource('pages');
     }
+
+    /**
+     * Create page
+     * 
+     * @param string $name Page name
+     * 
+     * @return mixed Page or null
+     */
+    public static function createPage(string $name)
+    {
+        $page = self::findFirstByname($name);
+
+        if ($page) {
+            return $page;
+        }
+
+        $page       = new self;
+        $page->name = $name;
+
+        return $page->save() ? $page : null;
+    }
 }

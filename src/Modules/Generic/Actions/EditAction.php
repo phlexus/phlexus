@@ -3,9 +3,8 @@ declare(strict_types=1);
 
 namespace Phlexus\Modules\Generic\Actions;
 
-use Phlexus\Modules\BaseUser\Models\User;
 use Phlexus\Modules\BaseUser\Models\Profile;
-use Phlexus\Libraries\Translations\TranslationAbstract;
+use Phalcon\Http\ResponseInterface;
 
 /**
  * Trait EditAction
@@ -23,20 +22,19 @@ trait EditAction {
      * 
      * @param int $id The model id
      * 
-     * @return mixed Phalcon\Http\ResponseInterface or void
+     * @return mixed ResponseInterface or void
      */
     public function editAction(int $id) {
         $this->tag->setTitle('Edit');
         
         $model = $this->getModel();
 
-        $user = User::getUser();
         $isAdmin = Profile::getUserProfile()->isAdmin();
 
         $defaultRoute = $this->getBasePosition();
 
         // Check if user has edit permissions
-        if (!$isAdmin && (!isset($model->user_id) || $model->user_id !== $user->id)) {
+        if (!$isAdmin) {
             $this->flash->error('No permissions to edit!');
 
             return $this->response->redirect($defaultRoute);
@@ -61,8 +59,6 @@ trait EditAction {
         $this->view->setVar('defaultRoute', $defaultRoute);
         
         $this->view->setVar('saveRoute', $saveRoute);
-
-        $this->view->setVar('tType', $this->translation->getTranslatorType('generic', TranslationAbstract::PAGE));
 
         $this->view->pick('generic/edit');
     }

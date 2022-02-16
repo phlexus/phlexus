@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class LocaleMigration_101
+ * Class OrderAttributesMigration_101
  */
-class LocaleMigration_101 extends Migration
+class OrderAttributesMigration_101 extends Migration
 {
     /**
      * Define the table structure
@@ -19,7 +19,7 @@ class LocaleMigration_101 extends Migration
      */
     public function morph(): void
     {
-        $this->morphTable('locale', [
+        $this->morphTable('order_attributes', [
             'columns' => [
                 new Column(
                     'id',
@@ -41,17 +41,26 @@ class LocaleMigration_101 extends Migration
                     ]
                 ),
                 new Column(
+                    'value',
+                    [
+                        'type' => Column::TYPE_VARCHAR,
+                        'notNull' => true,
+                        'size' => 45,
+                        'after' => 'name'
+                    ]
+                ),
+                new Column(
                     'active',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'default' => "1",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'name'
+                        'after' => 'value'
                     ]
                 ),
                 new Column(
-                    'countryID',
+                    'orderID',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
@@ -59,18 +68,36 @@ class LocaleMigration_101 extends Migration
                         'after' => 'active'
                     ]
                 ),
+                new Column(
+                    'createdAt',
+                    [
+                        'type' => Column::TYPE_TIMESTAMP,
+                        'default' => "CURRENT_TIMESTAMP",
+                        'notNull' => true,
+                        'after' => 'orderID'
+                    ]
+                ),
+                new Column(
+                    'modifiedAt',
+                    [
+                        'type' => Column::TYPE_TIMESTAMP,
+                        'default' => "CURRENT_TIMESTAMP",
+                        'notNull' => true,
+                        'after' => 'createdAt'
+                    ]
+                ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
-                new Index('index_country_id', ['countryID'], ''),
+                new Index('fk_order_attributes_order_idx', ['orderID'], ''),
             ],
             'references' => [
                 new Reference(
-                    'fk_locale_country_id',
+                    'fk_order_attributes_order',
                     [
                         'referencedSchema' => 'cms_phalcon',
-                        'referencedTable' => 'countries',
-                        'columns' => ['countryID'],
+                        'referencedTable' => 'orders',
+                        'columns' => ['orderID'],
                         'referencedColumns' => ['id'],
                         'onUpdate' => 'NO ACTION',
                         'onDelete' => 'NO ACTION'
@@ -79,7 +106,7 @@ class LocaleMigration_101 extends Migration
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '5',
+                'AUTO_INCREMENT' => '12',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8mb4_0900_ai_ci',
             ],

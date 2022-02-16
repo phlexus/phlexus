@@ -37,6 +37,8 @@ class TranslationRedis extends TranslationAbstract
         $redis = new Redis(
             [
                 'locale' => $this->language,
+                'page'   => $page,
+                'type'   => $type,
                 'redis'  => $this->redis,
                 'levels' => 5,
             ]
@@ -68,7 +70,6 @@ class TranslationRedis extends TranslationAbstract
         // Fallback to default language
         if (count($translations) === 0 && isset($this->defaultLanguage)) {
             $this->language = $this->defaultLanguage;
-
             $translations = TranslationModel::getTranslationsType($page, $type, $this->language);
         }
 

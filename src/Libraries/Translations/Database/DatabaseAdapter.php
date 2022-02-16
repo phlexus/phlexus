@@ -44,6 +44,20 @@ class DatabaseAdapter extends AbstractAdapter implements AdapterInterface
     protected string $defaultLocale;
 
     /**
+     * Page
+     *
+     * @var string
+     */
+    protected string $page;
+
+    /**
+     * Type
+     *
+     * @var string
+     */
+    protected string $type;
+
+    /**
      * @param array $options
      */
     public function __construct(array $options) {
@@ -68,7 +82,10 @@ class DatabaseAdapter extends AbstractAdapter implements AdapterInterface
         $this->options = $options;
 
         if (isset($options['page']) && isset($options['type'])) {
-            $this->loadAll($options['page'], $options['type']);
+            $this->page = $options['page'];
+            $this->type = $options['type'];
+
+            $this->loadAll($this->page, $this->type);
         }
 
         parent::__construct(new InterpolatorFactory, $options);
@@ -81,9 +98,7 @@ class DatabaseAdapter extends AbstractAdapter implements AdapterInterface
      * @return string
      */
     public function query(string $index, array $placeholders = []): string {
-        $translations = $this->translations;
-
-        $value = isset($translations[$index]) ? $translations[$index] : $index;
+        $value = $this->exists($index) ? $this->translations[$index] : $index;
 
         return $this->replacePlaceholders($value, $placeholders);   
     }
@@ -94,6 +109,77 @@ class DatabaseAdapter extends AbstractAdapter implements AdapterInterface
      */
     public function exists(string $index): bool {
         return isset($this->translations[$index]) ? true : false;
+    }
+
+     /**
+     * Adds a translation for given key
+     *
+     * @param  string  $index
+     * @param  string  $message
+     *
+     * @return boolean
+     */
+    public function add(string $index, string $message): bool
+    {
+        if (!$this->exists($index)) {
+            return false;
+        }
+        
+        if (!$this->model->createTranslationsType(
+            $this->page, $this->type, $this->language,
+            $index, $message
+        )) {
+            return false;
+        }
+
+        $this->translations[$index] = $message;
+
+        return true;
+    }
+
+    /**
+     * Update a translation for given key
+     *
+     * @param  string  $index
+     * @param  string  $message
+     *
+     * @return boolean
+     */
+    public function update(string $index, string $message): bool
+    {
+        return $this->add($index, $message);
+    }
+
+    /**
+     * Deletes a translation for given key
+     *
+     * @param  string  $index
+     *
+     * @return boolean
+     */
+    public function delete(string $index): bool
+    {
+        if (!$this->exists($index)) {
+            return false;
+        }
+
+        unset($this->translations[$index]);
+
+        return true;
+    }
+
+    /**
+     * Sets (insert or updates) a translation for given key
+     *
+     * @param  string  $index
+     * @param  string  $message
+     *
+     * @return boolean
+     */
+    public function set(string $index, string $message): bool
+    {
+        return $this->exists($index) ?
+            $this->update($index, $message) : $this->add($index, $message);
     }
 
     /**
@@ -118,7 +204,8 @@ class DatabaseAdapter extends AbstractAdapter implements AdapterInterface
 
         // Fallback to default language
         if (count($translations) === 0 && isset($this->defaultLocale)) {
-            $translations = $model::getTranslationsType($page, $type, $this->defaultLocale);
+            $this->language = $this->defaultLocale;
+            $translations = $model::getTranslationsType($page, $type, $this->language);
         }
 
         $parsedTranslations = [];

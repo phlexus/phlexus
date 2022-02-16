@@ -31,6 +31,20 @@ class Redis extends AbstractAdapter implements AdapterInterface
     protected string $locale;
 
     /**
+     * Page
+     *
+     * @var string
+     */
+    protected string $page;
+
+    /**
+     * Type
+     *
+     * @var string
+     */
+    protected string $type;
+
+    /**
      * How much containers to use in Redis for translations. Calculated with 16^$levels.
      *
      * @var integer
@@ -65,6 +79,9 @@ class Redis extends AbstractAdapter implements AdapterInterface
 
         $this->redis  = $options['redis'];
         $this->locale = $options['locale'];
+
+        $this->page = isset($options['page']) ? $options['page'] : '';
+        $this->type = isset($options['type']) ? $options['type'] : '';
 
         if (isset($options['levels'])) {
             $this->levels = $options['levels'];
@@ -217,7 +234,7 @@ class Redis extends AbstractAdapter implements AdapterInterface
      */
     protected function getLongKey(string $index): string
     {
-        return md5($this->locale . ':' . $index);
+        return md5($this->type . ':' .$this->page . ':' .$this->locale . ':' . $index);
     }
 
     /**

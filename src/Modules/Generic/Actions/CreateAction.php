@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Phlexus\Modules\Generic\Actions;
 
-use Phlexus\Libraries\Translations\TranslationAbstract;
+use Phlexus\Modules\BaseUser\Models\User;
+use Phlexus\Modules\BaseUser\Models\Profile;
+use Phalcon\Http\ResponseInterface;
 
 /**
  * Trait CreateAction
@@ -19,22 +21,29 @@ trait CreateAction {
     /**
      * Create Action
      *
-     * @return void
+     * @return mixed ResponseInterface or void
      */
-    public function createAction(): void {
+    public function createAction() {
         $this->tag->setTitle('Create');
         
         $defaultRoute = $this->getBasePosition();
 
         $saveRoute =  $defaultRoute . '/save';
 
+        $isAdmin = Profile::getUserProfile()->isAdmin();
+
+        // Check if user has create permissions
+        if (!$isAdmin) {
+            $this->flash->error('No permissions to create!');
+
+            return $this->response->setJsonContent($response);
+        }
+
         $this->view->setVar('form', $this->getForm());
 
         $this->view->setVar('defaultRoute', $defaultRoute);
 
         $this->view->setVar('saveRoute', $saveRoute);
-
-        $this->view->setVar('tType', $this->translation->getTranslatorType('generic', TranslationAbstract::PAGE));
 
         $this->view->pick('generic/create');
     }

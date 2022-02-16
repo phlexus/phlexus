@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class PaymentMethodMigration_100
+ * Class PaymentMethodMigration_101
  */
-class PaymentMethodMigration_100 extends Migration
+class PaymentMethodMigration_101 extends Migration
 {
     /**
      * Define the table structure
@@ -56,7 +56,7 @@ class PaymentMethodMigration_100 extends Migration
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '1',
+                'AUTO_INCREMENT' => '2',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8_unicode_ci',
             ],
