@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class ShippingMethodMigration_101
+ * Class ShippingMethodMigration_100
  */
-class ShippingMethodMigration_101 extends Migration
+class ShippingMethodMigration_100 extends Migration
 {
     /**
      * Define the table structure

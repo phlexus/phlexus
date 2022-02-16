@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class PaymentMethodMigration_101
+ * Class PaymentMethodMigration_100
  */
-class PaymentMethodMigration_101 extends Migration
+class PaymentMethodMigration_100 extends Migration
 {
     /**
      * Define the table structure
