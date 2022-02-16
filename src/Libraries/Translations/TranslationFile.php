@@ -54,6 +54,9 @@ class TranslationFile extends TranslationAbstract
         $language  = $this->language . '.UTF-8';
         $directory = $this->filesDir;
 
+        // Lower page case
+        $page = strtolower($page);
+
         // Fallback to default language if file doesn't exits
         if (!file_exists($directory . '/' . $language . '/LC_MESSAGES/' . $type . '/' . $page . '.mo')) {
             $language = $this->defaultLanguage . '.UTF-8';

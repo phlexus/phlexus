@@ -32,6 +32,9 @@ class TranslationRedis extends TranslationAbstract
      * @return AdapterInterface
      */
     public function getTranslateFactory(string $page, string $type): AdapterInterface {
+        // Lower page case
+        $page = strtolower($page);
+
         $translations = $this->getAll($page, $type);
 
         $redis = new Redis(

@@ -123,7 +123,7 @@ class DatabaseAdapter extends AbstractAdapter implements AdapterInterface
      */
     public function add(string $index, string $message): bool
     {
-        if (!$this->exists($index)) {
+        if ($this->exists($index)) {
             return false;
         }
         
