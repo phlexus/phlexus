@@ -12,12 +12,14 @@ class DatabaseAdapter extends AbstractAdapter implements AdapterInterface
 {
    /**
     * Options
+    *
     * @var array
     */
    protected array $options;
 
    /**
-    * translations
+    * Translations
+    *
     * @var array
     */
     private array $translations;
