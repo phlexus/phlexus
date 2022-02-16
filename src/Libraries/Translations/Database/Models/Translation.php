@@ -22,11 +22,11 @@ class Translation extends Model
 
     public $translation;
 
-    public $textTypeId;
+    public $textTypeID;
 
-    public $pageId;
+    public $pageID;
 
-    public $languageId;
+    public $languageID;
 
     public $active;
 
@@ -39,17 +39,17 @@ class Translation extends Model
     {
         $this->setSource('translations');
 
-        $this->hasOne('textTypeId', TextType::class, 'id', [
+        $this->hasOne('textTypeID', TextType::class, 'id', [
             'alias'    => 'TextType',
             'reusable' => true,
         ]);
 
-        $this->hasOne('pageId', Page::class, 'id', [
+        $this->hasOne('pageID', Page::class, 'id', [
             'alias'    => 'Page',
             'reusable' => true,
         ]);
 
-        $this->hasOne('languageId', Language::class, 'id', [
+        $this->hasOne('languageID', Language::class, 'id', [
             'alias'    => 'Language',
             'reusable' => true,
         ]);
@@ -115,9 +115,9 @@ class Translation extends Model
         $translationModel              = new self;
         $translationModel->key         = $key;
         $translationModel->translation = $translation;
-        $translationModel->textTypeId  = $typeModel->id;
-        $translationModel->pageId      = $pageModel->id;
-        $translationModel->languageId  = $languageModel->id;
+        $translationModel->textTypeID  = $typeModel->id;
+        $translationModel->pageID      = $pageModel->id;
+        $translationModel->languageID  = $languageModel->id;
 
         return $translationModel->save() ? $translationModel : null;
     }

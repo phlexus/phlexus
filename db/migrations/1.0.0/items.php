@@ -62,8 +62,8 @@ class ItemsMigration_101 extends Migration
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
-                new Index('orderId', ['orderID'], ''),
-                new Index('productId', ['productID'], ''),
+                new Index('orderID', ['orderID'], ''),
+                new Index('productID', ['productID'], ''),
             ],
             'references' => [
                 new Reference(

@@ -136,7 +136,7 @@ class OrdersMigration_101 extends Migration
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
-                new Index('userId', ['userID'], ''),
+                new Index('userID', ['userID'], ''),
                 new Index('billingID', ['billingID'], ''),
                 new Index('shipmentID', ['shipmentID'], ''),
                 new Index('paymentMethodID', ['paymentMethodID'], ''),

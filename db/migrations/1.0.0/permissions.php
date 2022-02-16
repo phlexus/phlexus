@@ -32,7 +32,7 @@ class PermissionsMigration_101 extends Migration
                     ]
                 ),
                 new Column(
-                    'profileId',
+                    'profileID',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
@@ -46,7 +46,7 @@ class PermissionsMigration_101 extends Migration
                         'type' => Column::TYPE_VARCHAR,
                         'notNull' => true,
                         'size' => 255,
-                        'after' => 'profileId'
+                        'after' => 'profileID'
                     ]
                 ),
                 new Column(
@@ -61,7 +61,7 @@ class PermissionsMigration_101 extends Migration
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
-                new Index('profilesId', ['profileId'], ''),
+                new Index('profilesID', ['profileID'], ''),
             ],
             'references' => [
                 new Reference(
@@ -69,7 +69,7 @@ class PermissionsMigration_101 extends Migration
                     [
                         'referencedSchema' => 'cms_phalcon',
                         'referencedTable' => 'profiles',
-                        'columns' => ['profileId'],
+                        'columns' => ['profileID'],
                         'referencedColumns' => ['id'],
                         'onUpdate' => 'NO ACTION',
                         'onDelete' => 'NO ACTION'
@@ -94,7 +94,7 @@ class PermissionsMigration_101 extends Migration
     {
         $this->batchInsert('permissions', [
             'id',
-            'profileId',
+            'profileID',
             'resource',
             'action',
         ]);

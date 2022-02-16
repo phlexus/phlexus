@@ -45,7 +45,7 @@ trait EditAction {
         $record = $model->findFirstByid($id);
 
         if (!$record) {
-            $this->flash->error('Id not found!');
+            $this->flash->error('ID not found!');
 
             return $this->response->redirect($defaultRoute);
         }

@@ -89,7 +89,7 @@ class UserAddressMigration_101 extends Migration
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
-                new Index('userId', ['userID'], ''),
+                new Index('userID', ['userID'], ''),
                 new Index('addressID', ['addressID'], ''),
                 new Index('addressTypeID', ['addressTypeID'], ''),
             ],

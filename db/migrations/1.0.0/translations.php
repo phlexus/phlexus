@@ -49,7 +49,7 @@ class TranslationsMigration_101 extends Migration
                     ]
                 ),
                 new Column(
-                    'textTypeId',
+                    'textTypeID',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
@@ -58,21 +58,21 @@ class TranslationsMigration_101 extends Migration
                     ]
                 ),
                 new Column(
-                    'pageId',
+                    'pageID',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'textTypeId'
+                        'after' => 'textTypeID'
                     ]
                 ),
                 new Column(
-                    'languageId',
+                    'languageID',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'pageId'
+                        'after' => 'pageID'
                     ]
                 ),
                 new Column(
@@ -82,15 +82,15 @@ class TranslationsMigration_101 extends Migration
                         'default' => "1",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'languageId'
+                        'after' => 'languageID'
                     ]
                 ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
-                new Index('fk_translations_text_type_idx', ['textTypeId'], ''),
-                new Index('fk_translations_page_idx', ['pageId'], ''),
-                new Index('fk_translations_language_id_idx', ['languageId'], ''),
+                new Index('fk_translations_text_type_idx', ['textTypeID'], ''),
+                new Index('fk_translations_page_idx', ['pageID'], ''),
+                new Index('fk_translations_language_id_idx', ['languageID'], ''),
             ],
             'references' => [
                 new Reference(
@@ -98,7 +98,7 @@ class TranslationsMigration_101 extends Migration
                     [
                         'referencedSchema' => 'cms_phalcon',
                         'referencedTable' => 'language',
-                        'columns' => ['languageId'],
+                        'columns' => ['languageID'],
                         'referencedColumns' => ['id'],
                         'onUpdate' => 'NO ACTION',
                         'onDelete' => 'NO ACTION'
@@ -109,7 +109,7 @@ class TranslationsMigration_101 extends Migration
                     [
                         'referencedSchema' => 'cms_phalcon',
                         'referencedTable' => 'pages',
-                        'columns' => ['pageId'],
+                        'columns' => ['pageID'],
                         'referencedColumns' => ['id'],
                         'onUpdate' => 'RESTRICT',
                         'onDelete' => 'RESTRICT'
@@ -120,7 +120,7 @@ class TranslationsMigration_101 extends Migration
                     [
                         'referencedSchema' => 'cms_phalcon',
                         'referencedTable' => 'text_type',
-                        'columns' => ['textTypeId'],
+                        'columns' => ['textTypeID'],
                         'referencedColumns' => ['id'],
                         'onUpdate' => 'NO ACTION',
                         'onDelete' => 'NO ACTION'
@@ -147,9 +147,9 @@ class TranslationsMigration_101 extends Migration
             'id',
             'key',
             'translation',
-            'textTypeId',
-            'pageId',
-            'languageId',
+            'textTypeID',
+            'pageID',
+            'languageID',
             'active',
         ]);
     }

@@ -58,7 +58,7 @@ final class UserController extends AbstractController
                 'required' => true
             ],
             [
-                'name' => 'profileId',
+                'name' => 'profileID',
                 'type' => Select::class,
                 'required' => true,
                 'related' => Profile::class,
@@ -72,7 +72,7 @@ final class UserController extends AbstractController
 
         $this->setForm($form);
 
-        $this->setViewFields(['id', 'email', 'profileId']);
+        $this->setViewFields(['id', 'email', 'profileID']);
     }
 
     /**
