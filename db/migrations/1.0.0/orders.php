@@ -137,21 +137,21 @@ class OrdersMigration_100 extends Migration
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
                 new Index('userID', ['userID'], ''),
-                new Index('billingID', ['billingID'], ''),
-                new Index('shipmentID', ['shipmentID'], ''),
                 new Index('paymentMethodID', ['paymentMethodID'], ''),
                 new Index('shippingMethodID', ['shippingMethodID'], ''),
+                new Index('billingID', ['billingID'], ''),
+                new Index('shipmentID', ['shipmentID'], ''),
             ],
             'references' => [
                 new Reference(
                     'fk_orders_billing_id',
                     [
                         'referencedSchema' => 'cms_phalcon',
-                        'referencedTable' => 'address',
+                        'referencedTable' => 'user_address',
                         'columns' => ['billingID'],
                         'referencedColumns' => ['id'],
-                        'onUpdate' => 'NO ACTION',
-                        'onDelete' => 'NO ACTION'
+                        'onUpdate' => 'RESTRICT',
+                        'onDelete' => 'RESTRICT'
                     ]
                 ),
                 new Reference(
@@ -169,7 +169,7 @@ class OrdersMigration_100 extends Migration
                     'fk_orders_shipment_id',
                     [
                         'referencedSchema' => 'cms_phalcon',
-                        'referencedTable' => 'address',
+                        'referencedTable' => 'user_address',
                         'columns' => ['shipmentID'],
                         'referencedColumns' => ['id'],
                         'onUpdate' => 'NO ACTION',
