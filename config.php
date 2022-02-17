@@ -18,6 +18,7 @@ return new Config([
     'application' => [
         'logInDb' => true,
         'migrationsDir' => 'db/migrations',
+        'migrationsTsBased' => false,
         'exportDataFromTables' => [
             'address_type',
             'countries',
