@@ -94,8 +94,9 @@ abstract class TranslationAbstract extends Injectable implements TranslationInte
 
         $this->language        = $language;
         $this->defaultLanguage = $defaultLanguage;
-        $this->page            = self::DEFAULTPAGE;
-        $this->type            = self::PAGE;
+
+        $this->setPage();
+        $this->setType();
     }
 
     /**
@@ -106,10 +107,10 @@ abstract class TranslationAbstract extends Injectable implements TranslationInte
      * 
      * @return TranslationInterface
      */
-    public function setPageType(string $page, string $type): TranslationInterface
+    public function setPageType(string $page = '', string $type = ''): TranslationInterface
     {
-        $this->page = $page;
-        $this->type = $type;
+        $this->setPage($page);
+        $this->setType($type);
 
         return $this;
     }
@@ -121,9 +122,9 @@ abstract class TranslationAbstract extends Injectable implements TranslationInte
      * 
      * @return TranslationInterface
      */
-    public function setPage(string $page): TranslationInterface
+    public function setPage(string $page = ''): TranslationInterface
     {
-        $this->page = $page;
+        $this->page = !empty($page) ? $page : self::DEFAULTPAGE;
 
         return $this;
     }
@@ -135,9 +136,9 @@ abstract class TranslationAbstract extends Injectable implements TranslationInte
      * 
      * @return TranslationInterface
      */
-    public function setType(string $type): TranslationInterface
+    public function setType(string $type = ''): TranslationInterface
     {
-        $this->type = $type;
+        $this->type = !empty($type) ? $type : self::PAGE;
 
         return $this;
     }
