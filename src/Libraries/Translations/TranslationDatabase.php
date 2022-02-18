@@ -31,7 +31,6 @@ class TranslationDatabase extends TranslationAbstract
      * @return AdapterInterface
      */
     public function getTranslateFactory(string $page, string $type): AdapterInterface {
-        // Lower page case
         $page = strtolower($page);
 
         return new DatabaseAdapter(

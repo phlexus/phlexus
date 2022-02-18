@@ -26,13 +26,6 @@ class TranslationProvider extends AbstractProvider
     protected $providerName = 'translation';
 
     /**
-     * Provider page name
-     *
-     * @var string
-     */
-    protected $providerPageName = 'translationPage';
-
-    /**
      * Register application service.
      *
      * @psalm-suppress UndefinedMethod
@@ -44,13 +37,7 @@ class TranslationProvider extends AbstractProvider
         $language = $this->request->getBestLanguage();
         $di       = $this->getDI();
 
-        $provider_name = $this->providerName;
-
-        $this->getDI()->setShared($provider_name , function () use ($language) {
-            return (new TranslationFactory())->build($language);
-        });
-
-        $this->getDI()->setShared($this->providerPageName, function () use ($di, $provider_name) {
+        $this->getDI()->setShared($this->providerName, function () use ($di, $language) {
                 $router = $di->getShared('router');
 
                 $module     = $router->getModuleName();
@@ -59,7 +46,8 @@ class TranslationProvider extends AbstractProvider
 
                 $bundle = $module . '_' . $controller . '_' . $action;
 
-            return $di->getShared($provider_name)->getTranslatorType($bundle, TranslationAbstract::PAGE);
+            return (new TranslationFactory())->build($language)
+                                             ->setPageType($bundle, TranslationAbstract::PAGE);
         });
     }
 }

@@ -26,22 +26,29 @@ interface TranslationInterface
     public function __construct(string $language, string $defaultLanguage);
 
     /**
-     * Get general translations
+     * Set page
+     * 
+     * @param string $page Page
+     * 
+     * @return TranslationInterface
+     */
+    public function setPage(string $page): TranslationInterface;
+
+    /**
+     * Set type
+     * 
+     * @param string $type Type
+     * 
+     * @return TranslationInterface
+     */
+    public function setType(string $type): TranslationInterface;
+
+    /**
+     * Get translations
      * 
      * @return AdapterInterface
      */
     public function getTranslator(): AdapterInterface;
-
-    /**
-     * Get translations filtered by page and type
-     * 
-     * @param string $page Page to translate
-     * @param string $type Type to translate
-     * 
-     * @return AdapterInterface
-     */
-    public function getTranslatorType(string $page, string $type): AdapterInterface;
-
 
     /**
      * Get translation factory
