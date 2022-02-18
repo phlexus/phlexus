@@ -141,6 +141,7 @@ abstract class TranslationAbstract extends Injectable implements TranslationInte
 
         return $this;
     }
+
     /**
      * Get translations
      * 
