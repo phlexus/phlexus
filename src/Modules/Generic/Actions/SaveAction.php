@@ -47,16 +47,16 @@ trait SaveAction {
 
         $model = $this->getModel();
 
+        $isAdmin = Profile::getUserProfile()->isAdmin();
+
+        // Check if user has edit permissions
+        if (!$isAdmin) {
+            $this->flash->error('No permission to save record!');
+
+            return $this->response->redirect($defaultRoute);
+        }
+
         if ($key > 0) {
-            $isAdmin = Profile::getUserProfile()->isAdmin();
-
-            // Check if user has edit permissions
-            if (!$isAdmin) {
-                $this->flash->error('No permission to save record!');
-
-                return $this->response->redirect($defaultRoute);
-            }
-
             $model = $model->findFirst([
                 'conditions' => "$primaryKey = :$primaryKey:",
                 'bind'       => [$primaryKey  => $key],
