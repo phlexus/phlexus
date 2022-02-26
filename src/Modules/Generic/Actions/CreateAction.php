@@ -36,7 +36,7 @@ trait CreateAction {
         if (!$isAdmin) {
             $this->flash->error('No permissions to create!');
 
-            return $this->response->setJsonContent($response);
+            return $this->response->redirect($defaultRoute);
         }
 
         $this->view->setVar('form', $this->getForm());

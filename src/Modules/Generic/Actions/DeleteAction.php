@@ -31,11 +31,11 @@ trait DeleteAction {
         $response = new \Phalcon\Http\Response();
 
         //Content of the response
-        $response = ['status' => 0];
+        $response = ['success' => 0];
 
         if (!$this->request->isPost() 
             || !$this->security->checkToken('csrf', $this->request->getPost('csrf', null))) {
-            $this->flash->error('Invalid form data!');
+            $response['message'] = 'Invalid form data!';
 
             return $this->response->setJsonContent($response);
         }
@@ -46,7 +46,7 @@ trait DeleteAction {
 
         // Check if user has delete permissions
         if (!$isAdmin) {
-            $this->flash->error('No permissions to delete!');
+            $response['message'] = 'No permissions to delete!';
 
             return $this->response->setJsonContent($response);
         }
@@ -57,9 +57,8 @@ trait DeleteAction {
             $record->active = 0;
 
             if ($record->save()) {
-                $this->flash->success('Deleted successfully');
-
-                $response['status'] = 1;
+                $response['success'] = true;
+                $response['message'] = 'Deleted successfully!';
             }
         }
 
