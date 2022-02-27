@@ -16,18 +16,39 @@ class Translation extends Model
 
     public const ENABLED = 1;
 
+    /**
+     * @var int
+     */
     public $id;
 
+    /**
+     * @var string
+     */
     public $key;
 
+    /**
+     * @var string
+     */
     public $translation;
 
+    /**
+     * @var int
+     */
     public $textTypeID;
 
+    /**
+     * @var int
+     */
     public $pageID;
 
+    /**
+     * @var int
+     */
     public $languageID;
 
+    /**
+     * @var int
+     */
     public $active;
 
     /**

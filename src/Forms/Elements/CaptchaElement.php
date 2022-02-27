@@ -7,6 +7,13 @@ use Phalcon\Forms\Element\AbstractElement;
 
 class CaptchaElement extends AbstractElement
 {
+    /**
+     * Render Captcha Element
+     *
+     * @param array $attributes Captcha attributes
+     *
+     * @return string
+     */
     public function render($attributes = null): string
     {
         if (!$attributes) {

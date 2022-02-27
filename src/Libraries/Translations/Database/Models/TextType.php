@@ -16,10 +16,19 @@ class TextType extends Model
 
     public const ENABLED = 1;
 
+    /**
+     * @var int
+     */
     public $id;
 
+    /**
+     * @var string
+     */
     public $name;
 
+    /**
+     * @var int
+     */
     public $active;
 
     /**

@@ -12,6 +12,8 @@ use Phlexus\Helpers;
 final class Module extends PhlexusModel
 {
     /**
+     * Get Module Name
+     * 
      * @return string
      */
     public static function getModuleName(): string
@@ -22,6 +24,8 @@ final class Module extends PhlexusModel
     }
 
     /**
+     * Get Handlers Namespace
+     * 
      * @return string
      */
     public static function getHandlersNamespace(): string

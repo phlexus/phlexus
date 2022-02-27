@@ -8,7 +8,6 @@ use Phlexus\Form\FormBase;
 use Phlexus\Forms\Elements\CaptchaElement;
 use Phlexus\Forms\Validators\CaptchaValidator;
 
-
 /**
  * @property Security $security
  */

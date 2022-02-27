@@ -60,6 +60,8 @@ class DatabaseAdapter extends AbstractAdapter implements AdapterInterface
     protected string $type;
 
     /**
+     * Constructor
+     * 
      * @param array $options
      */
     public function __construct(array $options) {
@@ -94,6 +96,8 @@ class DatabaseAdapter extends AbstractAdapter implements AdapterInterface
     }
 
     /**
+     * Query index for translation
+     * 
      * @param string $index
      * @param array  $placeholders
      * 
@@ -106,6 +110,8 @@ class DatabaseAdapter extends AbstractAdapter implements AdapterInterface
     }
 
     /**
+     * Check if index exists
+     * 
      * @param  string $index
      * @return bool
      */

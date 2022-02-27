@@ -16,12 +16,24 @@ class Language extends Model
 
     public const ENABLED = 1;
 
+    /**
+     * @var int
+     */
     public $id;
 
+    /**
+     * @var string
+     */
     public $iso;
 
+    /**
+     * @var string
+     */
     public $language;
 
+    /**
+     * @var int
+     */
     public $active;
 
     /**
