@@ -96,6 +96,8 @@ return [
     'providers' => include_once 'providers.php',
 
     'security' => [
+        'app_hash' => 'A_STRONG_HASH',
+
         'work_factor' => 14,
 
         'captcha' => [

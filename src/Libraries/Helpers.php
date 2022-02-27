@@ -20,7 +20,6 @@ use Phalcon\Flash\Session as FlashSession;
 
 class Helpers extends Phlexus_Helpers
 {
-
     /**
      * Get flash message session
      * 
@@ -84,28 +83,27 @@ class Helpers extends Phlexus_Helpers
     /**
      * Send an sms
      *
-     * @param string $dest_number Destiny number
-     * @param string $subject Email subject
-     * @param string $body    Email body
+     * @param string $destNumber Destiny number
+     * @param string $message     Message
      * 
      * @return bool
      */
-    public static function sendSms(string $dest_number, string $message) : bool
+    public static function sendSms(string $destNumber, string $message) : bool
     {
         $sms = Di::getDefault()->getShared('sms');
 
         // If not inside Phlexus cms
-        if (!$mail) {
+        if (!$sms) {
             return false;
         }
 
-        $message = $client->messages->create(
-            $dest_number,
+        return $sms->messages->create(
+            $destNumber,
             [
               'from' => '',
               'body' => $message
             ]
-          );
+        );
           
     }
 }
