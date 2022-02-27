@@ -139,8 +139,8 @@ class OrdersMigration_100 extends Migration
                 new Index('userID', ['userID'], ''),
                 new Index('paymentMethodID', ['paymentMethodID'], ''),
                 new Index('shippingMethodID', ['shippingMethodID'], ''),
-                new Index('billingID', ['billingID'], ''),
-                new Index('shipmentID', ['shipmentID'], ''),
+                new Index('fk_orders_billing_id_idx', ['billingID'], ''),
+                new Index('fk_orders_shipment_id_idx', ['shipmentID'], ''),
             ],
             'references' => [
                 new Reference(
@@ -201,7 +201,7 @@ class OrdersMigration_100 extends Migration
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '31',
+                'AUTO_INCREMENT' => '39',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8_unicode_ci',
             ],

@@ -50,12 +50,21 @@ class UsersMigration_100 extends Migration
                     ]
                 ),
                 new Column(
+                    'user_hash',
+                    [
+                        'type' => Column::TYPE_VARCHAR,
+                        'notNull' => true,
+                        'size' => 255,
+                        'after' => 'password'
+                    ]
+                ),
+                new Column(
                     'hash_code',
                     [
                         'type' => Column::TYPE_VARCHAR,
                         'notNull' => false,
                         'size' => 255,
-                        'after' => 'password'
+                        'after' => 'user_hash'
                     ]
                 ),
                 new Column(
@@ -141,7 +150,7 @@ class UsersMigration_100 extends Migration
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '51',
+                'AUTO_INCREMENT' => '57',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8_unicode_ci',
             ],
@@ -159,6 +168,7 @@ class UsersMigration_100 extends Migration
             'id',
             'email',
             'password',
+            'user_hash',
             'hash_code',
             'active',
             'attempts',
