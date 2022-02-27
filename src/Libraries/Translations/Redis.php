@@ -11,8 +11,6 @@ use Phalcon\Cache\Adapter\Redis as RedisCache;
 
 /**
  * Class Redis
- *
- * @package Phalcon\Translate\Adapter
  */
 class Redis extends AbstractAdapter implements AdapterInterface
 {

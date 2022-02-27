@@ -16,6 +16,9 @@ namespace Phlexus\Libraries\Translations;
 use Phalcon\Di\Injectable;
 use Phalcon\Translate\Adapter\AdapterInterface;
 
+/**
+ * Class TranslationAbstract
+ */
 abstract class TranslationAbstract extends Injectable implements TranslationInterface
 {
     /**
