@@ -37,4 +37,14 @@ $routes->addPost('/user/delete/{id:[0-9]+}', [
     'action' => 'delete',
 ]);
 
+$routes->addGet('/profile', [
+    'controller' => 'profile',
+    'action' => 'edit',
+]);
+
+$routes->addPost('/profile/save', [
+    'controller' => 'profile',
+    'action' => 'save',
+]);
+
 return $routes;
