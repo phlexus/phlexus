@@ -56,7 +56,7 @@ final class ProfileController extends AbstractController
      */
     public function saveAction()
     {
-        $profileForm = new ProfileForm();
+        $profileForm = new ProfileForm(false);
 
         $user = User::getUser();
 
@@ -98,5 +98,7 @@ final class ProfileController extends AbstractController
         }
 
         $this->flash->success('Record saved sucessfully!');
+
+        return $this->response->redirect('/profile');
     }
 }
