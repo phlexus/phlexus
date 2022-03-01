@@ -45,6 +45,7 @@ final class ProfileController extends AbstractController
 
         $profileForm->setEntity($user);
 
+        $this->view->setVar('defaultRoute', $this->request->getHttpReferer());
         $this->view->setVar('form', $profileForm);
     }
 
