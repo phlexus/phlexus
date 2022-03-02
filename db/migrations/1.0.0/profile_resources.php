@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class PermissionsMigration_100
+ * Class ProfileResourcesMigration_100
  */
-class PermissionsMigration_100 extends Migration
+class ProfileResourcesMigration_100 extends Migration
 {
     /**
      * Define the table structure
@@ -19,7 +19,7 @@ class PermissionsMigration_100 extends Migration
      */
     public function morph(): void
     {
-        $this->morphTable('permissions', [
+        $this->morphTable('profile_resources', [
             'columns' => [
                 new Column(
                     'id',
@@ -32,7 +32,7 @@ class PermissionsMigration_100 extends Migration
                     ]
                 ),
                 new Column(
-                    'profileID',
+                    'resourceID',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
@@ -41,31 +41,23 @@ class PermissionsMigration_100 extends Migration
                     ]
                 ),
                 new Column(
-                    'resource',
+                    'profileID',
                     [
-                        'type' => Column::TYPE_VARCHAR,
+                        'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
-                        'size' => 255,
-                        'after' => 'profileID'
-                    ]
-                ),
-                new Column(
-                    'action',
-                    [
-                        'type' => Column::TYPE_VARCHAR,
-                        'notNull' => true,
-                        'size' => 255,
-                        'after' => 'resource'
+                        'size' => 1,
+                        'after' => 'resourceID'
                     ]
                 ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
-                new Index('profilesID', ['profileID'], ''),
+                new Index('fk_profile_resources_resource_idx', ['resourceID'], ''),
+                new Index('fk_profile_resources_profile_idx', ['profileID'], ''),
             ],
             'references' => [
                 new Reference(
-                    'fk_permissions_profile_id',
+                    'fk_profile_resources_profile',
                     [
                         'referencedSchema' => 'cms_phalcon',
                         'referencedTable' => 'profiles',
@@ -75,12 +67,23 @@ class PermissionsMigration_100 extends Migration
                         'onDelete' => 'NO ACTION'
                     ]
                 ),
+                new Reference(
+                    'fk_profile_resources_resource',
+                    [
+                        'referencedSchema' => 'cms_phalcon',
+                        'referencedTable' => 'resources',
+                        'columns' => ['resourceID'],
+                        'referencedColumns' => ['id'],
+                        'onUpdate' => 'NO ACTION',
+                        'onDelete' => 'NO ACTION'
+                    ]
+                ),
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '25',
+                'AUTO_INCREMENT' => '32',
                 'ENGINE' => 'InnoDB',
-                'TABLE_COLLATION' => 'utf8_unicode_ci',
+                'TABLE_COLLATION' => 'utf8mb4_0900_ai_ci',
             ],
         ]);
     }
@@ -92,11 +95,10 @@ class PermissionsMigration_100 extends Migration
      */
     public function up(): void
     {
-        $this->batchInsert('permissions', [
+        $this->batchInsert('profile_resources', [
             'id',
+            'resourceID',
             'profileID',
-            'resource',
-            'action',
         ]);
     }
 
@@ -107,6 +109,6 @@ class PermissionsMigration_100 extends Migration
      */
     public function down(): void
     {
-        $this->batchDelete('permissions');
+        $this->batchDelete('profile_resources');
     }
 }
