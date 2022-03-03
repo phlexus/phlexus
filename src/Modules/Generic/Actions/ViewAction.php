@@ -43,7 +43,7 @@ trait ViewAction {
         }
 
         $this->view->setVar('display', $this->getViewFields());
-        
+
         $this->view->setVar('records', array_replace_recursive(
             $records->toArray(), 
             $this->translateRelatedFields($records)

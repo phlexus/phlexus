@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Phlexus\Modules\Generic\Actions;
 
 use Phlexus\Modules\BaseUser\Models\Profile;
+use Phlexus\Modules\BaseUser\Models\User;
 use Phalcon\Http\ResponseInterface;
 
 /**
@@ -93,8 +94,14 @@ trait SaveAction {
 
             $model->modifiedAt = $ts;
 
+            if ($model instanceof User) {
+                $model->generateUserHash();
+            }
+
             if (!$model->save()) {
                 $this->flash->error('Unable to save record!');
+
+                return $this->response->redirect($defaultRoute);
             }
 
             $this->flash->success('Record saved sucessfully!');

@@ -20,6 +20,7 @@ return new Config([
         'migrationsDir' => 'db/migrations',
         'migrationsTsBased' => false,
         'exportDataFromTables' => [
+            'settings',
             'address_type',
             'countries',
             'language',

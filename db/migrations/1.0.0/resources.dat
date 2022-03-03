@@ -19,5 +19,6 @@
 19,shop_cart,add
 20,shop_cart,remove
 21,shop_cart,checkout
-22,user_profile,edit
-23,user_profile,save
+22,baseuser_auth,logout
+23,user_profile,edit
+24,user_profile,save
