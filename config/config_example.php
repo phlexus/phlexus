@@ -5,18 +5,19 @@ declare(strict_types=1);
 return [
     'application' => [
         'base_uri' => '/',
+        'upload_dir' => dirname(__DIR__) . '/public/assets/',
     ],
 
     'theme' => [
-        'themes_dir' => __DIR__ . '/../themes/',
-        'theme_user' => 'phlexus-tabler-admin',
-        'theme_public' => '/assets/themes/',
-        'themes_dir_cache' => __DIR__ . '/../var/cache/',
+        'themes_dir'       => dirname(__DIR__) . '/themes/',
+        'theme_user'       => 'phlexus-tabler-admin',
+        'theme_public'     => '/assets/themes/',
+        'themes_dir_cache' => dirname(__DIR__). '/var/cache/',
     ],
 
     'paths' => [
-        'themes' => __DIR__ . '/../themes/',
-        'models' => __DIR__ . '/../src/Models/',
+        'themes' => dirname(__DIR__) . '/themes/',
+        'models' => dirname(__DIR__) . '/src/Models/',
     ],
 
     'auth' => [
@@ -35,9 +36,9 @@ return [
     ],
 
     'translations' => [
-        'type' => \Phlexus\Libraries\Translations\TranslationFactory::FILE,
+        'type'   => \Phlexus\Libraries\Translations\TranslationFactory::REDIS,
         'config' => [
-            'files_dir' => __DIR__ .'/../translations',
+            'files_dir' => dirname(__DIR__) .'/translations',
             'default_language' => 'en_US',
         ]
     ],
@@ -45,20 +46,19 @@ return [
     'communications' => [
         'email' => [
             'config' => [
-                'is_smtp' => true,
-                'host' => '',
-                'name' => 'Phlexus',
+                'is_smtp'  => true,
+                'host'     => '',
+                'name'     => '',
                 'username' => '',
                 'password' => '',
-                'port' => '',
+                'port'     => '',
             ]
         ],
 
-        // Not required
         'sms' => [
             'from'=> '',
             'config' => [
-                'sid' => '',
+                'sid'   => '',
                 'token' => '',
             ]
         ],
@@ -67,7 +67,7 @@ return [
     // Not required
     'payments' => [
         'paypal' => [
-            'client_id' => '',
+            'client_id'     => '',
             'client_secret' => ''
         ],
     ],
@@ -75,13 +75,13 @@ return [
     'modules' => [
         'Landing' => [
             'className' => \Phlexus\Modules\Landing\Module::class,
-            'path' => __DIR__ . '/../src/Modules/Landing/Module.php',
-            'router' => __DIR__ . '/../src/Modules/Landing/Config/routes.php',
+            'path'      => dirname(__DIR__) . '/src/Modules/Landing/Module.php',
+            'router'    => dirname(__DIR__) . '/src/Modules/Landing/Config/routes.php',
         ],
         'User' => [
             'className' => \Phlexus\Modules\User\Module::class,
-            'path' => __DIR__ . '/../src/Modules/User/Module.php',
-            'router' => __DIR__ . '/../src/Modules/User/Config/routes.php',
+            'path'      => dirname(__DIR__) . '/src/Modules/User/Module.php',
+            'router'    => dirname(__DIR__) . '/src/Modules/User/Config/routes.php',
         ],
     ],
 
@@ -99,11 +99,11 @@ return [
         'app_hash' => 'A_STRONG_HASH',
 
         'work_factor' => 14,
-
+        
         'captcha' => [
             'config' => [
                 'site-key'=> '',
-                'secret' => '',
+                'secret'  => '',
             ]
         ],
     ],

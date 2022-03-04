@@ -15,7 +15,9 @@ namespace Phlexus\Libraries\File;
 
 use Phlexus\Security;
 use Phlexus\Helpers;
+use Phlexus\Modules\BaseUser\Models\User;
 use Phalcon\Http\Request\File;
+use Phalcon\DI;
 
 class Handler
 {
@@ -48,7 +50,7 @@ class Handler
      */
     public function getUploadDir(): string
     {
-        return $this->$uploadDirectory;
+        return $this->uploadDirectory;
     }
 
     /**
@@ -56,11 +58,13 @@ class Handler
      * 
      * @param string $directory
      * 
-     * @return string
+     * @return Handler
      */
-    public function setUploadDir($directory): void
+    public function setUploadDir($directory): Handler
     {
-        $this->$uploadDirectory = $directory;
+        $this->uploadDirectory = $directory;
+
+        return $this;
     }
 
     /**
@@ -69,6 +73,8 @@ class Handler
      * @param string $directory
      * 
      * @return string
+     * 
+     * @throws Exception
      */
     public function getDefaultUploadDir(): string
     {
@@ -76,23 +82,11 @@ class Handler
 
         $fileType = $this->getFileType();
    
-        $uploadDir = '';
+        $configs = Helpers::phlexusConfig('application')->toArray();
 
-        switch ($fileType) {
-            case self::FILEIMAGE:
-            default:
-                $uploadDir = $fileType;
-                break;
-        }
+        $uploadDir = $configs['upload_dir'];
 
-        switch ($fileDestiny) {
-            case self::USERDESTINY:
-            default:
-                $uploadDir .= $fileDestiny;
-                break;
-        }
-
-        return $uploadDir;
+        return $uploadDir . $fileType . '/' . $fileDestiny;
     }
 
     /**
@@ -102,7 +96,7 @@ class Handler
      */
     public function getUploadName(): string
     {
-        return $this->$uploadName;
+        return $this->uploadName;
     }
 
     /**
@@ -110,11 +104,13 @@ class Handler
      * 
      * @param string $name
      * 
-     * @return string
+     * @return Handler
      */
-    public function setUploadName($name): void
+    public function setUploadName($name): Handler
     {
-        $this->$uploadName = $name;
+        $this->uploadName = $name;
+        
+        return $this;
     }
 
     /**
@@ -124,51 +120,70 @@ class Handler
      */
     public function getDefaultUploadName(): string
     {
+        $user = User::getUser();
         
-    }
+        $fileName = $user->user_hash . $this->file->getName();
 
-    /**
-     * Set file destiny
-     * 
-     * @return string
-     */
-    public function getFileDestiny(): string
-    {
-        return $this->$fileDestiny;
+        return Di::getDefault()->getShared('security')->getUserToken($fileName);
     }
 
     /**
      * Get file destiny
      * 
-     * @param string $fileDestiny
-     * 
      * @return string
      */
-    public function setFileDestiny($fileDestiny): void
+    public function getFileDestiny(): string
     {
-        $this->$fileDestiny = $fileDestiny;
+        return $this->fileDestiny;
     }
 
     /**
-     * Set file type
+     * Set file destiny
      * 
-     * @return string
+     * @param string $fileDestiny
+     * 
+     * @return Handler
+     * 
+     * @throws Exception
      */
-    public function getFileType(): string
+    public function setFileDestiny($fileDestiny): Handler
     {
-        return $this->$fileType;
+        switch ($fileDestiny) {
+            case self::USERDESTINY:
+                $this->fileDestiny = $fileDestiny;
+                break;
+            default:
+                throw new \Exception('Destiny not supported');
+                break;
+        }
+
+        return $this;
     }
 
     /**
      * Get file type
      * 
-     * @param string $fileType
-     * 
      * @return string
+     * 
+     * @throws Exception
      */
-    public function setFileType($fileType): void
+    public function getFileType(): string
     {
-        $this->$fileType = $fileType;
+        $mimeType = $this->file->getType();
+
+        $fileType = '';
+
+        switch ($mimeType) {
+            case 'image/png':
+            case 'image/jpg':
+                $fileType = self::FILEIMAGE;
+                break;
+            default:
+                throw new \Exception('MimeType not supported');
+                break;
+        }
+
+        return $fileType;
     }
 
     /**
@@ -178,7 +193,13 @@ class Handler
      */
     public function moveFile(): bool
     {
-        return $file->moveTo($this->getUploadDir() . $this->getUploadName());
+        $uploadDir = $this->getUploadDir();
+
+        if (!file_exists($uploadDir)) {
+            return false;
+        }
+
+        return $this->file->moveTo($uploadDir . '/' . $this->getUploadName());
     }
 
     /**

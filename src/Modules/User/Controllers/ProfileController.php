@@ -102,7 +102,7 @@ final class ProfileController extends AbstractController
             if (isset($files['profile_image'])) {
                 $handler = new FileHandler($files['profile_image']);
                 
-                if (!$handler->uploadFile()) {
+                if (!$handler->setFileDestiny('user')->uploadFile()) {
                     $this->flash->error('Unable to save image!');
 
                     return $this->response->redirect('/profile');
