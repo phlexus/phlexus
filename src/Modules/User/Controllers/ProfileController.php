@@ -8,6 +8,7 @@ use Phlexus\Modules\BaseUser\Models\User;
 use Phlexus\Modules\BaseUser\Form\ProfileForm;
 use Phlexus\Modules\BaseUser\Controllers\AbstractController;
 use Phlexus\Libraries\File\Handler as FileHandler;
+use Phlexus\Libraries\File\Models\MediaDestiny;
 
 /**
  * Class Profile
@@ -102,7 +103,7 @@ final class ProfileController extends AbstractController
             if (isset($files['profile_image'])) {
                 $handler = new FileHandler($files['profile_image']);
                 
-                if (!$handler->setFileDestiny('user')->uploadFile()) {
+                if (!$handler->setFileDestiny(MediaDestiny::DESTINY_USER)->uploadFile()) {
                     $this->flash->error('Unable to save image!');
 
                     return $this->response->redirect('/profile');

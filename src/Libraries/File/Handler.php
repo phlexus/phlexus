@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Phlexus\Libraries\File;
 
+use Phlexus\Libraries\File\Models\MediaType;
+use Phlexus\Libraries\File\Models\MediaDestiny;
 use Phlexus\Security;
 use Phlexus\Helpers;
 use Phlexus\Modules\BaseUser\Models\User;
@@ -21,11 +23,6 @@ use Phalcon\DI;
 
 class Handler
 {
-
-    public const FILEIMAGE = 'image';
-
-    public const USERDESTINY = 'user';
-
     private File $file;
 
     private string $fileDestiny;
@@ -149,7 +146,7 @@ class Handler
     public function setFileDestiny($fileDestiny): Handler
     {
         switch ($fileDestiny) {
-            case self::USERDESTINY:
+            case MediaDestiny::DESTINY_USER:
                 $this->fileDestiny = $fileDestiny;
                 break;
             default:
@@ -176,7 +173,7 @@ class Handler
         switch ($mimeType) {
             case 'image/png':
             case 'image/jpg':
-                $fileType = self::FILEIMAGE;
+                $fileType = MediaType::TYPE_IMAGE;
                 break;
             default:
                 throw new \Exception('MimeType not supported');
