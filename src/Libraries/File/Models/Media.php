@@ -75,19 +75,19 @@ class Media extends Model
      * Create media
      * 
      * @param string $mediaName    MediaName
-     * @param string $mediaType    MediaType
-     * @param string $mediaDestiny MediaDestiny
+     * @param int    $mediaType    MediaType
+     * @param int    $mediaDestiny MediaDestiny
      * 
      * @return mixed Media or null
      */
     public static function createMedia(
-        string $mediaName, string $mediaType, string $mediaDestiny
+        string $mediaName, int $mediaType, int $mediaDestiny
     )
     {
-        $media               = new self;
-        $media->mediaName    = $mediaName;
-        $media->mediaType    = $mediaType;
-        $media->mediaDestiny = $mediaDestiny;
+        $media                 = new self;
+        $media->mediaName      = $mediaName;
+        $media->mediaTypeID    = $mediaType;
+        $media->mediaDestinyID = $mediaDestiny;
 
         return $media->save() ? $media : null;
     }
@@ -115,8 +115,8 @@ class Media extends Model
 
         $media               = new self;
         $media->mediaName    = $mediaName;
-        $media->mediaType    = $mediaTypeModel->id;
-        $media->mediaDestiny = $mediaDestinyModel->id;
+        $media->mediaTypeID    = $mediaTypeModel->id;
+        $media->mediaDestinyID = $mediaDestinyModel->id;
 
         return $media->save() ? $media : null;
     }

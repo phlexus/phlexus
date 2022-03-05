@@ -121,7 +121,7 @@ class Handler
         
         $fileName = $user->user_hash . $this->file->getName();
 
-        return Di::getDefault()->getShared('security')->getUserToken($fileName);
+        return base64_encode(Di::getDefault()->getShared('security')->getUserToken($fileName));
     }
 
     /**

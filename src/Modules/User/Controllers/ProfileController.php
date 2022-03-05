@@ -8,6 +8,7 @@ use Phlexus\Modules\BaseUser\Models\User;
 use Phlexus\Modules\BaseUser\Form\ProfileForm;
 use Phlexus\Modules\BaseUser\Controllers\AbstractController;
 use Phlexus\Libraries\File\Handler as FileHandler;
+use Phlexus\Libraries\File\Models\Media;
 use Phlexus\Libraries\File\Models\MediaDestiny;
 
 /**
@@ -97,38 +98,18 @@ final class ProfileController extends AbstractController
             return $this->response->redirect('/profile');
         }
 
-        // Remove csrf content and repeat_password
+        // Remove csrf content, repeat_password and profile_image
         $user->csrf = null;
         $user->repeat_password = null;
-
         $user->profile_image = null;
 
-        if ($this->request->hasFiles() == true) {
-            $files = $this->request->getUploadedFiles(true, true);
-            
-            if (isset($files['profile_image'])) {
-                $handler = new FileHandler($files['profile_image']);
-                
-                if (!$handler->setFileDestiny(MediaDestiny::DESTINY_USER)->uploadFile()) {
-                    $this->flash->error('Unable to save image!');
+        $media = $this->processUploadImage();
+        if ($media === false) {
+            $this->flash->error('Unable to save image!');
 
-                    return $this->response->redirect('/profile');
-                }
-
-                $media = Media::createMedia(
-                    $handler->getUploadName(),
-                    $handler->getFileType(),
-                    $handler->getFileDestiny()
-                );
-
-                if (!$media) {
-                    $this->flash->error('Unable to save image!');
-
-                    return $this->response->redirect('/profile');
-                }
-
-                $user->imageID = $media->id;
-            }
+            return $this->response->redirect('/profile');
+        } elseif ($media instanceof Media) {
+            $user->imageID = $media->id;
         }
 
         if (!$user->save()) {
@@ -140,5 +121,38 @@ final class ProfileController extends AbstractController
         $this->flash->success('Record saved sucessfully!');
 
         return $this->response->redirect('/profile');
+    }
+
+    /**
+     * Process Upload Image
+     *
+     * @return mixed null if no file, Media if success or false if fails
+     */
+    private function processUploadImage() {
+        if ($this->request->hasFiles() !== true) {
+            return null;
+        }
+
+        $files = $this->request->getUploadedFiles(true, true);
+            
+        if (isset($files['profile_image'])) {
+            $handler = new FileHandler($files['profile_image']);
+            
+            if (!$handler->setFileDestiny(MediaDestiny::DESTINY_USER)->uploadFile()) {
+                return false;
+            }
+
+            $media = Media::createMedia(
+                $handler->getUploadName(),
+                $handler->getFileType(),
+                $handler->getFileDestiny()
+            );
+
+            if (!$media) {
+                return false;
+            }
+
+            return $media;
+        }
     }
 }
