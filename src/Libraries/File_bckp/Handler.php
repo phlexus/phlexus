@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Phlexus\Libraries\File;
 
-use Phlexus\Libraries\File\Models\MediaType;
-use Phlexus\Libraries\File\Models\MediaDestiny;
+use Phlexus\Libraries\Media\Models\MediaType;
+use Phlexus\Libraries\Media\Models\MediaDestiny;
 use Phlexus\Security;
 use Phlexus\Libraries\Helpers;
 use Phlexus\Modules\BaseUser\Models\User;
@@ -28,6 +28,8 @@ class Handler
     private int $fileDestiny;
 
     private int $fileType;
+
+    private string $userDirectory;
 
     private string $uploadDirectory;
 
