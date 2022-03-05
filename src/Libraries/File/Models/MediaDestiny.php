@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Phlexus\Libraries\File\Database\Models;
+namespace Phlexus\Libraries\File\Models;
 
 use Phalcon\Mvc\Model;
 
 /**
  * Class MediaDestiny
  *
- * @package Phlexus\Libraries\File\Database\Models
+ * @package Phlexus\Libraries\File\Models
  */
 class MediaDestiny extends Model
 {

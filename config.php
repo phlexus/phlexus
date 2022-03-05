@@ -27,6 +27,8 @@ return new Config([
             'pages',
             'text_type',
             'translations',
+            'media_type',
+            'media_destiny',
             'payment_method',
             'shipping_method',
             'profiles',

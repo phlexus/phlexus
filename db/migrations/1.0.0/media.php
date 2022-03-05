@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class UsersMigration_100
+ * Class MediaMigration_100
  */
-class UsersMigration_100 extends Migration
+class MediaMigration_100 extends Migration
 {
     /**
      * Define the table structure
@@ -19,7 +19,7 @@ class UsersMigration_100 extends Migration
      */
     public function morph(): void
     {
-        $this->morphTable('users', [
+        $this->morphTable('media', [
             'columns' => [
                 new Column(
                     'id',
@@ -32,67 +32,30 @@ class UsersMigration_100 extends Migration
                     ]
                 ),
                 new Column(
-                    'email',
+                    'mediaName',
                     [
                         'type' => Column::TYPE_VARCHAR,
                         'notNull' => true,
-                        'size' => 255,
+                        'size' => 250,
                         'after' => 'id'
                     ]
                 ),
                 new Column(
-                    'password',
-                    [
-                        'type' => Column::TYPE_CHAR,
-                        'notNull' => true,
-                        'size' => 60,
-                        'after' => 'email'
-                    ]
-                ),
-                new Column(
-                    'user_hash',
-                    [
-                        'type' => Column::TYPE_VARCHAR,
-                        'notNull' => true,
-                        'size' => 255,
-                        'after' => 'password'
-                    ]
-                ),
-                new Column(
-                    'hash_code',
-                    [
-                        'type' => Column::TYPE_VARCHAR,
-                        'notNull' => false,
-                        'size' => 255,
-                        'after' => 'user_hash'
-                    ]
-                ),
-                new Column(
-                    'attempts',
-                    [
-                        'type' => Column::TYPE_INTEGER,
-                        'default' => "0",
-                        'notNull' => true,
-                        'size' => 1,
-                        'after' => 'hash_code'
-                    ]
-                ),
-                new Column(
-                    'profileID',
+                    'mediaTypeID',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'attempts'
+                        'after' => 'mediaName'
                     ]
                 ),
                 new Column(
-                    'imageID',
+                    'mediaDestinyID',
                     [
                         'type' => Column::TYPE_INTEGER,
-                        'notNull' => false,
+                        'notNull' => true,
                         'size' => 1,
-                        'after' => 'profileID'
+                        'after' => 'mediaTypeID'
                     ]
                 ),
                 new Column(
@@ -102,23 +65,7 @@ class UsersMigration_100 extends Migration
                         'default' => "1",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'imageID'
-                    ]
-                ),
-                new Column(
-                    'lastLoginAt',
-                    [
-                        'type' => Column::TYPE_TIMESTAMP,
-                        'notNull' => false,
-                        'after' => 'active'
-                    ]
-                ),
-                new Column(
-                    'lastFailedLoginAt',
-                    [
-                        'type' => Column::TYPE_TIMESTAMP,
-                        'notNull' => false,
-                        'after' => 'lastLoginAt'
+                        'after' => 'mediaDestinyID'
                     ]
                 ),
                 new Column(
@@ -127,7 +74,7 @@ class UsersMigration_100 extends Migration
                         'type' => Column::TYPE_TIMESTAMP,
                         'default' => "CURRENT_TIMESTAMP",
                         'notNull' => true,
-                        'after' => 'lastFailedLoginAt'
+                        'after' => 'active'
                     ]
                 ),
                 new Column(
@@ -142,27 +89,27 @@ class UsersMigration_100 extends Migration
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
-                new Index('profilesID', ['profileID'], ''),
-                new Index('fk_users_media_id_idx', ['imageID'], ''),
+                new Index('fk_media_media_type_idx', ['mediaTypeID'], ''),
+                new Index('fk_media_media_destiny_idx', ['mediaDestinyID'], ''),
             ],
             'references' => [
                 new Reference(
-                    'fk_users_media_id',
+                    'fk_media_media_destiny',
                     [
                         'referencedSchema' => 'cms_phalcon',
-                        'referencedTable' => 'media',
-                        'columns' => ['imageID'],
+                        'referencedTable' => 'media_destiny',
+                        'columns' => ['mediaDestinyID'],
                         'referencedColumns' => ['id'],
                         'onUpdate' => 'NO ACTION',
                         'onDelete' => 'NO ACTION'
                     ]
                 ),
                 new Reference(
-                    'fk_users_profile_id',
+                    'fk_media_media_type',
                     [
                         'referencedSchema' => 'cms_phalcon',
-                        'referencedTable' => 'profiles',
-                        'columns' => ['profileID'],
+                        'referencedTable' => 'media_type',
+                        'columns' => ['mediaTypeID'],
                         'referencedColumns' => ['id'],
                         'onUpdate' => 'NO ACTION',
                         'onDelete' => 'NO ACTION'
@@ -171,9 +118,9 @@ class UsersMigration_100 extends Migration
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '59',
+                'AUTO_INCREMENT' => '1',
                 'ENGINE' => 'InnoDB',
-                'TABLE_COLLATION' => 'utf8_unicode_ci',
+                'TABLE_COLLATION' => 'utf8mb4_0900_ai_ci',
             ],
         ]);
     }
@@ -185,21 +132,6 @@ class UsersMigration_100 extends Migration
      */
     public function up(): void
     {
-        $this->batchInsert('users', [
-            'id',
-            'email',
-            'password',
-            'user_hash',
-            'hash_code',
-            'attempts',
-            'profileID',
-            'imageID',
-            'active',
-            'lastLoginAt',
-            'lastFailedLoginAt',
-            'createdAt',
-            'modifiedAt',
-        ]);
     }
 
     /**
@@ -209,6 +141,5 @@ class UsersMigration_100 extends Migration
      */
     public function down(): void
     {
-        $this->batchDelete('users');
     }
 }

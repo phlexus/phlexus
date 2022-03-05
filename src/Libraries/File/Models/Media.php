@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Phlexus\Libraries\File\Database\Models;
+namespace Phlexus\Libraries\File\Models;
 
 use Phalcon\Mvc\Model;
 
 /**
  * Class Media
  *
- * @package Phlexus\Libraries\File\Database\Models
+ * @package Phlexus\Libraries\File\Models
  */
 class Media extends Model
 {
@@ -109,7 +109,7 @@ class Media extends Model
 
         $mediaDestinyModel = MediaDestiny::findFirstBymediaDestiny($mediaDestiny);
 
-        if (!$languageModel || !$mediaDestiny) {
+        if (!$mediaTypeModel || !$mediaDestinyModel) {
             return null;
         }
 

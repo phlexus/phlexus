@@ -97,6 +97,12 @@ final class ProfileController extends AbstractController
             return $this->response->redirect('/profile');
         }
 
+        // Remove csrf content and repeat_password
+        $user->csrf = null;
+        $user->repeat_password = null;
+
+        $user->profile_image = null;
+
         if ($this->request->hasFiles() == true) {
             $files = $this->request->getUploadedFiles(true, true);
             
@@ -108,14 +114,22 @@ final class ProfileController extends AbstractController
 
                     return $this->response->redirect('/profile');
                 }
+
+                $media = Media::createMedia(
+                    $handler->getUploadName(),
+                    $handler->getFileType(),
+                    $handler->getFileDestiny()
+                );
+
+                if (!$media) {
+                    $this->flash->error('Unable to save image!');
+
+                    return $this->response->redirect('/profile');
+                }
+
+                $user->imageID = $media->id;
             }
         }
-
-        // Remove csrf content and repeat_password
-        $user->csrf = null;
-        $user->repeat_password = null;
-
-        $user->profile_image = null;
 
         if (!$user->save()) {
             $this->flash->error('Unable to save record!');

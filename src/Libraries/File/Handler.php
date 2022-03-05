@@ -25,9 +25,9 @@ class Handler
 {
     private File $file;
 
-    private string $fileDestiny;
+    private int $fileDestiny;
 
-    private string $fileType;
+    private int $fileType;
 
     private string $uploadDirectory;
 
@@ -127,9 +127,9 @@ class Handler
     /**
      * Get file destiny
      * 
-     * @return string
+     * @return int
      */
-    public function getFileDestiny(): string
+    public function getFileDestiny(): int
     {
         return $this->fileDestiny;
     }
@@ -160,11 +160,11 @@ class Handler
     /**
      * Get file type
      * 
-     * @return string
+     * @return int
      * 
      * @throws Exception
      */
-    public function getFileType(): string
+    public function getFileType(): int
     {
         $mimeType = $this->file->getType();
 
