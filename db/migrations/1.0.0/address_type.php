@@ -32,7 +32,7 @@ class AddressTypeMigration_100 extends Migration
                     ]
                 ),
                 new Column(
-                    'address_type',
+                    'addressType',
                     [
                         'type' => Column::TYPE_VARCHAR,
                         'notNull' => true,
@@ -47,7 +47,7 @@ class AddressTypeMigration_100 extends Migration
                         'default' => "1",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'address_type'
+                        'after' => 'addressType'
                     ]
                 ),
             ],
@@ -72,7 +72,7 @@ class AddressTypeMigration_100 extends Migration
     {
         $this->batchInsert('address_type', [
             'id',
-            'address_type',
+            'addressType',
             'active',
         ]);
     }

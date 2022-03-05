@@ -32,11 +32,11 @@ class PostCodesMigration_100 extends Migration
                     ]
                 ),
                 new Column(
-                    'post_code',
+                    'postCode',
                     [
-                        'type' => Column::TYPE_CHAR,
+                        'type' => Column::TYPE_VARCHAR,
                         'notNull' => true,
-                        'size' => 60,
+                        'size' => 45,
                         'after' => 'id'
                     ]
                 ),
@@ -47,7 +47,7 @@ class PostCodesMigration_100 extends Migration
                         'default' => "1",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'post_code'
+                        'after' => 'postCode'
                     ]
                 ),
                 new Column(

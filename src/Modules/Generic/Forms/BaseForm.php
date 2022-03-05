@@ -58,40 +58,40 @@ class BaseForm extends FormBase
             $fieldName = $field['name'];
 
             if ($type === Select::class) {
-                $select_options = isset($field['related']) ? $field['related'] : $field['values'];
+                $selectOptions = isset($field['related']) ? $field['related'] : $field['values'];
 
-                $parsed_attributes = $this->parseAttributes($field);
+                $parsedAttributes = $this->parseAttributes($field);
 
-                $new_field = new $type(
+                $newField = new $type(
                     $fieldName,
-                    $select_options,
-                    $parsed_attributes
+                    $selectOptions,
+                    $parsedAttributes
                 );
 
-                $select_keys = $this->parseDataKeys($select_options, $parsed_attributes);
+                $selectKeys = $this->parseDataKeys($selectOptions, $parsedAttributes);
 
-                $new_field->addValidator(
+                $newField->addValidator(
                     new InclusionIn(
                         [
                             'message' => ucfirst($fieldName) . ' is required',
-                            'domain' => $select_keys
+                            'domain' => $selectKeys
                         ]
                     )
                 );
             } else {
-                $new_field = new $type(
+                $newField = new $type(
                     $fieldName,
                     $this->parseAttributes($field)
                 );
             }
 
             if ($required) {
-                $new_field->addValidator(new PresenceOf([
+                $newField->addValidator(new PresenceOf([
                     'message' => ucfirst($fieldName) . ' is required.',
                 ]));
             }
 
-            $this->add($new_field);
+            $this->add($newField);
         }
     }
 
@@ -112,19 +112,19 @@ class BaseForm extends FormBase
      * Extract keys from data array
      *
      * @param mixed $data              Data array or object
-     * @param array $parsed_attributes parsed attributes
+     * @param array $parsedAttributes parsed attributes
      * 
      * @return array Parsed attributes
      */
-    private function parseDataKeys($data, array $parsed_attributes = []): array {
+    private function parseDataKeys($data, array $parsedAttributes = []): array {
         $keys = [];
 
         if (empty($data)) {
             return $keys;
         }
 
-        if (is_object($data) && isset($parsed_attributes['using']) && $data instanceof Simple) {
-            $keys = array_column($data->toArray(), $parsed_attributes['using'][0]);
+        if (is_object($data) && isset($parsedAttributes['using']) && $data instanceof Simple) {
+            $keys = array_column($data->toArray(), $parsedAttributes['using'][0]);
         } elseif (is_array($data)) {
             $keys = array_keys($data);
         }

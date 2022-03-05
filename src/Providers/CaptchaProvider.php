@@ -40,9 +40,9 @@ class CaptchaProvider extends AbstractProvider
 
             $recaptcha = new ReCaptcha($config['secret']);
             
-            $parse_url = parse_url($application['base_uri']);
+            $parseUrl = parse_url($application['base_uri']);
 
-            $host = isset($parse_url['host']) ? $parse_url['host'] : null;
+            $host = isset($parseUrl['host']) ? $parseUrl['host'] : null;
 
             return $recaptcha->setExpectedHostname($host);
         });

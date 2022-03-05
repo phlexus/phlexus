@@ -50,7 +50,7 @@ class UsersMigration_100 extends Migration
                     ]
                 ),
                 new Column(
-                    'user_hash',
+                    'userHash',
                     [
                         'type' => Column::TYPE_VARCHAR,
                         'notNull' => true,
@@ -59,12 +59,12 @@ class UsersMigration_100 extends Migration
                     ]
                 ),
                 new Column(
-                    'hash_code',
+                    'hashCode',
                     [
                         'type' => Column::TYPE_VARCHAR,
                         'notNull' => false,
                         'size' => 255,
-                        'after' => 'user_hash'
+                        'after' => 'userHash'
                     ]
                 ),
                 new Column(
@@ -74,7 +74,7 @@ class UsersMigration_100 extends Migration
                         'default' => "0",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'hash_code'
+                        'after' => 'hashCode'
                     ]
                 ),
                 new Column(
@@ -189,8 +189,8 @@ class UsersMigration_100 extends Migration
             'id',
             'email',
             'password',
-            'user_hash',
-            'hash_code',
+            'userHash',
+            'hashCode',
             'attempts',
             'profileID',
             'imageID',
