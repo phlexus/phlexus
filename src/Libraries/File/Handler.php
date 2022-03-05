@@ -16,7 +16,7 @@ namespace Phlexus\Libraries\File;
 use Phlexus\Libraries\File\Models\MediaType;
 use Phlexus\Libraries\File\Models\MediaDestiny;
 use Phlexus\Security;
-use Phlexus\Helpers;
+use Phlexus\Libraries\Helpers;
 use Phlexus\Modules\BaseUser\Models\User;
 use Phalcon\Http\Request\File;
 use Phalcon\DI;
@@ -79,9 +79,7 @@ class Handler
 
         $fileType = $this->getFileType();
    
-        $configs = Helpers::phlexusConfig('application')->toArray();
-
-        $uploadDir = $configs['upload_dir'];
+        $uploadDir = Helpers::getUploadDir();
 
         return $uploadDir . $fileType . '/' . $fileDestiny;
     }

@@ -15,11 +15,24 @@ namespace Phlexus\Libraries;
 
 use Phalcon\Di;
 use Phalcon\Mvc\View;
-use Phlexus\Helpers as Phlexus_Helpers;
+use Phlexus\Helpers as PhlexusHelpers;
 use Phalcon\Flash\Session as FlashSession;
 
-class Helpers extends Phlexus_Helpers
+class Helpers extends PhlexusHelpers
 {
+
+    /**
+     * Get application upload dir
+     * 
+     * @return string
+     */
+    public static function getUploadDir(): string
+    {
+        $configs = PhlexusHelpers::phlexusConfig('application')->toArray();
+
+        return $configs['upload_dir'];
+    }
+
     /**
      * Get flash message session
      * 
@@ -101,9 +114,8 @@ class Helpers extends Phlexus_Helpers
             $destNumber,
             [
               'from' => '',
-              'body' => $message
+              'body' => $message,
             ]
         );
-          
     }
 }
