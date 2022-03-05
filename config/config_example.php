@@ -40,7 +40,7 @@ return [
         'config' => [
             'files_dir' => dirname(__DIR__) .'/translations',
             'default_language' => 'en_US',
-        ]
+        ],
     ],
 
     'communications' => [
@@ -52,7 +52,7 @@ return [
                 'username' => '',
                 'password' => '',
                 'port'     => '',
-            ]
+            ],
         ],
 
         'sms' => [
@@ -78,17 +78,12 @@ return [
             'path'      => dirname(__DIR__) . '/src/Modules/Landing/Module.php',
             'router'    => dirname(__DIR__) . '/src/Modules/Landing/Config/routes.php',
         ],
-        'User' => [
-            'className' => \Phlexus\Modules\User\Module::class,
-            'path'      => dirname(__DIR__) . '/src/Modules/User/Module.php',
-            'router'    => dirname(__DIR__) . '/src/Modules/User/Config/routes.php',
-        ],
     ],
 
     'view' => [
         'engines' => [
             '.phtml' => \Phalcon\Mvc\View\Engine\Php::class,
-        ]
+        ],
     ],
 
     'db' => include_once 'database.php',
@@ -104,7 +99,7 @@ return [
             'config' => [
                 'site-key'=> '',
                 'secret'  => '',
-            ]
+            ],
         ],
     ],
 
@@ -117,7 +112,7 @@ return [
                 'port'              => 6379,
                 'index'             => 1,
             ],
-        ]
+        ],
     ],
 
     'events' => [],
