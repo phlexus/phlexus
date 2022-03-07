@@ -115,7 +115,7 @@ trait Model {
         $related = $this->getRelatedFields();
 
         if (count($related) === 0) {
-            return $records;
+            return $records->toArray();
         }
 
         $fields = [];

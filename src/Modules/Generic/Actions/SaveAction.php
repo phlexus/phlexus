@@ -4,8 +4,10 @@ declare(strict_types=1);
 namespace Phlexus\Modules\Generic\Actions;
 
 use Phlexus\Modules\BaseUser\Models\Profile;
-use Phlexus\Modules\BaseUser\Models\User;
+use Phlexus\Libraries\Media\Models\Media;
+use Phlexus\Libraries\Media\Models\MediaDestiny;
 use Phalcon\Http\ResponseInterface;
+use Phalcon\Mvc\Model as MvcModel;
 
 /**
  * Trait SaveAction
@@ -94,11 +96,9 @@ trait SaveAction {
 
             $model->modifiedAt = $ts;
 
-            if ($model instanceof User) {
-                $model->generateUserHash();
-            }
+            $model = $this->processUploadImage($model, $authorizedKeys);
 
-            if (!$model->save()) {
+            if (!$model || !$model->save()) {
                 $this->flash->error('Unable to save record!');
 
                 return $this->response->redirect($defaultRoute);
@@ -113,6 +113,50 @@ trait SaveAction {
             }
 
             return $this->response->redirect($this->request->getHttpReferer());
+        }
+    }
+
+    /**
+     * Process Upload Image
+     *
+     * @return MvcModel|false
+     */
+    private function processUploadImage(MvcModel $model, array $authorizedKeys) {
+        if ($this->request->hasFiles() !== true) {
+            return $model;
+        }
+
+        $files = $this->request->getUploadedFiles(true, true);
+
+        foreach ($files as $key => $file) {
+            if (!isset($authorizedKeys[$key])) {
+                continue;
+            }
+
+            $handler = $this->media;        
+            if (
+                !$handler->setFile($file)
+                         ->setFileDestiny(MediaDestiny::DESTINY_INTERNAL)
+                         ->uploadFile()
+            ) {
+                return false;
+            }
+
+            $media = Media::createMedia(
+                $handler->getUploadName(),
+                $handler->getFileType(),
+                $handler->getFileDestiny()
+            );
+
+            $handler->reset();
+
+            if (!$media) {
+               return false;
+            }
+
+            $model->{$key} = $media->id;
+
+            return $model;
         }
     }
 }

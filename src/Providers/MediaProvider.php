@@ -37,6 +37,10 @@ class MediaProvider extends AbstractProvider
     {
         $user = User::getUser();
 
+        if (!isset($user->id)) {
+            return;
+        }
+
         $userHash = $user->userHash;
 
         $security = $this->di->getShared('security');
