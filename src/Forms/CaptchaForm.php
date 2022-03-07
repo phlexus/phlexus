@@ -21,7 +21,7 @@ abstract class CaptchaForm extends FormBase
     /**
      * Constructor
      */
-    public function __construct($initialize = true)
+    public function __construct(bool $initialize = true)
     {
         parent::__construct($initialize);
 
@@ -41,7 +41,7 @@ abstract class CaptchaForm extends FormBase
      * 
      * @return void
      */
-    private function assignCaptcha($dataSiteKey) {
+    private function assignCaptcha(string $dataSiteKey) {
         $captcha = new CaptchaElement(self::CAPTCHA_NAME, [
             'class' => 'g-recaptcha',
             'data-sitekey' => $dataSiteKey

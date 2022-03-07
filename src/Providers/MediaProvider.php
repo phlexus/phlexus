@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phlexus\Providers;
 
 use Phlexus\Libraries\Media\Handler as MediaHandler;
+use Phlexus\Libraries\Media\Models\MediaDestiny;
 use Phlexus\Modules\BaseUser\Models\User;
 
 class MediaProvider extends AbstractProvider
