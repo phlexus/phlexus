@@ -13,7 +13,7 @@ class EmailProvider extends AbstractProvider
      *
      * @var string
      */
-    protected $providerName = 'email';
+    protected string $providerName = 'email';
 
     /**
      * Register application service.

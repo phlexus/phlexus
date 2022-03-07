@@ -6,6 +6,8 @@ return [
 
     \Phlexus\Providers\UserProvider::class,
 
+    \Phlexus\Providers\MediaProvider::class,
+
     \Phlexus\Providers\RedisProvider::class,
 
     \Phlexus\Providers\TranslationProvider::class,
@@ -13,6 +15,7 @@ return [
     \Phlexus\Providers\CaptchaProvider::class,
 
     \Phlexus\Providers\EmailProvider::class,
+
     //\Phlexus\Providers\SMSProvider::class, #Uncomment to enable sms
 
     \Phlexus\Modules\Shop\Providers\PayPalProvider::class,

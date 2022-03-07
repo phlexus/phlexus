@@ -14,7 +14,7 @@ class CaptchaProvider extends AbstractProvider
      *
      * @var string
      */
-    protected $providerName = 'captcha';
+    protected string $providerName = 'captcha';
 
     /**
      * Register application service.

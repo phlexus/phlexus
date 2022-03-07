@@ -24,7 +24,7 @@ class RedisProvider extends AbstractProvider
      *
      * @var string
      */
-    protected $providerName = 'redis';
+    protected string $providerName = 'redis';
 
     /**
      * Register application service.

@@ -23,7 +23,7 @@ class TranslationProvider extends AbstractProvider
      *
      * @var string
      */
-    protected $providerName = 'translation';
+    protected string $providerName = 'translation';
 
     /**
      * Register application service.

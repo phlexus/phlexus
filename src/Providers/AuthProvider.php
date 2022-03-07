@@ -13,7 +13,7 @@ class AuthProvider extends AbstractProvider
      *
      * @var string
      */
-    protected $providerName = 'auth';
+    protected string $providerName = 'auth';
 
     /**
      * Register application service.

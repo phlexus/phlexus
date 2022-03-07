@@ -13,7 +13,7 @@ class UserProvider extends AbstractProvider
      *
      * @var string
      */
-    protected $providerName = 'user';
+    protected string $providerName = 'user';
 
     /**
      * Register application service.

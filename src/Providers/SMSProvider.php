@@ -13,7 +13,7 @@ class SMSProvider extends AbstractProvider
      *
      * @var string
      */
-    protected $providerName = 'sms';
+    protected string $providerName = 'sms';
 
     /**
      * Register application service.
