@@ -22,3 +22,7 @@
 22,baseuser_auth,logout
 23,baseuser_profile,edit
 24,baseuser_profile,save
+25,shop_product,view
+26,shop_product,edit
+27,shop_product,save
+28,shop_shop,products

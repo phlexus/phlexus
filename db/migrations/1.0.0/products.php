@@ -49,18 +49,41 @@ class ProductsMigration_100 extends Migration
                     ]
                 ),
                 new Column(
+                    'imageID',
+                    [
+                        'type' => Column::TYPE_INTEGER,
+                        'notNull' => false,
+                        'size' => 1,
+                        'after' => 'price'
+                    ]
+                ),
+                new Column(
                     'active',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'default' => "1",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'price'
+                        'after' => 'imageID'
                     ]
                 ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
+                new Index('fk_products_image_id_idx', ['imageID'], ''),
+            ],
+            'references' => [
+                new Reference(
+                    'fk_products_image_id',
+                    [
+                        'referencedSchema' => 'cms_phalcon',
+                        'referencedTable' => 'media',
+                        'columns' => ['imageID'],
+                        'referencedColumns' => ['id'],
+                        'onUpdate' => 'NO ACTION',
+                        'onDelete' => 'NO ACTION'
+                    ]
+                ),
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
