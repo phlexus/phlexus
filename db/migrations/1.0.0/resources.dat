@@ -26,3 +26,4 @@
 26,shop_product,edit
 27,shop_product,save
 28,shop_shop,products
+29,shop_callback,shop_callback
