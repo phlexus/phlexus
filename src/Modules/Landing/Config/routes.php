@@ -10,7 +10,7 @@ $routes = new RouterGroup([
     'namespace' => 'Phlexus\Modules\Landing\Controllers',
 ]);
 
-$routes->addGet('/home', [
+$routes->addGet('/', [
     'controller' => 'home',
     'action' => 'index',
 ]);
