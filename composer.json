@@ -6,12 +6,11 @@
         "php": ">=7.2",
         "oomphinc/composer-installers-extender": "~2.0",
         "vlucas/phpdotenv": "^3.4",
-        "falcon758/phlexus-core": "dev-master",
-        "falcon758/phlexus-module-users": "dev-main",
-        "falcon758/phlexus-module-shop": "dev-master",
-        "falcon758/phlexus-library-theme": "dev-master",
-        "falcon758/phlexus-library-translations": "dev-master",
-        "falcon758/phlexus-library-media": "dev-master",
+        "falcon758/phlexus-core": "^1.6.0",
+        "falcon758/phlexus-module-users": "^1.7.0",
+        "falcon758/phlexus-module-shop": "^1.6.0",
+        "falcon758/phlexus-library-theme": "^1.2.0",
+        "falcon758/phlexus-library-translations": "^1.0.0",
         "phpmailer/phpmailer": "^6.4",
         "google/recaptcha": "^1.2",
         "twilio/sdk": "^6.33"
@@ -24,7 +23,5 @@
         "psr-4": {
             "Phlexus\\": "src/"
         }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
