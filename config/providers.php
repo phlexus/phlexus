@@ -6,6 +6,8 @@ return [
 
     \Phlexus\Providers\UserProvider::class,
 
+    \Phlexus\Providers\ACLProvider::class,
+
     \Phlexus\Providers\MediaProvider::class,
 
     \Phlexus\Providers\RedisProvider::class,
