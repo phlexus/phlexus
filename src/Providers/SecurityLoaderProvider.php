@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Phlexus\Providers;
 
 use Phlexus\Helpers;
+use Phlexus\Models\Settings;
 use Phlexus\Modules\BaseUser\Models\User;
 
 class SecurityLoaderProvider extends AbstractProvider
@@ -35,15 +36,17 @@ class SecurityLoaderProvider extends AbstractProvider
 
         $security = $this->di->getShared($this->providerName);
 
+        $database = Settings::getDatabasekey();
+
         $this->di->remove($this->providerName);
 
-        $this->di->setShared($this->providerName, function () use ($security, $user, $configs) {
+        $this->di->setShared($this->providerName, function () use ($security, $user, $configs, $database) {
             $appHash  = isset($configs[self::APP_HASH_PARAM_KEY]) ? $configs[self::APP_HASH_PARAM_KEY] : '';
             $userHash = isset($user->userHash) ? $user->userHash : '';
 
             $security->setAppHash($appHash);
             $security->setUserHash($userHash);
-            $security->setDatabaseHash('DATABASE_TOKEN');
+            $security->setDatabaseHash($database);
 
             return $security;
         });
