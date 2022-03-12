@@ -23,10 +23,10 @@
 23,shop_shop,checkout
 24,shop_shop,products
 25,shop_shop,cart
-26,shop_product,view
-27,shop_product,edit
-28,shop_product,save
-29,shop_callback,shop_callback
-30,shop_product,create
+26,shop_product,index
+27,shop_product,create
+28,shop_product,edit
+29,shop_product,view
+30,shop_product,save
 31,shop_product,delete
-32,shop_product,index
+32,shop_callback,shop_callback
