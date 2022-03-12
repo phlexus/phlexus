@@ -27,3 +27,6 @@
 27,shop_product,edit
 28,shop_product,save
 29,shop_callback,shop_callback
+30,shop_product,create
+31,shop_product,delete
+32,shop_product,index
