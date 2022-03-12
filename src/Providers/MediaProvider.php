@@ -15,7 +15,6 @@ namespace Phlexus\Providers;
 
 use Phlexus\Libraries\Media\Handler as MediaHandler;
 use Phlexus\Libraries\Media\Models\MediaDestiny;
-use Phlexus\Modules\BaseUser\Models\User;
 
 class MediaProvider extends AbstractProvider
 {
@@ -35,17 +34,9 @@ class MediaProvider extends AbstractProvider
      */
     public function register(array $parameters = []): void
     {
-        $user = User::getUser();
-
-        if (!isset($user->id)) {
-            return;
-        }
-
-        $userHash = $user->userHash;
-
         $security = $this->di->getShared('security');
 
-        $userDirectory = $security->getStaticUserToken($userHash);
+        $userDirectory = $security->getStaticUserToken();
 
         $this->di->setShared($this->providerName, function () use ($userDirectory) {
             return (new MediaHandler())

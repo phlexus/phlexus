@@ -32,6 +32,8 @@ class RedisProvider extends AbstractProvider
      * @psalm-suppress UndefinedMethod
      *
      * @param array $parameters Custom parameters for Service Provider
+     *
+     * @return void
      */
     public function register(array $parameters = []): void
     {

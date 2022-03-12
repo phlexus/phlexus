@@ -4,6 +4,8 @@ declare(strict_types=1);
 return [
     \Phlexus\Providers\AuthProvider::class,
 
+    \Phlexus\Providers\SecurityLoaderProvider::class,
+
     \Phlexus\Providers\UserProvider::class,
 
     \Phlexus\Providers\ACLProvider::class,

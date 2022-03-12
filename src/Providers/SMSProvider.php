@@ -19,6 +19,7 @@ class SMSProvider extends AbstractProvider
      * Register application service.
      *
      * @param array $parameters Custom parameters for Service Provider
+     *
      * @return void
      */
     public function register(array $parameters = []): void
