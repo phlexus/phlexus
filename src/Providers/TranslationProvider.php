@@ -38,13 +38,13 @@ class TranslationProvider extends AbstractProvider
         $di       = $this->getDI();
 
         $this->getDI()->setShared($this->providerName, function () use ($di, $language) {
-                $router = $di->getShared('router');
+            $router = $di->getShared('router');
 
-                $module     = $router->getModuleName();
-                $controller = $router->getControllerName();
-                $action     = $router->getActionName();
+            $module     = $router->getModuleName();
+            $controller = $router->getControllerName();
+            $action     = $router->getActionName();
 
-                $bundle = $module . '_' . $controller . '_' . $action;
+            $bundle = $module . '_' . $controller . '_' . $action;
 
             return (new TranslationFactory())->build($language)
                                              ->setPageType($bundle, TranslationAbstract::PAGE);
