@@ -5,6 +5,7 @@ namespace Phlexus\Modules\Generic\Actions;
 
 use Phlexus\Modules\BaseUser\Models\User;
 use Phlexus\Modules\BaseUser\Models\Profile;
+use Phlexus\Libraries\Translations\Database\Models\TextType;
 use Phalcon\Http\ResponseInterface;
 
 /**
@@ -34,7 +35,7 @@ trait CreateAction {
 
         // Check if user has create permissions
         if (!$isAdmin) {
-            $this->flash->error('No permissions to create!');
+            $this->flash->error($this->translation->setPageType('', TextType::MESSAGE)->_('no-create-permissions'));
 
             return $this->response->redirect($defaultRoute);
         }

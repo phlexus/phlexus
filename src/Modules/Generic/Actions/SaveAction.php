@@ -6,6 +6,7 @@ namespace Phlexus\Modules\Generic\Actions;
 use Phlexus\Modules\BaseUser\Models\Profile;
 use Phlexus\Libraries\Media\Models\Media;
 use Phlexus\Libraries\Media\Models\MediaDestiny;
+use Phlexus\Libraries\Translations\Database\Models\TextType;
 use Phalcon\Http\ResponseInterface;
 use Phalcon\Mvc\Model as MvcModel;
 
@@ -52,9 +53,11 @@ trait SaveAction {
 
         $isAdmin = Profile::getUserProfile()->isAdmin();
 
+        $translationMessage = $this->translation->setPageType('', TextType::MESSAGE);
+
         // Check if user has edit permissions
         if (!$isAdmin) {
-            $this->flash->error('No permission to save record!');
+            $this->flash->error($translationMessage->_('no-save-permissions'));
 
             return $this->response->redirect($defaultRoute);
         }
@@ -66,7 +69,7 @@ trait SaveAction {
             ]);
 
             if (!$model) {
-                $this->flash->error('Record not found!');
+                $this->flash->error($translationMessage->_('record-not-found'));
 
                 return $this->response->redirect($defaultRoute);
             }
@@ -99,17 +102,17 @@ trait SaveAction {
             $model = $this->processUploadImage($model, $authorizedKeys);
 
             if (!$model || !$model->save()) {
-                $this->flash->error('Unable to save record!');
+                $this->flash->error($translationMessage->_('record-not-saved'));
 
                 return $this->response->redirect($defaultRoute);
             }
 
-            $this->flash->success('Record saved sucessfully!');
+            $this->flash->success($translationMessage->_('record-saved-sucessfully'));
 
             return $this->response->redirect($defaultRoute);
         } else {
             foreach ($form->getMessages() as $message) {
-                $this->flash->error($message->getMessage());
+                $this->flash->error($translationMessage->_($message->getMessage()));
             }
 
             return $this->response->redirect($this->request->getHttpReferer());

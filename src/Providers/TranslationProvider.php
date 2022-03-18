@@ -15,6 +15,7 @@ namespace Phlexus\Providers;
 
 use Phlexus\Libraries\Translations\TranslationFactory;
 use Phlexus\Libraries\Translations\TranslationAbstract;
+use Phlexus\Libraries\Translations\Database\Models\TextType;
 
 class TranslationProvider extends AbstractProvider
 {
@@ -47,7 +48,7 @@ class TranslationProvider extends AbstractProvider
             $bundle = $module . '_' . $controller . '_' . $action;
 
             return (new TranslationFactory())->build($language)
-                                             ->setPageType($bundle, TranslationAbstract::PAGE);
+                                             ->setPageType($bundle, TextType::PAGE);
         });
     }
 }

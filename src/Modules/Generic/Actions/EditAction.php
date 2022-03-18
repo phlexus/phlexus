@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Phlexus\Modules\Generic\Actions;
 
 use Phlexus\Modules\BaseUser\Models\Profile;
+use Phlexus\Libraries\Translations\Database\Models\TextType;
 use Phalcon\Http\ResponseInterface;
 
 /**
@@ -33,9 +34,11 @@ trait EditAction {
 
         $defaultRoute = $this->getBasePosition();
 
+        $translationMessage = $this->translation->setPageType('', TextType::MESSAGE);
+
         // Check if user has edit permissions
         if (!$isAdmin) {
-            $this->flash->error('No permissions to edit!');
+            $this->flash->error($translationMessage->_('no-edit-permissions'));
 
             return $this->response->redirect($defaultRoute);
         }
@@ -45,7 +48,7 @@ trait EditAction {
         $record = $model->findFirstByid($id);
 
         if (!$record) {
-            $this->flash->error('ID not found!');
+            $this->flash->error($translationMessage->_('record-not-found'));
 
             return $this->response->redirect($defaultRoute);
         }

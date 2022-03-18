@@ -5,6 +5,7 @@ namespace Phlexus\Modules\Generic\Actions;
 
 use Phlexus\Modules\BaseUser\Models\Profile;
 use Phalcon\Http\ResponseInterface;
+use Phlexus\Libraries\Translations\Database\Models\TextType;
 
 /**
  * Trait ViewAction
@@ -37,7 +38,7 @@ trait ViewAction {
 
         // Check if user has view permissions
         if (!$isAdmin) {
-            $this->flash->error('No permission to view record!');
+            $this->flash->error($this->translation->setPageType('', TextType::MESSAGE)->_('no-view-permissions'));
 
             return $this->response->redirect($defaultRoute);
         }
