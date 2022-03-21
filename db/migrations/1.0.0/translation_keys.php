@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class UserAddressMigration_100
+ * Class TranslationKeysMigration_100
  */
-class UserAddressMigration_100 extends Migration
+class TranslationKeysMigration_100 extends Migration
 {
     /**
      * Define the table structure
@@ -19,7 +19,7 @@ class UserAddressMigration_100 extends Migration
      */
     public function morph(): void
     {
-        $this->morphTable('user_address', [
+        $this->morphTable('translation_keys', [
             'columns' => [
                 new Column(
                     'id',
@@ -32,107 +32,77 @@ class UserAddressMigration_100 extends Migration
                     ]
                 ),
                 new Column(
+                    'key',
+                    [
+                        'type' => Column::TYPE_VARCHAR,
+                        'notNull' => true,
+                        'size' => 155,
+                        'after' => 'id'
+                    ]
+                ),
+                new Column(
+                    'textTypeID',
+                    [
+                        'type' => Column::TYPE_INTEGER,
+                        'notNull' => true,
+                        'size' => 1,
+                        'after' => 'key'
+                    ]
+                ),
+                new Column(
+                    'pageID',
+                    [
+                        'type' => Column::TYPE_INTEGER,
+                        'notNull' => true,
+                        'size' => 1,
+                        'after' => 'textTypeID'
+                    ]
+                ),
+                new Column(
                     'active',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'default' => "1",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'id'
-                    ]
-                ),
-                new Column(
-                    'userID',
-                    [
-                        'type' => Column::TYPE_INTEGER,
-                        'notNull' => true,
-                        'size' => 1,
-                        'after' => 'active'
-                    ]
-                ),
-                new Column(
-                    'addressID',
-                    [
-                        'type' => Column::TYPE_INTEGER,
-                        'notNull' => true,
-                        'size' => 1,
-                        'after' => 'userID'
-                    ]
-                ),
-                new Column(
-                    'addressTypeID',
-                    [
-                        'type' => Column::TYPE_INTEGER,
-                        'notNull' => true,
-                        'size' => 1,
-                        'after' => 'addressID'
-                    ]
-                ),
-                new Column(
-                    'createdAt',
-                    [
-                        'type' => Column::TYPE_TIMESTAMP,
-                        'default' => "CURRENT_TIMESTAMP",
-                        'notNull' => true,
-                        'after' => 'addressTypeID'
-                    ]
-                ),
-                new Column(
-                    'modifiedAt',
-                    [
-                        'type' => Column::TYPE_TIMESTAMP,
-                        'default' => "CURRENT_TIMESTAMP",
-                        'notNull' => true,
-                        'after' => 'createdAt'
+                        'after' => 'pageID'
                     ]
                 ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
-                new Index('userID', ['userID'], ''),
-                new Index('addressID', ['addressID'], ''),
-                new Index('addressTypeID', ['addressTypeID'], ''),
+                new Index('fk_translation_keys_text_type_idx', ['textTypeID'], ''),
+                new Index('fk_translation_keys_page_idx', ['pageID'], ''),
             ],
             'references' => [
                 new Reference(
-                    'fk_user_address_address_id',
+                    'fk_translation_keys_page_id',
                     [
                         'referencedSchema' => 'cms_phalcon',
-                        'referencedTable' => 'address',
-                        'columns' => ['addressID'],
-                        'referencedColumns' => ['id'],
-                        'onUpdate' => 'NO ACTION',
-                        'onDelete' => 'NO ACTION'
-                    ]
-                ),
-                new Reference(
-                    'fk_user_address_type_id',
-                    [
-                        'referencedSchema' => 'cms_phalcon',
-                        'referencedTable' => 'address_type',
-                        'columns' => ['addressTypeID'],
-                        'referencedColumns' => ['id'],
-                        'onUpdate' => 'NO ACTION',
-                        'onDelete' => 'NO ACTION'
-                    ]
-                ),
-                new Reference(
-                    'fk_user_address_user_id',
-                    [
-                        'referencedSchema' => 'cms_phalcon',
-                        'referencedTable' => 'users',
-                        'columns' => ['userID'],
+                        'referencedTable' => 'pages',
+                        'columns' => ['pageID'],
                         'referencedColumns' => ['id'],
                         'onUpdate' => 'RESTRICT',
                         'onDelete' => 'RESTRICT'
                     ]
                 ),
+                new Reference(
+                    'fk_translation_keys_text_type_id',
+                    [
+                        'referencedSchema' => 'cms_phalcon',
+                        'referencedTable' => 'text_type',
+                        'columns' => ['textTypeID'],
+                        'referencedColumns' => ['id'],
+                        'onUpdate' => 'NO ACTION',
+                        'onDelete' => 'NO ACTION'
+                    ]
+                ),
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '29',
+                'AUTO_INCREMENT' => '6',
                 'ENGINE' => 'InnoDB',
-                'TABLE_COLLATION' => 'utf8_unicode_ci',
+                'TABLE_COLLATION' => 'utf8mb4_0900_ai_ci',
             ],
         ]);
     }

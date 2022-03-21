@@ -26,6 +26,7 @@ return new Config([
             'language',
             'pages',
             'text_type',
+            'translation_keys',
             'translations',
             'media_type',
             'media_destiny',

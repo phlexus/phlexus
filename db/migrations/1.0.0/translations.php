@@ -32,24 +32,15 @@ class TranslationsMigration_100 extends Migration
                     ]
                 ),
                 new Column(
-                    'key',
-                    [
-                        'type' => Column::TYPE_VARCHAR,
-                        'notNull' => true,
-                        'size' => 155,
-                        'after' => 'id'
-                    ]
-                ),
-                new Column(
                     'translation',
                     [
                         'type' => Column::TYPE_TEXT,
                         'notNull' => true,
-                        'after' => 'key'
+                        'after' => 'id'
                     ]
                 ),
                 new Column(
-                    'textTypeID',
+                    'translationKeyID',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
@@ -58,21 +49,12 @@ class TranslationsMigration_100 extends Migration
                     ]
                 ),
                 new Column(
-                    'pageID',
-                    [
-                        'type' => Column::TYPE_INTEGER,
-                        'notNull' => true,
-                        'size' => 1,
-                        'after' => 'textTypeID'
-                    ]
-                ),
-                new Column(
                     'languageID',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'pageID'
+                        'after' => 'translationKeyID'
                     ]
                 ),
                 new Column(
@@ -88,9 +70,8 @@ class TranslationsMigration_100 extends Migration
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
-                new Index('fk_translations_text_type_idx', ['textTypeID'], ''),
-                new Index('fk_translations_page_idx', ['pageID'], ''),
                 new Index('fk_translations_language_id_idx', ['languageID'], ''),
+                new Index('fk_translations_translation_keys_id_idx', ['translationKeyID'], ''),
             ],
             'references' => [
                 new Reference(
@@ -105,22 +86,11 @@ class TranslationsMigration_100 extends Migration
                     ]
                 ),
                 new Reference(
-                    'fk_translations_page_id',
+                    'fk_translations_translation_keys_id',
                     [
                         'referencedSchema' => 'cms_phalcon',
-                        'referencedTable' => 'pages',
-                        'columns' => ['pageID'],
-                        'referencedColumns' => ['id'],
-                        'onUpdate' => 'RESTRICT',
-                        'onDelete' => 'RESTRICT'
-                    ]
-                ),
-                new Reference(
-                    'fk_translations_text_type_id',
-                    [
-                        'referencedSchema' => 'cms_phalcon',
-                        'referencedTable' => 'text_type',
-                        'columns' => ['textTypeID'],
+                        'referencedTable' => 'translation_keys',
+                        'columns' => ['translationKeyID'],
                         'referencedColumns' => ['id'],
                         'onUpdate' => 'NO ACTION',
                         'onDelete' => 'NO ACTION'
@@ -129,7 +99,7 @@ class TranslationsMigration_100 extends Migration
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '4',
+                'AUTO_INCREMENT' => '6',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8mb4_0900_ai_ci',
             ],
@@ -145,10 +115,8 @@ class TranslationsMigration_100 extends Migration
     {
         $this->batchInsert('translations', [
             'id',
-            'key',
             'translation',
-            'textTypeID',
-            'pageID',
+            'translationKeyID',
             'languageID',
             'active',
         ]);
