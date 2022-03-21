@@ -112,7 +112,7 @@ trait SaveAction {
             return $this->response->redirect($defaultRoute);
         } else {
             foreach ($form->getMessages() as $message) {
-                $this->flash->error($translationMessage->_($message->getMessage()));
+                $this->flash->error($message->getMessage());
             }
 
             return $this->response->redirect($this->request->getHttpReferer());
