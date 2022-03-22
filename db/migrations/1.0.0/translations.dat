@@ -58,7 +58,7 @@
 58,Country,58,1,1
 59,"Payment Method",59,1,1
 60,"Shipping Method",60,1,1
-61,Adress,61,1,1
+61,Address,61,1,1
 62,"Payment and Shipping",62,1,1
 63,Order,63,1,1
 64,Total-Price,64,1,1
