@@ -21,7 +21,8 @@ trait Form {
      *
      * @return BaseForm The BaseForm instance
      */
-    private function getForm(): BaseForm {
+    private function getForm(): BaseForm
+    {
         return $this->form;
     }
 
@@ -32,7 +33,8 @@ trait Form {
      * 
      * @return void
      */
-    private function setForm(BaseForm $form) {
+    private function setForm(BaseForm $form)
+    {
         $this->form = $form;
     }
 
@@ -41,7 +43,8 @@ trait Form {
      *
      * @return array The Form Fields array
      */
-    private function getFormFields(): array {
+    private function getFormFields(): array
+    {
         return $this->formFields;
     }
 
@@ -52,7 +55,8 @@ trait Form {
      * 
      * @return void
      */
-    private function setFormFields(array $fields) {
+    private function setFormFields(array $fields)
+    {
         $this->formFields = $fields;
     }
 }

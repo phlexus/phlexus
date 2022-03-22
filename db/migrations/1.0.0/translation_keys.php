@@ -114,6 +114,13 @@ class TranslationKeysMigration_100 extends Migration
      */
     public function up(): void
     {
+        $this->batchInsert('translation_keys', [
+            'id',
+            'key',
+            'textTypeID',
+            'pageID',
+            'active',
+        ]);
     }
 
     /**
@@ -123,5 +130,6 @@ class TranslationKeysMigration_100 extends Migration
      */
     public function down(): void
     {
+        $this->batchDelete('translation_keys');
     }
 }

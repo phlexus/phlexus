@@ -44,7 +44,8 @@ class Settings extends Model
      * 
      * @return string
      */
-    public static function getDatabaseKey(): string {
+    public static function getDatabaseKey(): string
+    {
         $settings = self::findFirst([
             'conditions' => 'key = :key:',
             'bind'       => [

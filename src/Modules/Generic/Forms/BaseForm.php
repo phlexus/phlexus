@@ -47,7 +47,8 @@ class BaseForm extends FormBase
      *
      * @return void
      */
-    private function parseFields(): void {
+    private function parseFields(): void
+    {
         $fields = $this->getFields();
 
         foreach ($fields as $field) {
@@ -102,7 +103,8 @@ class BaseForm extends FormBase
      * 
      * @return array Parsed attributes
      */
-    private function parseAttributes(array $attributes): array {
+    private function parseAttributes(array $attributes): array
+    {
         $ignoreAttributes = ['name', 'type', 'related'];
 
         return array_diff_key($attributes, array_flip($ignoreAttributes));
@@ -116,7 +118,8 @@ class BaseForm extends FormBase
      * 
      * @return array Parsed attributes
      */
-    private function parseDataKeys($data, array $parsedAttributes = []): array {
+    private function parseDataKeys($data, array $parsedAttributes = []): array
+    {
         $keys = [];
 
         if (empty($data)) {

@@ -12,7 +12,8 @@ use Phlexus\Libraries\Translations\Database\Models\TextType;
  *
  * @package Phlexus\Modules\Generic\Actions
  */
-trait ViewAction {
+trait ViewAction
+{
 
     use \Phlexus\Modules\Generic\Model;
     
@@ -21,7 +22,8 @@ trait ViewAction {
      *
      * @return mixed ResponseInterface or void
      */
-    public function viewAction() {
+    public function viewAction()
+    {
         $this->tag->setTitle('View');
 
         $model = $this->getModel();

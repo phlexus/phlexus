@@ -11,7 +11,8 @@ use Phalcon\Mvc\Model\Resultset\Simple;
  *
  * @package Phlexus\Modules\Generic
  */
-trait Model {
+trait Model
+{
 
     private MvcModel $model;
 
@@ -22,7 +23,8 @@ trait Model {
      *
      * @return MvcModel The Model instance
      */
-    private function getModel(): MvcModel {
+    private function getModel(): MvcModel
+    {
         return $this->model;
     }
 
@@ -33,7 +35,8 @@ trait Model {
      * 
      * @return void
      */
-    private function setModel(MvcModel $model) {
+    private function setModel(MvcModel $model)
+    {
         $this->model = $model;
     }
 
@@ -42,7 +45,8 @@ trait Model {
      *
      * @return array The View Fields array
      */
-    private function getViewFields(): array {
+    private function getViewFields(): array
+    {
         return $this->viewFields;
     }
 
@@ -53,7 +57,8 @@ trait Model {
      * 
      * @return void
      */
-    private function setViewFields(array $fields) {
+    private function setViewFields(array $fields)
+    {
         $this->viewFields = $fields;
     }
 
@@ -62,7 +67,8 @@ trait Model {
      *
      * @return array Parsed fields
      */
-    private function parseFields(array $fields): array {
+    private function parseFields(array $fields): array
+    {
         $model = $this->getModel();
 
         $reflection = new \ReflectionClass($model);
@@ -87,7 +93,8 @@ trait Model {
      *
      * @return array Related Model Fields
      */
-    private function getRelatedFields(): array {
+    private function getRelatedFields(): array
+    {
         $model = $this->getModel();
 
         $relations = $model->getModelsManager()->getHasOne($model);
@@ -111,7 +118,8 @@ trait Model {
      *
      * @return array Translated Related Fields (if column is named 'name')
      */
-    private function translateRelatedFields(Simple $records): array {
+    private function translateRelatedFields(Simple $records): array
+    {
         $related = $this->getRelatedFields();
 
         if (count($related) === 0) {

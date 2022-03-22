@@ -13,7 +13,8 @@ use Phalcon\Http\ResponseInterface;
  *
  * @package Phlexus\Modules\Generic\Actions
  */
-trait CreateAction {
+trait CreateAction
+{
 
     use \Phlexus\Modules\Generic\Model;
 
@@ -24,7 +25,8 @@ trait CreateAction {
      *
      * @return mixed ResponseInterface or void
      */
-    public function createAction() {
+    public function createAction()
+    {
         $this->tag->setTitle('Create');
         
         $defaultRoute = $this->getBasePosition();
