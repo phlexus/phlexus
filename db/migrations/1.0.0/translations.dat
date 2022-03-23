@@ -1,64 +1,83 @@
 1,Email,1,1,1
 2,Password,2,1,1
 3,Login,3,1,1
-4,"Forgot Password",4,1,1
-5,"Remember me?",5,1,1
-6,"Sign In",6,1,1
-7,"Create Account",7,1,1
-8,"Sign Up",8,1,1
-9,"Password Reminder",9,1,1
-10,"Remeber me?",10,1,1
-11,"Go back to",11,1,1
-12,Login,12,1,1
-13,Repeat-Password,13,1,1
-14,Register,14,1,1
-15,Register,15,1,1
-16,Profile,16,1,1
-17,"Sign Out",17,1,1
-18,Home,18,1,1
-19,Users,19,1,1
-20,"Users List",20,1,1
-21,"User Create",21,1,1
-22,Products,22,1,1
-23,"Products List",23,1,1
-24,"Product Create",24,1,1
-25,Copyrights,25,1,1
-26,"All the rights reserved",26,1,1
-27,View,27,1,1
-28,ID,28,1,1
-29,Email,29,1,1
-30,Profile,30,1,1
-31,Actions,31,1,1
-32,Edit,32,1,1
-33,Delete,33,1,1
+4,Email,4,1,1
+5,Password,5,1,1
+6,"Forgot Password?",6,1,1
+7,Remember-me?,7,1,1
+8,"Sign In",8,1,1
+9,"Create Account",9,1,1
+10,"Sign Up",10,1,1
+11,Email,11,1,1
+12,"Password Reminder",12,1,1
+13,"Remind Me",13,1,1
+14,"Go back to",14,1,1
+15,Login,15,1,1
+16,Email,16,1,1
+17,Password,17,1,1
+18,Repeat-Password,18,1,1
+19,Register,19,1,1
+20,Repeat-Password,20,1,1
+21,Register,21,1,1
+22,"Go back to",22,1,1
+23,Login,23,1,1
+24,Email,24,1,1
+25,Password,25,1,1
+26,Profile,26,1,1
+27,"Sign Out",27,1,1
+28,Home,28,1,1
+29,Users,29,1,1
+30,List,30,1,1
+31,Create,31,1,1
+32,Products,32,1,1
+33,List,33,1,1
 34,Create,34,1,1
-35,ID,35,1,1
-36,Email,36,1,1
-37,Profile,37,1,1
-38,Cancel,38,1,1
-39,Save,39,1,1
-40,Edit,40,1,1
-41,Name,41,1,1
-42,Price,42,1,1
-43,Name,43,1,1
-44,Price,44,1,1
-45,Image,45,1,1
-46,Content,46,1,1
-47,Cart,47,1,1
-48,Products,48,1,1
-49,"Product 3",49,1,1
-50,Buy,50,1,1
-51,"Products 4",51,1,1
-52,Product,52,1,1
-53,Quantity,53,1,1
-54,Action,54,1,1
-55,Checkout,55,1,1
-56,"Email Address",56,1,1
-57,"Post Code",57,1,1
-58,Country,58,1,1
-59,"Payment Method",59,1,1
-60,"Shipping Method",60,1,1
-61,Address,61,1,1
-62,"Payment and Shipping",62,1,1
-63,Order,63,1,1
-64,Total-Price,64,1,1
+35,Copyright,35,1,1
+36,"All right reserved",36,1,1
+37,View,37,1,1
+38,ID,38,1,1
+39,Email,39,1,1
+40,Profile,40,1,1
+41,Actions,41,1,1
+42,Edit,42,1,1
+43,Delete,43,1,1
+44,Create,44,1,1
+45,ID,45,1,1
+46,Email,46,1,1
+47,Profile,47,1,1
+48,Cancel,48,1,1
+49,Save,49,1,1
+50,Edit,50,1,1
+51,Name,51,1,1
+52,Price,52,1,1
+53,Name,53,1,1
+54,Price,54,1,1
+55,Image,55,1,1
+56,Email,56,1,1
+57,Password,57,1,1
+58,Repeat-Password,58,1,1
+59,"Profile Image",59,1,1
+60,Profile,60,1,1
+61,"Profile Image",61,1,1
+62,Content,62,1,1
+63,Cart,63,1,1
+64,Product,64,1,1
+65,Quantity,65,1,1
+66,Price,66,1,1
+67,Action,67,1,1
+68,"Product 3",68,1,1
+69,Checkout,69,1,1
+70,Address,70,1,1
+71,"Post Code",71,1,1
+72,Country,72,1,1
+73,"Payment Method",73,1,1
+74,"Shipping Method",74,1,1
+75,Address,75,1,1
+76,"Payment and Shipment",76,1,1
+77,Order,77,1,1
+78,"Product 3",78,1,1
+79,Total-Price,79,1,1
+80,Products,80,1,1
+81,"Product 3",81,1,1
+82,Buy,82,1,1
+83,"Product 4",83,1,1
