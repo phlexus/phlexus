@@ -8,3 +8,7 @@
 8,shop_shop_cart,1
 9,shop_shop_products,1
 10,shop_shop_checkout,1
+11,baseuser_auth_doremind,1
+12,baseuser_auth_docreate,1
+13,baseuser_auth_activate,1
+14,shop_callback_paypal,1
