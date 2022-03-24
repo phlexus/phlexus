@@ -113,3 +113,7 @@
 113,"Password Recover",113,1,1
 114,"Change Password",114,1,1
 115,"Account recovered successfully",115,1,1
+116,"Old Password",116,1,1
+117,"Old Password is required",117,1,1
+118,"Old Password",118,1,1
+119,"Old Password is not equal",119,1,1
