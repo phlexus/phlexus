@@ -103,9 +103,13 @@
 103,"Payment processed successfully",103,1,1
 104,"Product added",104,1,1
 105,"Email is invalid",105,1,1
-106,product-3,106,1,1
+106,"Product 3",106,1,1
 107,"No Products",107,1,1
 108,"Product removed successfully",108,1,1
 109,"Unable to add product",109,1,1
 110,"Unable to remove product",110,1,1
 111,"Password to weak, use upper and lower cases and a special character",111,1,1
+112,"HashCode is not Valid",112,1,1
+113,"Password Recover",113,1,1
+114,"Change Password",114,1,1
+115,account-recovered-successfully,115,1,1

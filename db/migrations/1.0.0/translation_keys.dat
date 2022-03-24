@@ -109,3 +109,7 @@
 109,unable-to-add-product,2,15,1
 110,unable-to-remove-product,2,16,1
 111,weak-password,2,1,1
+112,hash-code-must-have-only-alphanumeric-characters,2,1,1
+113,title-password-recover,1,1,1
+114,button-change-password,1,1,1
+115,account-recovered-successfully,2,1,1
