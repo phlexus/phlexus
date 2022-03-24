@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Phlexus\Modules\Generic\Actions;
 
 use Phlexus\Modules\BaseUser\Models\Profile;
-use Phlexus\Libraries\Translations\Database\Models\TextType;
 use Phalcon\Http\ResponseInterface;
 
 /**
@@ -34,7 +33,7 @@ trait EditAction {
 
         $defaultRoute = $this->getBasePosition();
 
-        $translationMessage = $this->translation->setPageType('', TextType::MESSAGE);
+        $translationMessage = $this->translation->setPage()->setTypeMessage();
 
         // Check if user has edit permissions
         if (!$isAdmin) {

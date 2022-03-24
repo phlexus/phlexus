@@ -6,7 +6,6 @@ namespace Phlexus\Modules\Generic\Actions;
 use Phlexus\Modules\BaseUser\Models\Profile;
 use Phlexus\Libraries\Media\Models\Media;
 use Phlexus\Libraries\Media\Models\MediaDestiny;
-use Phlexus\Libraries\Translations\Database\Models\TextType;
 use Phalcon\Http\ResponseInterface;
 use Phalcon\Mvc\Model as MvcModel;
 
@@ -53,7 +52,7 @@ trait SaveAction {
 
         $isAdmin = Profile::getUserProfile()->isAdmin();
 
-        $translationMessage = $this->translation->setPageType('', TextType::MESSAGE);
+        $translationMessage = $this->translation->setPage()->setTypeMessage();
 
         // Check if user has edit permissions
         if (!$isAdmin) {

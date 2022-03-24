@@ -33,9 +33,11 @@ trait DeleteAction {
         //Content of the response
         $response = ['success' => 0];
 
+        $translationMessage = $this->translation->setPage()->setTypeMessage();
+
         if (!$this->request->isPost() 
             || !$this->security->checkToken('csrf', $this->request->getPost('csrf', null))) {
-            $response['message'] = 'Invalid form data!';
+            $response['message'] = $translationMessage->_('invalid-form-data');
 
             return $this->response->setJsonContent($response);
         }
@@ -46,7 +48,7 @@ trait DeleteAction {
 
         // Check if user has delete permissions
         if (!$isAdmin) {
-            $response['message'] = 'No permissions to delete!';
+            $response['message'] = $translationMessage->_('no-delete-permissions');
 
             return $this->response->setJsonContent($response);
         }
@@ -58,7 +60,7 @@ trait DeleteAction {
 
             if ($record->save()) {
                 $response['success'] = true;
-                $response['message'] = 'Deleted successfully!';
+                $response['message'] = $translationMessage->_('delete-successfully');
             }
         }
 

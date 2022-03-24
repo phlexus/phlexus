@@ -51,6 +51,8 @@ class BaseForm extends FormBase
     {
         $fields = $this->getFields();
 
+        $translationMessage = $this->translation->setPage()->setTypeMessage();
+
         foreach ($fields as $field) {
             $type = isset($field['type']) ? $field['type'] : Text::class;
 
@@ -74,7 +76,7 @@ class BaseForm extends FormBase
                 $newField->addValidator(
                     new InclusionIn(
                         [
-                            'message' => ucfirst($fieldName) . ' is required',
+                            'message' => $translationMessage->_('field-' . $fieldName . '-required'),
                             'domain' => $selectKeys
                         ]
                     )
@@ -88,7 +90,7 @@ class BaseForm extends FormBase
 
             if ($required) {
                 $newField->addValidator(new PresenceOf([
-                    'message' => ucfirst($fieldName) . ' is required.',
+                    'message' => $translationMessage->_('field-' . $fieldName . '-required'),
                 ]));
             }
 
