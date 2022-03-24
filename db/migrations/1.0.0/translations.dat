@@ -108,3 +108,4 @@
 108,"Product removed successfully",108,1,1
 109,"Unable to add product",109,1,1
 110,"Unable to remove product",110,1,1
+111,"Password to weak, use upper and lower cases and a special character",111,1,1
