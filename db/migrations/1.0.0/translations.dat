@@ -101,3 +101,10 @@
 101,"Product 4",101,1,1
 102,Total-Price,102,1,1
 103,"Payment processed successfully",103,1,1
+104,"Product added",104,1,1
+105,"Email is invalid",105,1,1
+106,product-3,106,1,1
+107,"No Products",107,1,1
+108,"Product removed successfully",108,1,1
+109,"Unable to add product",109,1,1
+110,"Unable to remove product",110,1,1

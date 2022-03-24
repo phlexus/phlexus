@@ -101,3 +101,10 @@
 101,product-4,1,1,1
 102,text-total-price,1,1,1
 103,payment-processed-successfully,2,14,1
+104,product-added-successfully,2,15,1
+105,field-email-is-invalid,2,1,1
+106,product-3,1,8,1
+107,text-no-products,1,8,1
+108,product-successfully-removed,2,16,1
+109,unable-to-add-product,2,15,1
+110,unable-to-remove-product,2,16,1

@@ -12,3 +12,5 @@
 12,baseuser_auth_docreate,1
 13,baseuser_auth_activate,1
 14,shop_callback_paypal,1
+15,shop_shop_add,1
+16,shop_shop_remove,1
