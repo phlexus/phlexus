@@ -5,5 +5,7 @@ docker-compose.override.yml
 config/config.php
 .env
 themes/phlexus-tabler-admin
-public/assets/
+public/assets/themes
+public/assets/1/1/*
+public/assets/1/2/*
 composer.lock
