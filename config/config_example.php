@@ -29,6 +29,7 @@ return [
                 'password' => 'password',
                 'id' => 'id',
             ],
+            'login_redirect' => 'user',
         ],
         'exclude_routes' => [
             'Landing' => '*',
