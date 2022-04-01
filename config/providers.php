@@ -22,5 +22,7 @@ return [
 
     //\Phlexus\Providers\SMSProvider::class, #Uncomment to enable sms
 
+    \Phlexus\Providers\CartProvider::class,
+
     \Phlexus\Modules\Shop\Providers\PayPalProvider::class,
 ];
