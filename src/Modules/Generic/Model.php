@@ -13,7 +13,6 @@ use Phalcon\Mvc\Model\Resultset\Simple;
  */
 trait Model
 {
-
     private MvcModel $model;
 
     private array $viewFields = [];

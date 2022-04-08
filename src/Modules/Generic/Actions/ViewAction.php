@@ -13,7 +13,6 @@ use Phalcon\Http\ResponseInterface;
  */
 trait ViewAction
 {
-
     use \Phlexus\Modules\Generic\Model;
     
     /**
@@ -23,7 +22,11 @@ trait ViewAction
      */
     public function viewAction()
     {
-        $this->tag->setTitle('View');
+        $defaultTranslation = $this->translation->setPage();
+
+        $title = $defaultTranslation->setTypePage()->_('title-generic-view');
+
+        $this->tag->appendTitle($title);
 
         $model = $this->getModel();
 
@@ -39,7 +42,7 @@ trait ViewAction
 
         // Check if user has view permissions
         if (!$isAdmin) {
-            $this->flash->error($this->translation->setPage()->setTypeMessage()->_('no-view-permissions'));
+            $this->flash->error($defaultTranslation->setTypeMessage()->_('no-view-permissions'));
 
             return $this->response->redirect($defaultRoute);
         }

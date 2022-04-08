@@ -14,8 +14,8 @@ use Phalcon\Mvc\Model as MvcModel;
  *
  * @package Phlexus\Modules\Generic\Actions
  */
-trait SaveAction {
-
+trait SaveAction
+{
     use \Phlexus\Modules\Generic\Model;
 
     use \Phlexus\Modules\Generic\Form;

@@ -10,8 +10,8 @@ use Phlexus\Modules\Generic\Forms\BaseForm;
  *
  * @package Phlexus\Modules\Generic
  */
-trait Form {
-
+trait Form
+{
     private BaseForm $form;
 
     private array $formFields = [];

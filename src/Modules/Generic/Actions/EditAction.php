@@ -11,8 +11,8 @@ use Phalcon\Http\ResponseInterface;
  *
  * @package Phlexus\Modules\Generic\Actions
  */
-trait EditAction {
-    
+trait EditAction
+{    
     use \Phlexus\Modules\Generic\Model;
 
     use \Phlexus\Modules\Generic\Form;
@@ -24,8 +24,13 @@ trait EditAction {
      * 
      * @return mixed ResponseInterface or void
      */
-    public function editAction(int $id) {
-        $this->tag->setTitle('Edit');
+    public function editAction(int $id)
+    {
+        $defaultTranslation = $this->translation->setPage();
+
+        $title = $defaultTranslation->setTypePage()->_('title-generic-edit');
+
+        $this->tag->appendTitle($title);
         
         $model = $this->getModel();
 
@@ -33,7 +38,7 @@ trait EditAction {
 
         $defaultRoute = $this->getBasePosition();
 
-        $translationMessage = $this->translation->setPage()->setTypeMessage();
+        $translationMessage = $defaultTranslation->setTypeMessage();
 
         // Check if user has edit permissions
         if (!$isAdmin) {

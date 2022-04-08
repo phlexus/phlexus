@@ -14,7 +14,6 @@ use Phalcon\Http\ResponseInterface;
  */
 trait CreateAction
 {
-
     use \Phlexus\Modules\Generic\Model;
 
     use \Phlexus\Modules\Generic\Form;
@@ -26,7 +25,11 @@ trait CreateAction
      */
     public function createAction()
     {
-        $this->tag->setTitle('Create');
+        $defaultTranslation = $this->translation->setPage();
+
+        $title = $defaultTranslation->setTypePage()->_('title-generic-create');
+
+        $this->tag->appendTitle($title);
         
         $defaultRoute = $this->getBasePosition();
 
@@ -36,7 +39,7 @@ trait CreateAction
 
         // Check if user has create permissions
         if (!$isAdmin) {
-            $noPermissions = $this->translation->setPage()->setTypeMessage()->_('no-create-permissions');
+            $noPermissions = $defaultTranslation->setTypeMessage()->_('no-create-permissions');
             $this->flash->error($noPermissions);
 
             return $this->response->redirect($defaultRoute);

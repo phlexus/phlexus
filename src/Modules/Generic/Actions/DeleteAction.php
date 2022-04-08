@@ -11,8 +11,8 @@ use Phlexus\Modules\BaseUser\Models\Profile;
  *
  * @package Phlexus\Modules\Generic\Actions
  */
-trait DeleteAction {
-    
+trait DeleteAction
+{    
     use \Phlexus\Modules\Generic\Model;
 
     /**

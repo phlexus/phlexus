@@ -19,6 +19,8 @@ final class HomeController extends Controller
      */
     public function indexAction(): void
     {
-        $this->view->setVar('name', 'Phlexus CMS');
+        $title = $this->translation->setTypePage()->_('title-home');
+
+        $this->tag->setTitle($title);
     }
 }
