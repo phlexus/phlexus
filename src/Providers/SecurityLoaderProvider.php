@@ -42,7 +42,7 @@ class SecurityLoaderProvider extends AbstractProvider
 
         $this->di->setShared($this->providerName, function () use ($security, $user, $configs, $database) {
             $appHash  = isset($configs[self::APP_HASH_PARAM_KEY]) ? $configs[self::APP_HASH_PARAM_KEY] : '';
-            $userHash = isset($user->userHash) ? $user->userHash : '';
+            $userHash = $user !== null ? $user->userHash : '';
 
             $security->setAppHash($appHash);
             $security->setUserHash($userHash);

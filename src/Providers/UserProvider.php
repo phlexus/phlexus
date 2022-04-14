@@ -24,7 +24,12 @@ class UserProvider extends AbstractProvider
      */
     public function register(array $parameters = []): void
     {
-        $info = User::getUser()->getUserInfo();
+        $user = User::getUser();
+
+        $info = [];
+        if($user !== null) {
+            $info = $user->getUserInfo();
+        }
 
         $this->di->setShared($this->providerName, function () use ($info) {
             return (object) $info;
