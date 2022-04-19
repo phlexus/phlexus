@@ -50,6 +50,24 @@ class AddressTypeMigration_101 extends Migration
                         'after' => 'addressType'
                     ]
                 ),
+                new Column(
+                    'createdAt',
+                    [
+                        'type' => Column::TYPE_TIMESTAMP,
+                        'default' => "CURRENT_TIMESTAMP",
+                        'notNull' => true,
+                        'after' => 'active'
+                    ]
+                ),
+                new Column(
+                    'modifiedAt',
+                    [
+                        'type' => Column::TYPE_TIMESTAMP,
+                        'default' => "CURRENT_TIMESTAMP",
+                        'notNull' => true,
+                        'after' => 'createdAt'
+                    ]
+                ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
@@ -74,6 +92,8 @@ class AddressTypeMigration_101 extends Migration
             'id',
             'addressType',
             'active',
+            'createdAt',
+            'modifiedAt',
         ]);
     }
 

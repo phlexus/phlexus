@@ -49,6 +49,24 @@ class ResourcesMigration_101 extends Migration
                         'after' => 'resource'
                     ]
                 ),
+                new Column(
+                    'createdAt',
+                    [
+                        'type' => Column::TYPE_TIMESTAMP,
+                        'default' => "CURRENT_TIMESTAMP",
+                        'notNull' => true,
+                        'after' => 'action'
+                    ]
+                ),
+                new Column(
+                    'modifiedAt',
+                    [
+                        'type' => Column::TYPE_TIMESTAMP,
+                        'default' => "CURRENT_TIMESTAMP",
+                        'notNull' => true,
+                        'after' => 'createdAt'
+                    ]
+                ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
@@ -73,6 +91,8 @@ class ResourcesMigration_101 extends Migration
             'id',
             'resource',
             'action',
+            'createdAt',
+            'modifiedAt',
         ]);
     }
 

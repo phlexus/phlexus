@@ -48,6 +48,24 @@ class SettingsMigration_101 extends Migration
                         'after' => 'key'
                     ]
                 ),
+                new Column(
+                    'createdAt',
+                    [
+                        'type' => Column::TYPE_TIMESTAMP,
+                        'default' => "CURRENT_TIMESTAMP",
+                        'notNull' => true,
+                        'after' => 'value'
+                    ]
+                ),
+                new Column(
+                    'modifiedAt',
+                    [
+                        'type' => Column::TYPE_TIMESTAMP,
+                        'default' => "CURRENT_TIMESTAMP",
+                        'notNull' => true,
+                        'after' => 'createdAt'
+                    ]
+                ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
@@ -72,6 +90,8 @@ class SettingsMigration_101 extends Migration
             'id',
             'key',
             'value',
+            'createdAt',
+            'modifiedAt',
         ]);
     }
 

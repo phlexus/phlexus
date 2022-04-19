@@ -49,6 +49,24 @@ class ProfileResourcesMigration_101 extends Migration
                         'after' => 'resourceID'
                     ]
                 ),
+                new Column(
+                    'createdAt',
+                    [
+                        'type' => Column::TYPE_TIMESTAMP,
+                        'default' => "CURRENT_TIMESTAMP",
+                        'notNull' => true,
+                        'after' => 'profileID'
+                    ]
+                ),
+                new Column(
+                    'modifiedAt',
+                    [
+                        'type' => Column::TYPE_TIMESTAMP,
+                        'default' => "CURRENT_TIMESTAMP",
+                        'notNull' => true,
+                        'after' => 'createdAt'
+                    ]
+                ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
@@ -99,6 +117,8 @@ class ProfileResourcesMigration_101 extends Migration
             'id',
             'resourceID',
             'profileID',
+            'createdAt',
+            'modifiedAt',
         ]);
     }
 

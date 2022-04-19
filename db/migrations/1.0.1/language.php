@@ -59,6 +59,24 @@ class LanguageMigration_101 extends Migration
                         'after' => 'language'
                     ]
                 ),
+                new Column(
+                    'createdAt',
+                    [
+                        'type' => Column::TYPE_TIMESTAMP,
+                        'default' => "CURRENT_TIMESTAMP",
+                        'notNull' => true,
+                        'after' => 'active'
+                    ]
+                ),
+                new Column(
+                    'modifiedAt',
+                    [
+                        'type' => Column::TYPE_TIMESTAMP,
+                        'default' => "CURRENT_TIMESTAMP",
+                        'notNull' => true,
+                        'after' => 'createdAt'
+                    ]
+                ),
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
@@ -84,6 +102,8 @@ class LanguageMigration_101 extends Migration
             'iso',
             'language',
             'active',
+            'createdAt',
+            'modifiedAt',
         ]);
     }
 
