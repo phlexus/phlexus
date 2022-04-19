@@ -30,6 +30,16 @@ class Settings extends Model
     public string $value;
 
     /**
+     * @var string|null
+     */
+    public $createdAt;
+
+    /**
+     * @var string|null
+     */
+    public $modifiedAt;
+
+    /**
      * Initialize
      *
      * @return void
