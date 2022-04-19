@@ -1,0 +1,16 @@
+1,default,1
+2,baseuser_auth_login,1
+3,baseuser_auth_create,1
+4,baseuser_auth_remind,1
+5,baseuser_auth_dologin,1
+6,baseuser_profile_edit,1
+7,landing_home_index,1
+8,shop_shop_cart,1
+9,shop_shop_products,1
+10,shop_shop_checkout,1
+11,baseuser_auth_doremind,1
+12,baseuser_auth_docreate,1
+13,baseuser_auth_activate,1
+14,shop_callback_paypal,1
+15,shop_shop_add,1
+16,shop_shop_remove,1

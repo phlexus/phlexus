@@ -30,6 +30,7 @@ return new Config([
             'translations',
             'media_type',
             'media_destiny',
+            'payment_type',
             'payment_method',
             'shipping_method',
             'profiles',
