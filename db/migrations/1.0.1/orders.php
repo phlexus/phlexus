@@ -51,7 +51,7 @@ class OrdersMigration_101 extends Migration
                     ]
                 ),
                 new Column(
-                    'status',
+                    'statusID',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'default' => "1",
@@ -67,7 +67,7 @@ class OrdersMigration_101 extends Migration
                         'default' => "1",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'status'
+                        'after' => 'statusID'
                     ]
                 ),
                 new Column(
@@ -141,6 +141,7 @@ class OrdersMigration_101 extends Migration
                 new Index('shippingMethodID', ['shippingMethodID'], ''),
                 new Index('fk_orders_billing_id_idx', ['billingID'], ''),
                 new Index('fk_orders_shipment_id_idx', ['shipmentID'], ''),
+                new Index('fk_orders_order_status_id_idx', ['statusID'], ''),
             ],
             'references' => [
                 new Reference(
@@ -152,6 +153,17 @@ class OrdersMigration_101 extends Migration
                         'referencedColumns' => ['id'],
                         'onUpdate' => 'RESTRICT',
                         'onDelete' => 'RESTRICT'
+                    ]
+                ),
+                new Reference(
+                    'fk_orders_order_status_id',
+                    [
+                        'referencedSchema' => 'cms_phalcon',
+                        'referencedTable' => 'order_status',
+                        'columns' => ['statusID'],
+                        'referencedColumns' => ['id'],
+                        'onUpdate' => 'NO ACTION',
+                        'onDelete' => 'NO ACTION'
                     ]
                 ),
                 new Reference(

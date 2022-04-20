@@ -41,7 +41,7 @@ class PaymentsMigration_101 extends Migration
                     ]
                 ),
                 new Column(
-                    'status',
+                    'statusID',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
@@ -56,7 +56,7 @@ class PaymentsMigration_101 extends Migration
                         'default' => "1",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'status'
+                        'after' => 'statusID'
                     ]
                 ),
                 new Column(
@@ -110,6 +110,7 @@ class PaymentsMigration_101 extends Migration
                 new Index('fk_payments_payment_method_id_idx', ['paymentMethodID'], ''),
                 new Index('fk_payments_payment_type_id_idx', ['paymentTypeID'], ''),
                 new Index('fk_payments_order_id_idx', ['orderID'], ''),
+                new Index('fk_payments_payments_status_id_idx', ['statusID'], ''),
             ],
             'references' => [
                 new Reference(
@@ -118,6 +119,17 @@ class PaymentsMigration_101 extends Migration
                         'referencedSchema' => 'cms_phalcon',
                         'referencedTable' => 'orders',
                         'columns' => ['orderID'],
+                        'referencedColumns' => ['id'],
+                        'onUpdate' => 'NO ACTION',
+                        'onDelete' => 'NO ACTION'
+                    ]
+                ),
+                new Reference(
+                    'fk_payments_payments_status_id',
+                    [
+                        'referencedSchema' => 'cms_phalcon',
+                        'referencedTable' => 'payment_status',
+                        'columns' => ['statusID'],
                         'referencedColumns' => ['id'],
                         'onUpdate' => 'NO ACTION',
                         'onDelete' => 'NO ACTION'
