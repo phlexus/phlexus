@@ -116,12 +116,21 @@ class OrdersMigration_101 extends Migration
                     ]
                 ),
                 new Column(
+                    'parentID',
+                    [
+                        'type' => Column::TYPE_INTEGER,
+                        'notNull' => false,
+                        'size' => 1,
+                        'after' => 'shippingMethodID'
+                    ]
+                ),
+                new Column(
                     'createdAt',
                     [
                         'type' => Column::TYPE_TIMESTAMP,
                         'default' => "CURRENT_TIMESTAMP",
                         'notNull' => true,
-                        'after' => 'shippingMethodID'
+                        'after' => 'parentID'
                     ]
                 ),
                 new Column(
@@ -142,6 +151,7 @@ class OrdersMigration_101 extends Migration
                 new Index('fk_orders_billing_id_idx', ['billingID'], ''),
                 new Index('fk_orders_shipment_id_idx', ['shipmentID'], ''),
                 new Index('fk_orders_order_status_id_idx', ['statusID'], ''),
+                new Index('fk_orders_order_id_idx', ['parentID'], ''),
             ],
             'references' => [
                 new Reference(
@@ -153,6 +163,17 @@ class OrdersMigration_101 extends Migration
                         'referencedColumns' => ['id'],
                         'onUpdate' => 'RESTRICT',
                         'onDelete' => 'RESTRICT'
+                    ]
+                ),
+                new Reference(
+                    'fk_orders_order_id',
+                    [
+                        'referencedSchema' => 'cms_phalcon',
+                        'referencedTable' => 'orders',
+                        'columns' => ['parentID'],
+                        'referencedColumns' => ['id'],
+                        'onUpdate' => 'NO ACTION',
+                        'onDelete' => 'NO ACTION'
                     ]
                 ),
                 new Reference(
@@ -213,7 +234,7 @@ class OrdersMigration_101 extends Migration
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '73',
+                'AUTO_INCREMENT' => '78',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8_unicode_ci',
             ],

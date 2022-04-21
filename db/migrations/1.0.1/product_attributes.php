@@ -7,9 +7,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class ResourcesMigration_101
+ * Class ProductAttributesMigration_101
  */
-class ResourcesMigration_101 extends Migration
+class ProductAttributesMigration_101 extends Migration
 {
     /**
      * Define the table structure
@@ -19,7 +19,7 @@ class ResourcesMigration_101 extends Migration
      */
     public function morph(): void
     {
-        $this->morphTable('resources', [
+        $this->morphTable('product_attributes', [
             'columns' => [
                 new Column(
                     'id',
@@ -32,21 +32,40 @@ class ResourcesMigration_101 extends Migration
                     ]
                 ),
                 new Column(
-                    'resource',
+                    'name',
                     [
                         'type' => Column::TYPE_VARCHAR,
                         'notNull' => true,
-                        'size' => 255,
+                        'size' => 45,
                         'after' => 'id'
                     ]
                 ),
                 new Column(
-                    'action',
+                    'value',
                     [
                         'type' => Column::TYPE_VARCHAR,
                         'notNull' => true,
-                        'size' => 255,
-                        'after' => 'resource'
+                        'size' => 45,
+                        'after' => 'name'
+                    ]
+                ),
+                new Column(
+                    'active',
+                    [
+                        'type' => Column::TYPE_INTEGER,
+                        'default' => "1",
+                        'notNull' => true,
+                        'size' => 1,
+                        'after' => 'value'
+                    ]
+                ),
+                new Column(
+                    'productID',
+                    [
+                        'type' => Column::TYPE_INTEGER,
+                        'notNull' => true,
+                        'size' => 1,
+                        'after' => 'active'
                     ]
                 ),
                 new Column(
@@ -55,7 +74,7 @@ class ResourcesMigration_101 extends Migration
                         'type' => Column::TYPE_TIMESTAMP,
                         'default' => "CURRENT_TIMESTAMP",
                         'notNull' => true,
-                        'after' => 'action'
+                        'after' => 'productID'
                     ]
                 ),
                 new Column(
@@ -70,12 +89,26 @@ class ResourcesMigration_101 extends Migration
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
+                new Index('fk_product_attributes_products_idx', ['productID'], ''),
+            ],
+            'references' => [
+                new Reference(
+                    'fk_product_attributes_products_id',
+                    [
+                        'referencedSchema' => 'cms_phalcon',
+                        'referencedTable' => 'products',
+                        'columns' => ['productID'],
+                        'referencedColumns' => ['id'],
+                        'onUpdate' => 'NO ACTION',
+                        'onDelete' => 'NO ACTION'
+                    ]
+                ),
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '74',
+                'AUTO_INCREMENT' => '36',
                 'ENGINE' => 'InnoDB',
-                'TABLE_COLLATION' => 'utf8_unicode_ci',
+                'TABLE_COLLATION' => 'utf8mb4_0900_ai_ci',
             ],
         ]);
     }
@@ -87,13 +120,6 @@ class ResourcesMigration_101 extends Migration
      */
     public function up(): void
     {
-        $this->batchInsert('resources', [
-            'id',
-            'resource',
-            'action',
-            'createdAt',
-            'modifiedAt',
-        ]);
     }
 
     /**
@@ -103,6 +129,5 @@ class ResourcesMigration_101 extends Migration
      */
     public function down(): void
     {
-        $this->batchDelete('resources');
     }
 }
