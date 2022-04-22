@@ -3,6 +3,7 @@
 vendor/
 docker-compose.override.yml
 config/config.php
+config/config_cli.php
 .env
 themes/phlexus-tabler-admin
 public/assets/
