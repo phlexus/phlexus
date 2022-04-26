@@ -15,8 +15,6 @@ trait Model
 {
     private MvcModel $model;
 
-    private array $viewFields = [];
-
     /**
      * Get Model
      *
@@ -37,28 +35,6 @@ trait Model
     private function setModel(MvcModel $model)
     {
         $this->model = $model;
-    }
-
-    /**
-     * Get View Fields
-     *
-     * @return array The View Fields array
-     */
-    private function getViewFields(): array
-    {
-        return $this->viewFields;
-    }
-
-    /**
-     * Set View Fields
-     * 
-     * @param array The View Fields array
-     * 
-     * @return void
-     */
-    private function setViewFields(array $fields)
-    {
-        $this->viewFields = $fields;
     }
 
     /**
