@@ -27,13 +27,7 @@ trait CreateAction
     {
         $defaultTranslation = $this->translation->setPage();
 
-        $title = $defaultTranslation->setTypePage()->_('title-generic-create');
-
-        $this->tag->appendTitle($title);
-        
         $defaultRoute = $this->getBasePosition();
-
-        $saveRoute =  $defaultRoute . '/save';
 
         $isAdmin = Profile::getUserProfile()->isAdmin();
 
@@ -44,6 +38,12 @@ trait CreateAction
 
             return $this->response->redirect($defaultRoute);
         }
+
+        $title = $defaultTranslation->setTypePage()->_('title-generic-create');
+
+        $this->tag->appendTitle($title);
+        
+        $saveRoute =  $defaultRoute . '/save';
 
         $this->view->setVar('form', $this->getForm());
 

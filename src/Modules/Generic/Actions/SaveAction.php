@@ -27,32 +27,15 @@ trait SaveAction
      *
      * @return ResponseInterface
      */
-    public function saveAction(): ResponseInterface {
+    public function saveAction(): ResponseInterface
+    {
         $this->view->disable();
 
-        $isEdit = false;
+        $translationMessage = $this->translation->setPage()->setTypeMessage();
 
         $defaultRoute = $this->getBasePosition();
 
-        if (!$this->request->isPost() 
-            || !$this->security->checkToken('csrf', $this->request->getPost('csrf', null))) {
-            return $this->response->redirect($defaultRoute);
-        }
-
-        $form = $this->getForm();
-
-        $fields = $this->getFormFields();
-
-        $post = $this->request->getPost();
-
-        $primaryKey = $this->primaryKey;
-        $key = (int) (isset($post[$primaryKey]) ? $post[$primaryKey] : 0);
-
-        $model = $this->getModel();
-
         $isAdmin = Profile::getUserProfile()->isAdmin();
-
-        $translationMessage = $this->translation->setPage()->setTypeMessage();
 
         // Check if user has edit permissions
         if (!$isAdmin) {
@@ -60,6 +43,19 @@ trait SaveAction
 
             return $this->response->redirect($defaultRoute);
         }
+
+        if (!$this->request->isPost() 
+            || !$this->security->checkToken('csrf', $this->request->getPost('csrf', null, null))) {
+            return $this->response->redirect($defaultRoute);
+        }
+
+        $isEdit = false;
+
+        $primaryKey = $this->primaryKey;
+
+        $model = $this->getModel();
+
+        $key = $this->getModelKey();
 
         if ($key > 0) {
             $model = $model->findFirst([
@@ -75,7 +71,9 @@ trait SaveAction
 
             $isEdit = true;
         }
-        
+
+        $fields = $this->getFormFields();
+
         $authorized = array_map(function($auth) { return $auth['name']; }, $fields);
         $authorizedKeys = array_flip($authorized);
 
@@ -83,6 +81,10 @@ trait SaveAction
         if (isset($authorizedKeys[$primaryKey])) {
             unset($authorizedKeys[$primaryKey]);
         }
+
+        $form = $this->getForm();
+
+        $post = $this->request->getPost();
 
         $form->bind(array_intersect_key($post, $authorizedKeys), $model);
         
@@ -106,6 +108,9 @@ trait SaveAction
                 return $this->response->redirect($defaultRoute);
             }
 
+            // Set model with saved data
+            $this->setModel($model);
+
             $this->flash->success($translationMessage->_('record-saved-sucessfully'));
 
             return $this->response->redirect($defaultRoute);
@@ -119,11 +124,32 @@ trait SaveAction
     }
 
     /**
+     * Is model editting
+     *
+     * @return bool
+     */
+    private function isModelEdit(): bool
+    {
+        return $this->getModelKey() > 0;
+    }
+
+    /**
+     * Get model key
+     *
+     * @return int
+     */
+    private function getModelKey(): int
+    {
+        return (int) $this->request->getPost($this->primaryKey, null, 0);
+    }
+
+    /**
      * Process Upload Image
      *
      * @return MvcModel|false
      */
-    private function processUploadImage(MvcModel $model, array $authorizedKeys) {
+    private function processUploadImage(MvcModel $model, array $authorizedKeys)
+    {
         if ($this->request->hasFiles() !== true) {
             return $model;
         }

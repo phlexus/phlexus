@@ -28,31 +28,29 @@ trait EditAction
     {
         $defaultTranslation = $this->translation->setPage();
 
+        $isAdmin = Profile::getUserProfile()->isAdmin();
+
+        $defaultRoute = $this->getBasePosition();
+
+        // Check if user has edit permissions
+        if (!$isAdmin) {
+            $this->flash->error($defaultTranslation->setTypeMessage()->_('no-edit-permissions'));
+
+            return $this->response->redirect($defaultRoute);
+        }
+
         $title = $defaultTranslation->setTypePage()->_('title-generic-edit');
 
         $this->tag->appendTitle($title);
         
         $model = $this->getModel();
 
-        $isAdmin = Profile::getUserProfile()->isAdmin();
-
-        $defaultRoute = $this->getBasePosition();
-
-        $translationMessage = $defaultTranslation->setTypeMessage();
-
-        // Check if user has edit permissions
-        if (!$isAdmin) {
-            $this->flash->error($translationMessage->_('no-edit-permissions'));
-
-            return $this->response->redirect($defaultRoute);
-        }
-
         $form = $this->getForm();
         
         $record = $model->findFirstByid($id);
 
         if (!$record) {
-            $this->flash->error($translationMessage->_('record-not-found'));
+            $this->flash->error($defaultTranslation->setTypeMessage()->_('record-not-found'));
 
             return $this->response->redirect($defaultRoute);
         }

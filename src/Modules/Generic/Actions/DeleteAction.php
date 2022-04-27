@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Phlexus\Modules\Generic\Actions;
 
 use Phalcon\Http\ResponseInterface;
+use Phalcon\Http\Response;
 use Phlexus\Modules\BaseUser\Models\Profile;
 
 /**
@@ -22,29 +23,19 @@ trait DeleteAction
      * 
      * @return ResponseInterface
      */
-    public function deleteAction(int $id): ResponseInterface {
+    public function deleteAction(int $id): ResponseInterface
+    {
         $this->view->disable();
-
-        $defaultRoute = $this->getBasePosition();
-
-        //Response instance
-        $response = new \Phalcon\Http\Response();
-
-        //Content of the response
-        $response = ['success' => 0];
 
         $translationMessage = $this->translation->setPage()->setTypeMessage();
 
-        if (!$this->request->isPost() 
-            || !$this->security->checkToken('csrf', $this->request->getPost('csrf', null))) {
-            $response['message'] = $translationMessage->_('invalid-form-data');
-
-            return $this->response->setJsonContent($response);
-        }
-
-        $model = $this->getModel();
-
         $isAdmin = Profile::getUserProfile()->isAdmin();
+
+        // Response instance
+        $response = new Response();
+
+        // Content of the response
+        $response = ['success' => 0];
 
         // Check if user has delete permissions
         if (!$isAdmin) {
@@ -52,6 +43,15 @@ trait DeleteAction
 
             return $this->response->setJsonContent($response);
         }
+
+        if (!$this->request->isPost() 
+            || !$this->security->checkToken('csrf', $this->request->getPost('csrf', null, null))) {
+            $response['message'] = $translationMessage->_('invalid-form-data');
+
+            return $this->response->setJsonContent($response);
+        }
+
+        $model = $this->getModel();
 
         $record = $model->findFirstByid($id);
 
