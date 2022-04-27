@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Phlexus\Modules\Generic\Actions;
 
 use Phlexus\Modules\BaseUser\Models\Profile;
+use Phalcon\Mvc\Model\Resultset\Simple;
 use Phalcon\Http\ResponseInterface;
 
 /**
@@ -18,6 +19,8 @@ trait ViewAction
     private array $viewFields = [];
 
     private array $relatedViews = [];
+
+    private Simple $records;
 
     /**
      * View Action
@@ -43,13 +46,17 @@ trait ViewAction
 
         $this->tag->appendTitle($title);
 
-        $model = $this->getModel();
+        $records = $this->getRecords();
 
-        $records = $model->find([
-            'conditions' => 'active = :active:',
-            'bind'       => ['active' => 1],
-            'order'      => 'id DESC',
-        ]);
+        if (!$records) {
+            $model = $this->getModel();
+
+            $records = $model->find([
+                'conditions' => 'active = :active:',
+                'bind'       => ['active' => 1],
+                'order'      => 'id DESC',
+            ]);
+        }
 
         $this->view->setVar('display', $this->getViewFields());
 
@@ -110,5 +117,27 @@ trait ViewAction
     private function setRelatedViews(array $relatedViews)
     {
         $this->relatedViews = $relatedViews;
+    }
+    
+    /**
+     * Get Records
+     *
+     * @return Simple|null Records or null
+     */
+    private function getRecords()
+    {
+        return isset($this->records) ? $this->records : null;
+    }
+
+    /**
+     * Set Records
+     * 
+     * @param Simple Records
+     * 
+     * @return void
+     */
+    private function setRecords(Simple $records)
+    {
+        $this->records = $records;
     }
 }
