@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Phlexus\Modules\Generic;
 
-use Phalcon\Mvc\Model as MvcModel;
+use Phlexus\Models\Model as MvcModel;
 use Phalcon\Mvc\Model\Resultset\Simple;
 
 /**

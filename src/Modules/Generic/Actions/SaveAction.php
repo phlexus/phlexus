@@ -6,8 +6,8 @@ namespace Phlexus\Modules\Generic\Actions;
 use Phlexus\Modules\BaseUser\Models\Profile;
 use Phlexus\Libraries\Media\Models\Media;
 use Phlexus\Libraries\Media\Models\MediaDestiny;
+use Phlexus\Models\Model as MvcModel;
 use Phalcon\Http\ResponseInterface;
-use Phalcon\Mvc\Model as MvcModel;
 
 /**
  * Trait SaveAction
