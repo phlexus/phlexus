@@ -118,7 +118,7 @@ class TranslationKeysMigration_101 extends Migration
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '137',
+                'AUTO_INCREMENT' => '155',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8mb4_0900_ai_ci',
             ],

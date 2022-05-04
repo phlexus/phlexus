@@ -32,13 +32,30 @@ class ItemsMigration_101 extends Migration
                     ]
                 ),
                 new Column(
+                    'quantity',
+                    [
+                        'type' => Column::TYPE_INTEGER,
+                        'notNull' => true,
+                        'size' => 1,
+                        'after' => 'id'
+                    ]
+                ),
+                new Column(
+                    'price',
+                    [
+                        'type' => Column::TYPE_DOUBLE,
+                        'notNull' => true,
+                        'after' => 'quantity'
+                    ]
+                ),
+                new Column(
                     'active',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'default' => "1",
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'id'
+                        'after' => 'price'
                     ]
                 ),
                 new Column(
@@ -109,7 +126,7 @@ class ItemsMigration_101 extends Migration
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '86',
+                'AUTO_INCREMENT' => '112',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8_unicode_ci',
             ],

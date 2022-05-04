@@ -41,12 +41,20 @@ class PaymentsMigration_101 extends Migration
                     ]
                 ),
                 new Column(
+                    'totalPrice',
+                    [
+                        'type' => Column::TYPE_DOUBLE,
+                        'notNull' => true,
+                        'after' => 'hashCode'
+                    ]
+                ),
+                new Column(
                     'statusID',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'hashCode'
+                        'after' => 'totalPrice'
                     ]
                 ),
                 new Column(
@@ -160,7 +168,7 @@ class PaymentsMigration_101 extends Migration
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '34',
+                'AUTO_INCREMENT' => '52',
                 'ENGINE' => 'InnoDB',
                 'TABLE_COLLATION' => 'utf8mb4_0900_ai_ci',
             ],

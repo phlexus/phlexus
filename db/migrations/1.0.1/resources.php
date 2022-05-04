@@ -50,12 +50,22 @@ class ResourcesMigration_101 extends Migration
                     ]
                 ),
                 new Column(
+                    'active',
+                    [
+                        'type' => Column::TYPE_INTEGER,
+                        'default' => "1",
+                        'notNull' => true,
+                        'size' => 1,
+                        'after' => 'action'
+                    ]
+                ),
+                new Column(
                     'createdAt',
                     [
                         'type' => Column::TYPE_TIMESTAMP,
                         'default' => "CURRENT_TIMESTAMP",
                         'notNull' => true,
-                        'after' => 'action'
+                        'after' => 'active'
                     ]
                 ),
                 new Column(
@@ -91,6 +101,7 @@ class ResourcesMigration_101 extends Migration
             'id',
             'resource',
             'action',
+            'active',
             'createdAt',
             'modifiedAt',
         ]);
