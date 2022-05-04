@@ -27,7 +27,8 @@ return [
             'fields' => [
                 'identity' => 'email',
                 'password' => 'password',
-                'id' => 'id',
+                'id'       => 'id',
+                'active'   => 'active',
             ],
             'login_redirect' => 'user',
         ],
