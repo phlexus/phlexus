@@ -124,7 +124,7 @@ trait ViewAction
      *
      * @return Simple|null Records or null
      */
-    private function getRecords()
+    private function getRecords(): ?Simple
     {
         return isset($this->records) ? $this->records : null;
     }
