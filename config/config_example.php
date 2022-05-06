@@ -41,7 +41,7 @@ return [
         'type'   => \Phlexus\Libraries\Translations\TranslationFactory::REDIS,
         'config' => [
             'files_dir' => dirname(__DIR__) .'/translations',
-            'default_language' => 'en_US',
+            'default_language' => 'en-us',
         ],
     ],
 
