@@ -88,6 +88,13 @@ class OrderStatusMigration_101 extends Migration
      */
     public function up(): void
     {
+        $this->batchInsert('order_status', [
+            'id',
+            'status',
+            'active',
+            'createdAt',
+            'modifiedAt',
+        ]);
     }
 
     /**
@@ -97,5 +104,6 @@ class OrderStatusMigration_101 extends Migration
      */
     public function down(): void
     {
+        $this->batchDelete('order_status');
     }
 }

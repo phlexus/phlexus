@@ -88,6 +88,13 @@ class PaymentStatusMigration_101 extends Migration
      */
     public function up(): void
     {
+        $this->batchInsert('payment_status', [
+            'id',
+            'status',
+            'active',
+            'createdAt',
+            'modifiedAt',
+        ]);
     }
 
     /**
@@ -97,5 +104,6 @@ class PaymentStatusMigration_101 extends Migration
      */
     public function down(): void
     {
+        $this->batchDelete('payment_status');
     }
 }
