@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Phlexus\Modules\Generic;
 
 use Phlexus\Models\Model as MvcModel;
-use Phalcon\Mvc\Model\Resultset\Simple;
+use Phalcon\Paginator\Repository;
 
 /**
  * Trait Model
@@ -89,16 +89,16 @@ trait Model
     /**
      * Translate Related Field
      * 
-     * @param Simple The Simple instance
+     * @param Repository The Repository instance
      *
      * @return array Translated Related Fields (if column is named 'name')
      */
-    private function translateRelatedFields(Simple $records): array
+    private function translateRelatedFields(Repository $records): array
     {
         $related = $this->getRelatedFields();
 
         if (count($related) === 0) {
-            return $records->toArray();
+            return $records->getItems();
         }
 
         $fields = [];

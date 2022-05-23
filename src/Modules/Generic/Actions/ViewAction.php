@@ -6,6 +6,7 @@ namespace Phlexus\Modules\Generic\Actions;
 use Phlexus\Modules\BaseUser\Models\Profile;
 use Phalcon\Mvc\Model\Resultset\Simple;
 use Phalcon\Http\ResponseInterface;
+use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 
 /**
  * Trait ViewAction
@@ -16,11 +17,13 @@ trait ViewAction
 {
     use \Phlexus\Modules\Generic\Model;
 
+    private int $pageLimit = 25;
+
     private array $viewFields = [];
 
     private array $relatedViews = [];
 
-    private Simple $records;
+    private PaginatorModel $records;
 
     /**
      * View Action
@@ -46,22 +49,18 @@ trait ViewAction
 
         $this->tag->appendTitle($title);
 
-        $records = $this->getRecords();
+        $paginator = $this->getRecords();
 
-        if (!$records) {
-            $model = $this->getModel();
-
-            $records = $model->find([
-                'conditions' => 'active = :active:',
-                'bind'       => ['active' => 1],
-                'order'      => 'id DESC',
-            ]);
+        if (!$paginator) {
+            $paginator = $this->getModel()::getModelPaginator();
         }
+        
+        $records = $paginator->paginate();
 
         $this->view->setVar('display', $this->getViewFields());
 
         $this->view->setVar('records', array_replace_recursive(
-            $records->toArray(), 
+            $records->getItems(), 
             $this->translateRelatedFields($records)
         ));
 
@@ -122,9 +121,9 @@ trait ViewAction
     /**
      * Get Records
      *
-     * @return Simple|null Records or null
+     * @return PaginatorModel|null Records or null
      */
-    private function getRecords(): ?Simple
+    private function getRecords(): ?PaginatorModel
     {
         return isset($this->records) ? $this->records : null;
     }
@@ -132,11 +131,11 @@ trait ViewAction
     /**
      * Set Records
      * 
-     * @param Simple Records
+     * @param PaginatorModel Records
      * 
      * @return void
      */
-    private function setRecords(Simple $records)
+    private function setRecords(PaginatorModel $records)
     {
         $this->records = $records;
     }
