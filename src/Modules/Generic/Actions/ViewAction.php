@@ -59,6 +59,8 @@ trait ViewAction
 
         $this->view->setVar('display', $this->getViewFields());
 
+        $this->view->setVar('paginate', $records);
+
         $this->view->setVar('records', array_replace_recursive(
             $records->getItems(), 
             $this->translateRelatedFields($records)
