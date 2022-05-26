@@ -52,7 +52,7 @@ trait ViewAction
         $paginator = $this->getRecords();
 
         if (!$paginator) {
-            $paginator = $this->getModel()::getModelPaginator();
+            $paginator = $this->getModel()::getModelPaginator([], (int) $this->request->get('p', null, 1));
         }
         
         $records = $paginator->paginate();
