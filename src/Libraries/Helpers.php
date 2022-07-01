@@ -46,10 +46,10 @@ class Helpers extends PhlexusHelpers
      /**
      * Renders an email template
      *
-     * @param View $view Mvc View 
-     * @param string $main Main dir name
+     * @param View   $view     Mvc View 
+     * @param string $main     Main dir name
      * @param string $template Template to render
-     * @param array $vars Vars array to render
+     * @param array  $vars     Vars array to render
      * 
      * @return string
      * 
@@ -97,7 +97,7 @@ class Helpers extends PhlexusHelpers
      * Send an sms
      *
      * @param string $destNumber Destiny number
-     * @param string $message     Message
+     * @param string $message    Message
      * 
      * @return bool
      */
