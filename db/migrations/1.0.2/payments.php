@@ -49,12 +49,21 @@ class PaymentsMigration_102 extends Migration
                     ]
                 ),
                 new Column(
+                    'invoiceNumber',
+                    [
+                        'type' => Column::TYPE_VARCHAR,
+                        'notNull' => false,
+                        'size' => 255,
+                        'after' => 'totalPrice'
+                    ]
+                ),
+                new Column(
                     'statusID',
                     [
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
                         'size' => 1,
-                        'after' => 'totalPrice'
+                        'after' => 'invoiceNumber'
                     ]
                 ),
                 new Column(
