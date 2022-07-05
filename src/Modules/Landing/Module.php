@@ -8,6 +8,7 @@ use Phalcon\Loader;
 use Phalcon\Mvc\View\Engine\Volt;
 use Phlexus\Module as PhlexusModel;
 use Phlexus\Helpers;
+use Phlexus\Events\Listeners\DispatcherListener;
 
 final class Module extends PhlexusModel
 {
@@ -78,5 +79,7 @@ final class Module extends PhlexusModel
 
         $view->setMainView($themePath . '/layouts/public');
         $view->setViewsDir($themePath . '/');
+
+        $di->getShared('eventsManager')->attach('dispatch', new DispatcherListener());
     }
 }

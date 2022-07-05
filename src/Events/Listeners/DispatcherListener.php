@@ -67,25 +67,13 @@ final class DispatcherListener extends Injectable
         if ($exception instanceof MvcDispatcherException) {
             $this->response->setStatusCode(404);
             $dispatcher->forward([
-                'module' => 'User',
-                'namespace' => 'Phlexus\Modules\User\Controllers',
+                'module' => 'Landing',
+                'namespace' => 'Phlexus\Modules\Landing\Controllers',
                 'controller' => 'errors',
                 'action' => 'show404',
             ]);
 
             return false;
-        }
-
-        if ($exception instanceof AuthException) {
-            $this->response->setStatusCode(402);
-            $dispatcher->forward([
-                'module' => 'User',
-                'namespace' => 'Phlexus\Modules\User\Controllers',
-                'controller' => 'auth',
-                'action' => 'login',
-            ]);
-
-            $event->stop();
         }
 
         return $event->isStopped();
