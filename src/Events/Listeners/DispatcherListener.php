@@ -67,10 +67,10 @@ final class DispatcherListener extends Injectable
         if ($exception instanceof MvcDispatcherException) {
             $this->response->setStatusCode(404);
             $dispatcher->forward([
-                'module' => 'Landing',
-                'namespace' => 'Phlexus\Modules\Landing\Controllers',
+                'module'     => 'Landing',
+                'namespace'  => 'Phlexus\Modules\Landing\Controllers',
                 'controller' => 'errors',
-                'action' => 'show404',
+                'action'     => 'show404',
             ]);
 
             return false;
@@ -80,10 +80,10 @@ final class DispatcherListener extends Injectable
             $this->response->setStatusCode(500);
 
             $dispatcher->forward([
-                'module' => $moduleName,
-                'namespace' => $namespace,
+                'module'     => 'Landing',
+                'namespace'  => 'Phlexus\Modules\Landing\Controllers',
                 'controller' => 'errors',
-                'action' => 'show500',
+                'action'     => 'show500',
             ]);
 
             $event->stop();
