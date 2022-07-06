@@ -76,6 +76,19 @@ final class DispatcherListener extends Injectable
             return false;
         }
 
+        if ($exception instanceof ApplicationException) {
+            $this->response->setStatusCode(500);
+
+            $dispatcher->forward([
+                'module' => $moduleName,
+                'namespace' => $namespace,
+                'controller' => 'errors',
+                'action' => 'show500',
+            ]);
+
+            $event->stop();
+        }
+
         return $event->isStopped();
     }
 }
