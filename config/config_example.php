@@ -3,8 +3,18 @@
 declare(strict_types=1);
 
 return [
+    'company' => [
+        'name'    => 'Phlexus',
+        'address' => [
+            'street'    => 'Street Address',
+            'city'      => 'City',
+            'post_code' => '11111'
+        ],
+        'email' => 'ltd@example'
+    ],
+
     'application' => [
-        'base_uri' => '/',
+        'base_uri'   => '/',
         'upload_dir' => dirname(__DIR__) . '/public/assets/',
     ],
 
@@ -23,7 +33,7 @@ return [
     'auth' => [
         'adapter' => 'model',
         'configurations' => [
-            'model' => \Phlexus\Modules\BaseUser\Models\User::class,
+            'model'  => \Phlexus\Modules\BaseUser\Models\User::class,
             'fields' => [
                 'identity' => 'email',
                 'password' => 'password',
