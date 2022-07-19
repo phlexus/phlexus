@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Phlexus\Modules\Generic\Actions;
 
 use Phalcon\Http\ResponseInterface;
-use Phalcon\Http\Response;
 use Phlexus\Modules\BaseUser\Models\Profile;
 
 /**
@@ -31,9 +30,6 @@ trait DeleteAction
 
         $isAdmin = Profile::getUserProfile()->isAdmin();
 
-        // Response instance
-        $response = new Response();
-
         // Content of the response
         $response = ['success' => 0];
 
@@ -59,8 +55,11 @@ trait DeleteAction
             $record->active = 0;
 
             if ($record->save()) {
-                $response['success'] = true;
-                $response['message'] = $translationMessage->_('delete-successfully');
+                $response = [
+                    'success'  => true,
+                    'message'  => $translationMessage->_('delete-successfully'),
+                    'newToken' => $this->security->getToken(),
+                ];
             }
         }
 
