@@ -6,8 +6,8 @@ namespace Phlexus\Modules\Generic\Forms;
 use Phlexus\Form\FormBase;
 use Phalcon\Forms\Element\Text;
 use Phalcon\Forms\Element\Select;
-use Phalcon\Validation\Validator\PresenceOf;
-use Phalcon\Validation\Validator\InclusionIn;
+use Phalcon\Filter\Validation\Validator\PresenceOf;
+use Phalcon\Filter\Validation\Validator\InclusionIn;
 use Phalcon\Mvc\Model\Resultset\Simple;
 /**
  * Class BaseForm

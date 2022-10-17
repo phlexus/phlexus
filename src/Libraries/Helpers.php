@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Phlexus\Libraries;
 
-use Phalcon\Di;
+use Phalcon\Di\Di;
 use Phalcon\Mvc\View;
 use Phlexus\Helpers as PhlexusHelpers;
 use Phalcon\Flash\Session as FlashSession;

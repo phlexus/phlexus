@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Phlexus\Modules\Landing;
 
 use Phalcon\Di\DiInterface;
-use Phalcon\Loader;
+use Phalcon\Autoload\Loader;
 use Phalcon\Mvc\View\Engine\Volt;
 use Phlexus\Module as PhlexusModel;
 use Phlexus\Helpers;
@@ -46,7 +46,7 @@ final class Module extends PhlexusModel
         ];
 
         $loader = new Loader();
-        $loader->registerNamespaces($namespaces);
+        $loader->setNamespaces($namespaces);
         $loader->register();
     }
 

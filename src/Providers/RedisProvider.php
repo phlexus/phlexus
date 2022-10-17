@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Phlexus\Providers;
 
 use Phlexus\Helpers;
-use Phalcon\Cache\Adapter\Redis;
+use Phalcon\Storage\Adapter\Redis;
 use Phalcon\Storage\SerializerFactory;
 
 class RedisProvider extends AbstractProvider

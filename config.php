@@ -1,6 +1,6 @@
 <?php
 
-use Phalcon\Config;
+use Phalcon\Config\Config;
 use Dotenv\Dotenv;
 
 $dotenv = Dotenv::create(__DIR__);
