@@ -7,6 +7,7 @@ use Phlexus\Modules\BaseUser\Models\Profile;
 use Phalcon\Mvc\Model\Resultset\Simple;
 use Phalcon\Http\ResponseInterface;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
+use Phalcon\Tag;
 
 /**
  * Trait ViewAction
@@ -47,7 +48,7 @@ trait ViewAction
 
         $title = $defaultTranslation->setTypePage()->_('title-generic-view');
 
-        $this->tag->appendTitle($title);
+        Tag::appendTitle($title);
 
         $paginator = $this->getRecords();
 

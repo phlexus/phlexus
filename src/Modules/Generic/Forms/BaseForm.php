@@ -107,7 +107,13 @@ class BaseForm extends FormBase
      */
     private function parseAttributes(array $attributes): array
     {
-        $ignoreAttributes = ['name', 'type', 'related'];
+        $ignoreAttributes = [
+            'name',
+            'type',
+            'related',
+            'required',
+            'value'
+        ];
 
         return array_diff_key($attributes, array_flip($ignoreAttributes));
     }

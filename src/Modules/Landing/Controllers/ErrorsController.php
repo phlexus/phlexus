@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Phlexus\Modules\Landing\Controllers;
 
 use Phalcon\Mvc\Controller;
+use Phalcon\Tag;
 
 /**
  * Class ErrorsController
@@ -21,7 +22,7 @@ final class ErrorsController extends Controller
     {
         $title = $this->translation->setTypePage()->_('title-error-402');
 
-        $this->tag->setTitle($title);
+        Tag::setTitle($title);
     }
 
     /**
@@ -33,7 +34,7 @@ final class ErrorsController extends Controller
     {
         $title = $this->translation->setTypePage()->_('title-error-404');
 
-        $this->tag->setTitle($title);
+        Tag::setTitle($title);
     }
 
     /**
@@ -45,6 +46,6 @@ final class ErrorsController extends Controller
     {
         $title = $this->translation->setTypePage()->_('title-error-500');
 
-        $this->tag->setTitle($title);
+        Tag::setTitle($title);
     }
 }

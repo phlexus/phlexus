@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Phlexus\Modules\Landing\Controllers;
 
 use Phalcon\Mvc\Controller;
+use Phalcon\Tag;
 
 /**
  * Class Home
@@ -21,6 +22,6 @@ final class HomeController extends Controller
     {
         $title = $this->translation->setTypePage()->_('title-home');
 
-        $this->tag->setTitle($title);
+        Tag::setTitle($title);
     }
 }

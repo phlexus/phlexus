@@ -38,7 +38,7 @@ class TranslationProvider extends AbstractProvider
         $language = $this->request->getBestLanguage();
         $di       = $this->getDI();
 
-        $this->getDI()->setShared($this->providerName, function () use ($di, $language) {
+        $di->setShared($this->providerName, function () use ($di, $language) {
             $router = $di->getShared('router');
 
             $module     = $router->getModuleName();

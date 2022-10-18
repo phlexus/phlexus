@@ -93,12 +93,15 @@ return [
 
     'view' => [
         'engines' => [
-            '.phtml' => \Phalcon\Mvc\View\Engine\Php::class,
-            '.volt'  => \Phalcon\Mvc\View\Engine\Volt::class,
-        ],
-        
-        'volt'    => [
-            'path' => dirname(__DIR__). '/var/cache/',
+            '.phtml' => [
+                'class' => \Phalcon\Mvc\View\Engine\Php::class
+            ],
+            '.volt'  => [
+                'class'   => \Phalcon\Mvc\View\Engine\Volt::class,
+                'options' => [
+                    'path' => dirname(__DIR__). '/var/cache/',
+                ],
+            ],
         ],
     ],
 

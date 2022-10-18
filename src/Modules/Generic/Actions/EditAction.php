@@ -5,6 +5,7 @@ namespace Phlexus\Modules\Generic\Actions;
 
 use Phlexus\Modules\BaseUser\Models\Profile;
 use Phalcon\Http\ResponseInterface;
+use Phalcon\Tag;
 
 /**
  * Trait EditAction
@@ -41,7 +42,7 @@ trait EditAction
 
         $title = $defaultTranslation->setTypePage()->_('title-generic-edit');
 
-        $this->tag->appendTitle($title);
+        Tag::appendTitle($title);
         
         $model = $this->getModel();
 

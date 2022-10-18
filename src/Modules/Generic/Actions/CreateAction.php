@@ -6,6 +6,7 @@ namespace Phlexus\Modules\Generic\Actions;
 use Phlexus\Modules\BaseUser\Models\User;
 use Phlexus\Modules\BaseUser\Models\Profile;
 use Phalcon\Http\ResponseInterface;
+use Phalcon\Tag;
 
 /**
  * Trait CreateAction
@@ -41,7 +42,7 @@ trait CreateAction
 
         $title = $defaultTranslation->setTypePage()->_('title-generic-create');
 
-        $this->tag->appendTitle($title);
+        Tag::appendTitle($title);
         
         $saveRoute =  $defaultRoute . '/save';
 
