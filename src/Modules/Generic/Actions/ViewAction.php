@@ -63,7 +63,7 @@ trait ViewAction
         $this->view->setVar('paginate', $records);
 
         $this->view->setVar('records', array_replace_recursive(
-            $records->getItems(), 
+            $records->getItems()->toArray(), 
             $this->translateRelatedFields($records)
         ));
 
