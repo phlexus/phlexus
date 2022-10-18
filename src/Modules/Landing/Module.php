@@ -61,21 +61,6 @@ final class Module extends PhlexusModel
         $theme = Helpers::phlexusConfig('theme');
 
         $themePath = $theme->themes_dir . $theme->theme_user;
-        $cacheDir = $theme->themes_dir_cache;
-
-        $view->registerEngines([
-            '.volt' => function ($view) use ($cacheDir, $di) {
-                $volt = new Volt($view, $di);
-                $volt->setOptions([
-                    'path' => $cacheDir,
-                ]);
-
-                $compiler = $volt->getCompiler();
-                $compiler->addFunction('assetsPath', '\Phlexus\Helpers::phlexusAssetsPath');
-
-                return $volt;
-            }
-        ]);
 
         $view->setMainView($themePath . '/layouts/public');
         $view->setViewsDir($themePath . '/');

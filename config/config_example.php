@@ -22,7 +22,6 @@ return [
         'themes_dir'       => dirname(__DIR__) . '/themes/',
         'theme_user'       => 'phlexus-tabler-admin',
         'theme_public'     => '/assets/themes/',
-        'themes_dir_cache' => dirname(__DIR__). '/var/cache/',
     ],
 
     'paths' => [
@@ -95,6 +94,11 @@ return [
     'view' => [
         'engines' => [
             '.phtml' => \Phalcon\Mvc\View\Engine\Php::class,
+            '.volt'  => \Phalcon\Mvc\View\Engine\Volt::class,
+        ],
+        
+        'volt'    => [
+            'path' => dirname(__DIR__). '/var/cache/',
         ],
     ],
 
