@@ -94,6 +94,10 @@ class BaseForm extends FormBase
                 ]));
             }
 
+            if (isset($field['value'])) {
+                $newField->setDefault($field['value']);
+            }
+
             $this->add($newField);
         }
     }
