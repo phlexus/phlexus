@@ -8,6 +8,7 @@ use Phlexus\Libraries\Media\Models\Media;
 use Phlexus\Libraries\Media\Models\MediaDestiny;
 use Phlexus\Models\Model as MvcModel;
 use Phalcon\Http\ResponseInterface;
+use Exception;
 
 /**
  * Trait SaveAction
@@ -161,22 +162,22 @@ trait SaveAction
                 continue;
             }
 
-            $handler = $this->media;        
-            if (
-                !$handler->setFile($file)
-                         ->setFileDestiny(MediaDestiny::DESTINY_INTERNAL)
-                         ->uploadFile()
-            ) {
+            $uploader = $this->media;        
+            
+            try {
+                $uploader->setFile($file)
+                         ->upload();
+            } catch (Exception $e) {
                 return false;
             }
 
             $media = Media::createMedia(
-                $handler->getUploadName(),
-                $handler->getFileType(),
-                $handler->getFileDestiny()
+                $uploader->getUploadName(),
+                $uploader->getFileTypeID(),
+                $uploader->getDirTypeID()
             );
 
-            $handler->reset();
+            $uploader->reset();
 
             if (!$media) {
                return false;

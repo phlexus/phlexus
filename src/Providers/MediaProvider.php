@@ -13,8 +13,9 @@ declare(strict_types=1);
 
 namespace Phlexus\Providers;
 
-use Phlexus\Libraries\Media\Handler as MediaHandler;
+use Phlexus\Libraries\Media\Files\Upload as MediaUpload;
 use Phlexus\Libraries\Media\Models\MediaDestiny;
+use Exception;
 
 class MediaProvider extends AbstractProvider
 {
@@ -39,9 +40,11 @@ class MediaProvider extends AbstractProvider
         $userDirectory = $security->getStaticUserToken();
 
         $this->di->setShared($this->providerName, function () use ($userDirectory) {
-            return (new MediaHandler())
-                        ->setFileDestiny(MediaDestiny::DESTINY_USER)
-                        ->setUserDirectory($userDirectory);
+            try {
+                return new MediaUpload();
+            } catch (Exception $e) {
+                return null;
+            }
         });
     }
 }
