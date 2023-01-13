@@ -35,11 +35,7 @@ class MediaProvider extends AbstractProvider
      */
     public function register(array $parameters = []): void
     {
-        $security = $this->di->getShared('security');
-
-        $userDirectory = $security->getStaticUserToken();
-
-        $this->di->setShared($this->providerName, function () use ($userDirectory) {
+        $this->di->setShared($this->providerName, function () {
             try {
                 return new MediaUpload();
             } catch (Exception $e) {
