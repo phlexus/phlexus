@@ -24,7 +24,7 @@ class MediaProvider extends AbstractProvider
      *
      * @var string
      */
-    protected string $providerName = 'media';
+    protected string $providerName = 'uploader';
 
     /**
      * Register application service.

@@ -162,7 +162,7 @@ trait SaveAction
                 continue;
             }
 
-            $uploader = $this->media;        
+            $uploader = $this->uploader;        
             
             try {
                 $uploader->setFile($file)
