@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Phlexus\Providers;
 
-use Phlexus\Libraries\Media\Files\Upload as MediaUpload;
+use Phlexus\Libraries\Media\Files\Media as MediaUpload;
 use Phlexus\Libraries\Media\Models\MediaDestiny;
 use Exception;
 

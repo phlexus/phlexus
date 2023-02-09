@@ -6,6 +6,7 @@ namespace Phlexus\Modules\Generic\Actions;
 use Phlexus\Modules\BaseUser\Models\Profile;
 use Phlexus\Libraries\Media\Models\Media;
 use Phlexus\Libraries\Media\Models\MediaDestiny;
+use Phlexus\Libraries\Media\Files\MimeTypes;
 use Phlexus\Models\Model as MvcModel;
 use Phalcon\Http\ResponseInterface;
 use Exception;
@@ -46,7 +47,7 @@ trait SaveAction
         }
 
         if (!$this->request->isPost() 
-            || !$this->security->checkToken('csrf', $this->request->getPost('csrf', null, null))) {
+            || !$this->security->checkToken('csrf', (string) $this->request->getPost('csrf'))) {
             return $this->response->redirect($defaultRoute);
         }
 
@@ -120,7 +121,11 @@ trait SaveAction
                 $this->flash->error($message->getMessage());
             }
 
-            return $this->response->redirect($this->request->getHttpReferer());
+            // @ToDo: Change to a url helper
+            $refererURL = $this->request->getHttpReferer();
+            $parsedUrl  = parse_url($refererURL);
+
+            return $this->response->redirect($parsedUrl['path'] ?? '/');
         }
     }
 
@@ -165,19 +170,12 @@ trait SaveAction
             $uploader = $this->uploader;        
             
             try {
-                $uploader->setFile($file)
-                         ->upload();
+                $media = $uploader->setFile($file)
+                        ->setAllowedMimeTypes(MimeTypes::IMAGES)
+                        ->upload();
             } catch (Exception $e) {
                 return false;
             }
-
-            $media = Media::createMedia(
-                $uploader->getUploadName(),
-                $uploader->getFileTypeID(),
-                $uploader->getDirTypeID()
-            );
-
-            $uploader->reset();
 
             if (!$media) {
                return false;
@@ -187,5 +185,7 @@ trait SaveAction
 
             return $model;
         }
+
+        return false;
     }
 }

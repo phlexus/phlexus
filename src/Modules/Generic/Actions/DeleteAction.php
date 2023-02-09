@@ -41,7 +41,7 @@ trait DeleteAction
         }
 
         if (!$this->request->isPost() 
-            || !$this->security->checkToken('csrf', $this->request->getPost('csrf', null, null))) {
+            || !$this->security->checkToken('csrf', (string) $this->request->getPost('csrf'))) {
             $response['message'] = $translationMessage->_('invalid-form-data');
 
             return $this->response->setJsonContent($response);

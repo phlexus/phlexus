@@ -16,6 +16,8 @@ namespace Phlexus\Libraries;
 use Phalcon\Di\Di;
 use Phalcon\Mvc\View;
 use Phlexus\Helpers as PhlexusHelpers;
+use Phlexus\Security;
+use Phalcon\Session\Manager as SessionManager;
 use Phalcon\Flash\Session as FlashSession;
 
 class Helpers extends PhlexusHelpers
@@ -34,11 +36,31 @@ class Helpers extends PhlexusHelpers
     }
 
     /**
+     * Get security
+     * 
+     * @return Security
+     */
+    public static function getSecurity(): Security
+    {
+        return Di::getDefault()->get('security');
+    }
+    
+    /**
+     * Get session
+     * 
+     * @return SessionManager
+     */
+    public static function getSession(): SessionManager
+    {
+        return Di::getDefault()->get('session');
+    }
+
+    /**
      * Get flash message session
      * 
      * @return FlashSession
      */
-    public static function getFlashMessage() : FlashSession
+    public static function getFlashMessage(): FlashSession
     {
         return Di::getDefault()->get('flash');
     }
@@ -55,7 +77,7 @@ class Helpers extends PhlexusHelpers
      * 
      * @throws Exception
      */
-    public static function renderEmail(View $view, string $main, string $template, $vars = []) : string
+    public static function renderEmail(View $view, string $main, string $template, $vars = []): string
     {
         $view->setViewsDir($view->getViewsDir() . 'emails/');
 
@@ -77,7 +99,7 @@ class Helpers extends PhlexusHelpers
      * 
      * @return bool
      */
-    public static function sendEmail(string $email, string $subject, string $body) : bool
+    public static function sendEmail(string $email, string $subject, string $body): bool
     {
         $mail = Di::getDefault()->getShared('email');
 
@@ -101,7 +123,7 @@ class Helpers extends PhlexusHelpers
      * 
      * @return bool
      */
-    public static function sendSms(string $destNumber, string $message) : bool
+    public static function sendSms(string $destNumber, string $message): bool
     {
         $sms = Di::getDefault()->getShared('sms');
 
