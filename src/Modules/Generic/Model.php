@@ -39,6 +39,8 @@ trait Model
 
     /**
      * Parse Fields
+     * 
+     * @param array Fields to parse
      *
      * @return array Parsed fields
      */

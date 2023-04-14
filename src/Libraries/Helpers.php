@@ -15,14 +15,15 @@ namespace Phlexus\Libraries;
 
 use Phalcon\Di\Di;
 use Phalcon\Mvc\View;
-use Phlexus\Helpers as PhlexusHelpers;
 use Phlexus\Security;
+use Phlexus\Helpers as PhlexusHelpers;
+use Phlexus\Libraries\Media\Models\MediaDestiny;
+use Phlexus\Libraries\Media\Models\MediaType;
 use Phalcon\Session\Manager as SessionManager;
 use Phalcon\Flash\Session as FlashSession;
 
 class Helpers extends PhlexusHelpers
 {
-
     /**
      * Get application upload dir
      * 
@@ -33,6 +34,24 @@ class Helpers extends PhlexusHelpers
         $configs = PhlexusHelpers::phlexusConfig('application')->toArray();
 
         return $configs['upload_dir'];
+    }
+
+    /**
+     * Get internal relative dir
+     * 
+     * @return string
+     */
+    public static function getInternalRelativeDir(): string
+    {
+        $uploader = Di::getDefault()->get('uploader')
+                                    ->setDirTypeID(MediaDestiny::DESTINY_INTERNAL)
+                                    ->setTargetDirSystem();
+
+        $fileTypeID = MediaType::TYPE_IMAGE;
+        $dirTypeID  = $uploader->getDirTypeID();
+        $targetDir  = $uploader->getTargetDir();
+
+        return implode('/', [ $fileTypeID, $dirTypeID, $targetDir]);
     }
 
     /**

@@ -5,6 +5,7 @@ namespace Phlexus\Modules\Generic\Forms;
 
 use Phlexus\Form\FormBase;
 use Phalcon\Forms\Element\Text;
+use Phalcon\Forms\Element\Check;
 use Phalcon\Forms\Element\Select;
 use Phalcon\Filter\Validation\Validator\PresenceOf;
 use Phalcon\Filter\Validation\Validator\InclusionIn;
@@ -95,6 +96,10 @@ class BaseForm extends FormBase
             }
 
             if (isset($field['value'])) {
+                if ($type === Check::class && $field['value'] == 1) {
+                    $newField->setAttribute(" " . 'checked', 'checked');
+                }
+
                 $newField->setDefault($field['value']);
             }
 

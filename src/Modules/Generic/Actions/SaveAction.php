@@ -172,7 +172,9 @@ trait SaveAction
             try {
                 $media = $uploader->setFile($file)
                         ->setAllowedMimeTypes(MimeTypes::IMAGES)
-                        ->upload();
+                        ->setDirTypeID(MediaDestiny::DESTINY_INTERNAL)
+                        ->setTargetDirSystem()
+                        ->uploadMedia();
             } catch (Exception $e) {
                 return false;
             }
