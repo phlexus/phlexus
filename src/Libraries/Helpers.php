@@ -24,6 +24,21 @@ use Phalcon\Flash\Session as FlashSession;
 
 class Helpers extends PhlexusHelpers
 {
+    private const FALLBACK_LANGUAGE = 'en-us';
+
+    public static function getBestLanguage()
+    {
+        $request = Di::getDefault()->getShared('request');
+
+        $bestLanguage = strtolower($request->getBestLanguage());
+
+        if (preg_match('/^[a-z]{2}-[a-z]{2}$/', $bestLanguage) === 0) {
+            return self::FALLBACK_LANGUAGE;
+        }
+
+        return $bestLanguage;
+    }
+
     /**
      * Get application upload dir
      * 
