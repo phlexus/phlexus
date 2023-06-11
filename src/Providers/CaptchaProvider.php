@@ -6,6 +6,7 @@ namespace Phlexus\Providers;
 use Phlexus\Helpers;
 use PHPMailer\PHPMailer\PHPMailer;
 use ReCaptcha\ReCaptcha;
+use ReCaptcha\RequestMethod\CurlPost;
 
 class CaptchaProvider extends AbstractProvider
 {
@@ -38,7 +39,7 @@ class CaptchaProvider extends AbstractProvider
         $this->di->setShared($this->providerName, function () use ($application, $configs) {
             $config = $configs['config'];
 
-            $recaptcha = new ReCaptcha($config['secret']);
+            $recaptcha = new ReCaptcha($config['secret'], new CurlPost);
             
             $parseUrl = parse_url($application['base_uri']);
 
