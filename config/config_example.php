@@ -18,6 +18,10 @@ return [
         'upload_dir' => dirname(__DIR__) . '/public/assets/',
     ],
 
+    'session' => [
+        'session_name' => 'phlexus-app'
+    ],
+
     'theme' => [
         'themes_dir'       => dirname(__DIR__) . '/themes/',
         'theme_user'       => 'phlexus-tabler-admin',

@@ -8,6 +8,7 @@
         "falcon758/phlexus-core": "^2.1.0",
         "falcon758/phlexus-module-users": "^2.1.0",
         "falcon758/phlexus-module-shop": "^2.1.0",
+        "falcon758/phlexus-module-blog": "^1.0.0",
         "falcon758/phlexus-library-theme": "^2.0.0",
         "falcon758/phlexus-library-translations": "^2.1.0",
         "phpmailer/phpmailer": "^6.4",
