@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Phlexus\Modules\Landing\Controllers;
 
 use Phlexus\Modules\Landing\Forms\ContactForm;
+use Phlexus\Helpers as PhlexusHelpers;
 use Phalcon\Http\ResponseInterface;
 use Phalcon\Mvc\Controller;
 use Phalcon\Tag;
@@ -60,19 +61,17 @@ final class HomeController extends Controller
 
         if (
             !$this->sendContactEmail(
-                $newUser,
-                $this->security->getUserTokenByHour($newUser->userHash),
-                $newUser->hashCode
+                $post['name'],
+                $post['email'],
+                $post['message']
             )
         ) {
-            $newUser->delete();
-
-            $this->flash->error($translationMessage->_('unable-to-create-account'));
+            $this->flash->error($translationMessage->_('email-not-sent'));
 
             return $this->response->redirect('/');
         }
 
-        $this->flash->success($translationMessage->_('account-created-successfully'));
+        $this->flash->success($translationMessage->_('email-sent-successfully'));
 
         return $this->response->redirect('/');
     }
@@ -96,13 +95,16 @@ final class HomeController extends Controller
                 ]
             );
         } catch(\Exception $e) {
-            $errorMessage = $this->translation->setTypeMessage()->_('email-send-failed');
-
-            $this->flash->error($errorMessage);
-
             return false;
         }
 
-        return Helpers::sendEmail($user->email, 'Contact Received', $body);
+        $company = PhlexusHelpers::phlexusConfig('company')->toArray();
+        $serverEmail = $company['email'] ?? null;
+
+        if (empty($serverEmail)) {
+            return false;
+        }
+        
+        return Helpers::sendEmail($serverEmail, 'Contact Received', $body);
     }
 }
