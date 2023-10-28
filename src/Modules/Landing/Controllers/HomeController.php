@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Phlexus\Modules\Landing\Controllers;
 
 use Phlexus\Modules\Landing\Forms\ContactForm;
+use Phlexus\PhlexusHelpers\Emails;
 use Phlexus\Helpers as PhlexusHelpers;
 use Phalcon\Http\ResponseInterface;
 use Phalcon\Mvc\Controller;
@@ -88,7 +89,7 @@ final class HomeController extends Controller
     private function sendContactEmail(string $name, string $email, string $message): bool
     {
         try {
-            $body = Helpers::renderEmail($this->view, 'landing', 'contact_us', [
+            $body = Emails::renderEmail($this->view, 'landing', 'contact_us', [
                     'name'    => $name,
                     'email'   => $email,
                     'message' => $message,
@@ -105,6 +106,6 @@ final class HomeController extends Controller
             return false;
         }
         
-        return Helpers::sendEmail($serverEmail, 'Contact Received', $body);
+        return Emails::sendEmail($serverEmail, 'Contact Received', $body);
     }
 }
