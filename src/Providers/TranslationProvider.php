@@ -16,7 +16,7 @@ namespace Phlexus\Providers;
 use Phlexus\Libraries\Translations\TranslationFactory;
 use Phlexus\Libraries\Translations\TranslationAbstract;
 use Phlexus\Libraries\Translations\Database\Models\TextType;
-use Phlexus\Libraries\Helpers;
+use Phlexus\PhlexusHelpers\Translations;
 
 class TranslationProvider extends AbstractProvider
 {
@@ -36,7 +36,7 @@ class TranslationProvider extends AbstractProvider
      */
     public function register(array $parameters = []): void
     {
-        $language = Helpers::getBestLanguage();
+        $language = Translations::getBestLanguage();
         $di       = $this->getDI();
 
         $di->setShared($this->providerName, function () use ($di, $language) {

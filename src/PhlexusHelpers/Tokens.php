@@ -11,9 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Phlexus\Libraries;
-
-use Phlexus\Libraries\Helpers;
+namespace Phlexus\PhlexusHelpers;
 
 class Tokens
 {
@@ -28,7 +26,7 @@ class Tokens
      */
     public static function exists(string $tokenName): bool
     {
-        $session = Helpers::getSession();
+        $session = Defaults::getSession();
         return $session->exists($tokenName);
     }
 
@@ -41,7 +39,7 @@ class Tokens
      */
     public static function getToken(string $tokenName): ?string
     {
-        $session = Helpers::getSession();
+        $session = Defaults::getSession();
         return $session->get($tokenName, null);
     }
 
@@ -54,8 +52,8 @@ class Tokens
      */
     public static function generate(string $tokenName): string
     {
-        $session  = Helpers::getSession();
-        $security = Helpers::getSecurity();
+        $session  = Defaults::getSession();
+        $security = Defaults::getSecurity();
 
         $generatedToken = $security->getSaltBytes(self::DEFAULT_BYTES);
         $session->set($tokenName, $generatedToken);
@@ -102,7 +100,7 @@ class Tokens
             return false;
         }
 
-        $session = Helpers::getSession();
+        $session = Defaults::getSession();
 
         $session->remove($tokenName);
 

@@ -15,4 +15,9 @@ $routes->addGet('/', [
     'action'     => 'index',
 ]);
 
+$routes->addPost('/doContact', [
+    'controller' => 'home',
+    'action'     => 'doContact',
+]);
+
 return $routes;

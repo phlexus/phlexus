@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Phlexus\Libraries;
+namespace Phlexus\PhlexusHelpers;
 
 class Arrays
 {

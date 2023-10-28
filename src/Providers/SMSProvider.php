@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Phlexus\Providers;
 
 use Phlexus\Helpers;
-use PHPMailer\PHPMailer\PHPMailer;
+use Twilio\Rest\Client as SMSClient;
 
 class SMSProvider extends AbstractProvider
 {
@@ -38,7 +38,7 @@ class SMSProvider extends AbstractProvider
             $sid = $options['sid'];
             $token = $options['token'];
 
-            $client = new Twilio\Rest\Client($sid, $token);
+            $client = new SMSClient($sid, $token);
 
             return $client;
         });
