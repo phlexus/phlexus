@@ -14,6 +14,11 @@ declare(strict_types=1);
 namespace Phlexus\PhlexusHelpers;
 
 use Phalcon\Di\Di;
+use Phalcon\Http\Request;
+use Phlexus\Security;
+use Phlexus\Libraries\Media\Files\Media as MediaUpload;
+use Phalcon\Session\Manager as SessionManager;
+use Phalcon\Flash\Session as FlashSession;
 use PHPMailer\PHPMailer\PHPMailer;
 use Twilio\Rest\Client as SMSClient;
 
@@ -38,6 +43,16 @@ class Defaults
     {
         return self::getByName('session');
     }
+    
+    /**
+     * Get request
+     * 
+     * @return Request
+     */
+    public static function getRequest(): Request
+    {
+        return self::getByName('request');
+    }
 
     /**
      * Get flash message session
@@ -52,9 +67,9 @@ class Defaults
     /**
      * Get uploader
      * 
-     * @return FlashSession
+     * @return MediaUpload
      */
-    public static function getUploader(): FlashSession
+    public static function getUploader(): MediaUpload
     {
         return self::getByName('uploader');
     }

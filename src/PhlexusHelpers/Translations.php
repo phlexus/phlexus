@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Phlexus\Helpers;
+namespace Phlexus\PhlexusHelpers;
 
 class Translations
 {
@@ -19,7 +19,7 @@ class Translations
 
     public static function getBestLanguage()
     {
-        $request = Di::getDefault()->getShared('request');
+        $request = Defaults::getRequest();
 
         $bestLanguage = strtolower($request->getBestLanguage());
 
