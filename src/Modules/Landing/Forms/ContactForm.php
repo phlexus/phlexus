@@ -31,22 +31,26 @@ class ContactForm extends CaptchaForm
 
         $name = new Text('name', [
             'class'       => 'form-control',
-            'placeholder' => $translationForm->_('field-name')
+            'placeholder' => $translationForm->_('field-name'),
+            ' required'   => 'true'
         ]);
 
         $email = new Email('email', [
             'class'       => 'form-control',
-            'placeholder' => $translationForm->_('field-email-address')
+            'placeholder' => $translationForm->_('field-email-address'),
+            ' required'   => 'true'
         ]);
 
         $message = new Text('message', [
             'class'       => 'form-control',
-            'placeholder' => $translationForm->_('field-message')
+            'placeholder' => $translationForm->_('field-message'),
+            ' required'   => 'true'
         ]);
 
         $acceptTerms = new Check('accept_terms', [
             'value'       => '1',
-            'placeholder' => $translationForm->_('field-accept-terms')
+            'placeholder' => $translationForm->_('field-accept-terms'),
+            ' required'   => 'true'
         ]);
 
         $translationMessage = $this->translation->setTypeMessage();   

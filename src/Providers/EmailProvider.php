@@ -39,6 +39,7 @@ class EmailProvider extends AbstractProvider
             
             //Server settings
             $mail->isSMTP();
+	        $mail->isHTML(true);
             $mail->Host       = $config['host'];
             $mail->Username   = $config['username'];
             $mail->Password   = $config['password'];

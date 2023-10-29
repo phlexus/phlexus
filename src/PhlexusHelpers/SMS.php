@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Phlexus\PhlexusHelpers;
 
-class Helpers
+class SMS
 {
     /**
      * Send an sms

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Phlexus\Helpers;
 
-class Helpers
+class Translations
 {
     private const FALLBACK_LANGUAGE = 'en-us';
 
