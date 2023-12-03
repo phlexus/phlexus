@@ -27,7 +27,7 @@ class UserProvider extends AbstractProvider
         $user = User::getUser();
 
         $info = [];
-        if($user !== null) {
+        if ($user !== null) {
             $info = $user->getUserInfo();
         }
 
