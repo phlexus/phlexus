@@ -1,6 +1,12 @@
+.phalcon
 .idea
 vendor/
 docker-compose.override.yml
+config/config.php
+config/config_cli.php
 .env
-themes/phlexus-tabler-base-admin
-public/assets/themes/phlexus-tabler-base-admin
+themes/phlexus-tabler-admin
+public/assets/
+!public/assets/1/1/example_file
+!public/assets/1/2/example_file
+composer.lock

@@ -4,12 +4,17 @@ declare(strict_types=1);
 namespace Phlexus\Modules\Landing;
 
 use Phalcon\Di\DiInterface;
-use Phalcon\Loader;
+use Phalcon\Autoload\Loader;
+use Phalcon\Mvc\View\Engine\Volt;
 use Phlexus\Module as PhlexusModel;
+use Phlexus\Helpers;
+use Phlexus\Events\Listeners\DispatcherListener;
 
 final class Module extends PhlexusModel
 {
     /**
+     * Get Module Name
+     * 
      * @return string
      */
     public static function getModuleName(): string
@@ -20,6 +25,8 @@ final class Module extends PhlexusModel
     }
 
     /**
+     * Get Handlers Namespace
+     * 
      * @return string
      */
     public static function getHandlersNamespace(): string
@@ -32,14 +39,14 @@ final class Module extends PhlexusModel
      *
      * @param DiInterface $di
      */
-    public function registerAutoloaders(DiInterface $di = null)
+    public function registerAutoloaders(DiInterface $di = null): void
     {
         $namespaces = [
             $this->getHandlersNamespace() => __DIR__ . '/controllers/',
         ];
 
         $loader = new Loader();
-        $loader->registerNamespaces($namespaces);
+        $loader->setNamespaces($namespaces);
         $loader->register();
     }
 
@@ -48,10 +55,16 @@ final class Module extends PhlexusModel
      *
      * @param DiInterface $di
      */
-    public function registerServices(DiInterface $di = null)
+    public function registerServices(DiInterface $di = null): void
     {
         $view = $di->getShared('view');
-        $view->setMainView(__DIR__ . '/../../../themes/default/layouts/layout');
-        $view->setViewsDir(__DIR__ . '/../../../themes/default/landing/');
+        $theme = Helpers::phlexusConfig('theme');
+
+        $themePath = $theme->themes_dir . $theme->theme_user;
+
+        $view->setMainView($themePath . '/layouts/public');
+        $view->setViewsDir($themePath . '/');
+
+        $di->getShared('eventsManager')->attach('dispatch', new DispatcherListener());
     }
 }
