@@ -15,9 +15,9 @@ class Settings extends Model
     private const DATABASEKEY = 'DATABASE_KEY';
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $id;
+    public ?int $id;
 
     /**
      * @var string
@@ -32,12 +32,12 @@ class Settings extends Model
     /**
      * @var string|null
      */
-    public $createdAt;
+    public ?string $createdAt;
 
     /**
      * @var string|null
      */
-    public $modifiedAt;
+    public ?string $modifiedAt;
 
     /**
      * Initialize
