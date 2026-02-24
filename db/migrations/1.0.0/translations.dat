@@ -1,0 +1,131 @@
+1,Home,1,1,1
+2,Content,2,1,1
+3,"Sign In",3,1,1
+4,Home,4,1,1
+5,Products,5,1,1
+6,Cart,6,1,1
+7,Copyright,7,1,1
+8,"All rights reserved",8,1,1
+9,Products,9,1,1
+10,Products,10,1,1
+11,"Product 3",11,1,1
+12,Buy,12,1,1
+13,"Product 4",13,1,1
+14,"Product 5",14,1,1
+15,"Product 6",15,1,1
+16,"Product added successfully",16,1,1
+17,Cart,17,1,1
+18,Product,18,1,1
+19,Quantity,19,1,1
+20,Price,20,1,1
+21,Action,21,1,1
+22,Delete,22,1,1
+23,Checkout,23,1,1
+24,"Product removed",24,1,1
+25,Checkout,25,1,1
+26,"Login before checkout",26,1,1
+27,Email,27,1,1
+28,Password,28,1,1
+29,"Email is required",29,1,1
+30,"Email is invalid",30,1,1
+31,"Password is required",31,1,1
+32,Login,32,1,1
+33,Email,33,1,1
+34,Password,34,1,1
+35,"Forgot Password?",35,1,1
+36,"Remember me?",36,1,1
+37,"Sign In",37,1,1
+38,"Create Account",38,1,1
+39,"Sign Up",39,1,1
+40,Login,40,1,1
+41,"Login failed",41,1,1
+42,Register,42,1,1
+43,Repeat-Password,43,1,1
+44,"Please accept terms and conditions",44,1,1
+45,"Password to weak, please improve your password strength",45,1,1
+46,"Passwords are not equal",46,1,1
+47,"Terms and conditions not accepted",47,1,1
+48,Register,48,1,1
+49,Repeat-Password,49,1,1
+50,"Please accept terms and conditions",50,1,1
+51,Register,51,1,1
+52,"Go back to",52,1,1
+53,Login,53,1,1
+54,"Activate your account:",54,1,1
+55,"Account activated successfully",55,1,1
+56,"Account Activation",56,1,1
+57,"Account activated successfully",57,1,1
+58,"Unable to activate account",58,1,1
+59,Password-Reminder,59,1,1
+60,Password-Reminder,60,1,1
+61,"Remind Me",61,1,1
+62,"Password Reminder:",62,1,1
+63,"Confirm your email to complete recovery",63,1,1
+64,"HashCode is not valid",64,1,1
+65,Password-Recover,65,1,1
+66,"Change Password",66,1,1
+67,"Account recoverd successfully",67,1,1
+68,Profile,68,1,1
+69,"Sign Out",69,1,1
+70,Dashboard,70,1,1
+71,Users,71,1,1
+72,"Users List",72,1,1
+73,"User Create",73,1,1
+74,"Products List",74,1,1
+75,"Product Create",75,1,1
+76,"Profile is required",76,1,1
+77,List,77,1,1
+78,List,78,1,1
+79,ID,79,1,1
+80,Email,80,1,1
+81,Profile,81,1,1
+82,Actions,82,1,1
+83,Edit,83,1,1
+84,Edit,84,1,1
+85,Edit,85,1,1
+86,ID,86,1,1
+87,Email,87,1,1
+88,Profile,88,1,1
+89,Cancel,89,1,1
+90,Save,90,1,1
+91,"Record saved successfully",91,1,1
+92,Create,92,1,1
+93,Create,93,1,1
+94,"Deleted successfully",94,1,1
+95,"Name is required",95,1,1
+96,"Price is required",96,1,1
+97,Name,97,1,1
+98,Price,98,1,1
+99,Name,99,1,1
+100,Price,100,1,1
+101,Image,101,1,1
+102,Profile,102,1,1
+103,"Old Password",103,1,1
+104,Repeat-Password,104,1,1
+105,"Profile Image",105,1,1
+106,"Allowed files are:",106,1,1
+107,Edit,107,1,1
+108,"Old Password",108,1,1
+109,"Profile Image",109,1,1
+110,"Old password is not equal",110,1,1
+111,"Product 7",111,1,1
+112,Address,112,1,1
+113,PostCode,113,1,1
+114,Country,114,1,1
+115,"Payment Method",115,1,1
+116,"Shipping Method",116,1,1
+117,"Address is required",117,1,1
+118,"Address has invalid characters",118,1,1
+119,"PostCode is required",119,1,1
+120,"PostCode has invalid characters",120,1,1
+121,"Country is required",121,1,1
+122,"Payment Method is required",122,1,1
+123,"Shipping Method is required",123,1,1
+124,Address,124,1,1
+125,"Payment and Shipping",125,1,1
+126,Order,126,1,1
+127,"Total Price",127,1,1
+128,PayPal,128,1,1
+129,"Payment processed successfully",129,1,1
+130,"Unable to add product",130,1,1
+131,"No Products",131,1,1
